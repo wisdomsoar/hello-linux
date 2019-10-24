@@ -1,0 +1,12 @@
+
+pause in script:
+ref: http://linux-wiki.cn/wiki/zh-tw/%E7%94%A8shell%E5%AE%9E%E7%8E%B0bat%E7%9A%84pause
+read -n 1 -p "Press any key to continue..."
+
+
+for loop in script
+ref: https://blog.longwin.com.tw/2014/07/bash-shell-for-loop-script-2014/
+for i in {1..100};
+do
+    time curl -o /dev/null https://blog.longwin.com.tw;
+done
