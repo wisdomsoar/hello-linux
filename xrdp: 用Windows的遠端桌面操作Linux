@@ -1,0 +1,45 @@
+* Linux
+
+* Another ref:
+Windows 遠端桌面連線到 Ubuntu 16.04 
+http://honglung.pixnet.net/blog/post/167257893-windows-%E9%81%A0%E7%AB%AF%E6%A1%8C%E9%9D%A2%E9%80%A3%E7%B7%9A%E5%88%B0-ubuntu-16.04
+
+安裝遠端桌面管理軟體
+
+?
+sudo apt-get install xubuntu-desktop
+?
+
+sudo apt-get install xfce4
+sudo apt-get install xrdp
+
+配置遠端桌面管理軟體
+echo xfce4-session > ~/.xsession
+sudo vi /etc/xrdp/startwm.sh
+#在. /etc/X11/Xsession前插入
+tartxfce4 
+
+sudo service xrdp restart
+
+?
+cd /etc/init.d/
+./xrdp restart
+?
+
+網路狀態確認
+
+netstat -na | grep 3389
+
+* chihyang's step
+ref: xrdp完美實現Windows遠程訪問Ubuntu 16.04 - 掃文資訊
+https://hk.saowen.com/a/3b4be27ad5bd2d1a4e8c78c3b26843dc45949304bb7e60a0f2768f0b67277025
+
+sudo apt-get install xubuntu-desktop
+echo xfce4-session >~/.xsession
+sudo apt-get install xrdp
+sudo service xrdp restart
+
+--------------------------------------------------------------------------------------------------------------------
+
+* Windows
+TBD
