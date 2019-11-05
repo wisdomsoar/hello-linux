@@ -19,5 +19,19 @@ do
 done
 # 印出 1 2 3 4 5 (換行)
 
+Bash remove first and last characters from a string
+substring
+ref: https://stackoverflow.com/questions/638975/how-do-i-tell-if-a-regular-file-does-not-exist-in-bash
+You can do
+
+string="|abcdefg|"
+string2=${string#"|"}
+string2=${string2%"|"}
+echo $string2
+Or if your string length is constant, you can do
+
+string="|abcdefg|"
+string2=${string:1:7}
+echo $string2
 
 
