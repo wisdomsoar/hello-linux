@@ -9,6 +9,15 @@ if [ ! -f /tmp/foo.txt ]; then
     echo "File not found!"
 fi
 
+Comparison: Not equal
+Using the not equal operator for string comparison
+ref: https://unix.stackexchange.com/questions/67898/using-the-not-equal-operator-for-string-comparison
+if [ "$PHONE_TYPE" != "NORTEL" ] && [ "$PHONE_TYPE" != "NEC" ] &&
+   [ "$PHONE_TYPE" != "CISCO" ]; then
+   echo "OOXX"
+fi
+   
+
 for loop in script
 ref: https://blog.longwin.com.tw/2014/07/bash-shell-for-loop-script-2014/
 for i in {1..100};
