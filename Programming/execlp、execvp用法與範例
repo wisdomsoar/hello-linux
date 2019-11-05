@@ -1,0 +1,250 @@
+ref: http://burweisnote.blogspot.com/2017/08/execlpexecvp.html
+
+execlp和execvp是linux的system call
+是用來執行指定執行檔的函數
+這裡是他們相關的linux man page
+
+[目錄]
+    exec系列函數簡介
+    execlp和execvp規格與格式
+    execlp範例
+    execvp範例
+
+
+[exec系列函數簡介]
+
+exec系列一共有六個函數
+execl、execlp、execlpe、execv、execvp、execvpe
+左邊三個cl系列他們後面需要的引數是一個個const char* arg放進來
+右邊三個cv系列他們後面需要的引數是放在一個char* const arg[ ]一次引入
+而在這兩個系列中
+第一個都是用path選擇檔案
+第二個都是用file name選擇檔案，這個部分待會會仔細講
+第三個一樣也都是用file name選擇檔案，但他多了個引數讓你自訂環境變數
+
+
+
+[execlp和execvp規格與格式]
+
+在exec家族裡面，我最常用的就是execlp和execvp了
+所以以下就是今天的主角們
+
+語法：
+        int execlp(const char *file, const char *arg, ... /* (char  *) NULL */);
+        int execvp(const char *file, char *const argv[]);
+
+標頭檔：
+        #include <unistd.h>
+
+引數：
+        file 是該即將被執行的檔案的名字，要的是const char*
+        這裡個file有三個重點
+                1.如果file這個字串裡沒有斜線字元(/)的話，
+                   就從環境變數中PATH裡有的路徑去找
+                2.如果file這個字裡面有斜線字元(/)，會直接去該路徑找檔案，忽略PATH
+                3.execlp的file比較特別，
+                   要放兩次，第一個是執行檔名稱，第二個是process名稱
+        execlp後面的引數arg不限數量，最後放一個NULL做為結尾，傳給file作為其引數
+        execvp後面的引數arg[ ]，一樣是傳給file作為其引數，但要小心
+        execvp裡arg[ ]的元素數量至少要比"file name"+"用到的arg"數量多一，多一個NULL
+     
+        這些引數們比較需要注意的地方是他們的型態(太困擾的話可以直接看範例們XD)
+        execlp的arg用const char* arg
+        放string literal(const char[N])當然可以
+        然而，雖然放char array竟然可行，放char*也只有warning
+        但放入std::string就真的會有error
+        execvp的arg[ ]用的是char* const arg，也就是指向可變char的不變指標，
+        所以他的陣列裡反而不要const char*了
+        故當arg[ ]的元素是string literal時就會有warning
+        放char array當然可以，會自動轉成char* const，放char*也是同charr array
+        放std::string當然會有error，因為轉不成char* const
+        最後，如果你的arg[ ]不是char* const而是char* arg[ ]
+        compiler還是會很好心地讓你無誤通過的
+
+回傳值：
+        沒有error的話就不會回傳任何值(其實就算有傳你也用不到，稍後會提到)
+        如果有error的話會回傳-1
+
+注意事項：
+        1.被執行的檔案(file)會在目前位置被執行
+        2.成功調用exec系列的函數後，原本的process會被"執行該檔案的process"給取代
+           所以就算有回傳值，你也沒辦法用原本的process把它讀出來用
+        3. 執行exec系列函數後，process名稱可變，但pid不變
+
+
+[execlp範例]
+
+以下所有有成功的範例輸出結果都一樣，所以我先列出各種寫法
+最後再放輸出結果
+但由於我用的是C++，所以最好的做法是execlp的範例6
+
+1. 直接放string literal
+//execlp_test.cpp
+#include <iostream>
+#include <unistd.h>
+int main(){
+        execlp("cat","cat","test.txt",NULL); //works
+}
+
+2. 放const char*
+//execlp_test.cpp
+#include <iostream>
+#include <unistd.h>
+int main(){
+        const char* file = "cat";
+        const char* arg = "test.txt";
+        execlp(file,file,arg,NULL);  //works
+}
+
+3. 放char array
+//execlp_test.cpp
+#include <iostream>
+#include <unistd.h>
+int main(){
+        char file[] = "cat";
+        char arg[] = {'t','e','s','t','.','t','x','t'};
+        execlp(file,file,arg,NULL);  //works
+}
+
+4. 放char*
+//execlp_test.cpp
+#include <iostream>
+#include <unistd.h>
+int main(){
+        char* file = "cat";
+        char* arg = "test.txt";
+        execlp(file,file,arg,NULL);
+        //works, but get warning when converting "const char*" to a "char*"  
+}
+
+5. 放std::string
+//execlp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+int main(){
+        std::string file = "cat";
+        std::string arg = "test.txt";
+        execlp(file,file,arg,NULL); 
+        //error, can't convert "std::string" to "const char*"  
+}
+
+6. 用c_str()把std::string轉成const char*
+//execlp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+int main(){
+        std::string file = "cat";
+        std::string arg = "test.txt";
+        execlp(file.c_str(),file.c_str(),arg.c_str(),NULL); //works
+}
+
+result:
+
+
+
+
+
+[execvp範例]
+
+以下所有有成功的範例輸出結果都一樣，所以我先列出各種寫法
+最後再放輸出結果
+但由於我用的是C++，所以最好的做法是execvp的範例6
+
+1. 直接把string literal放入char* const arg[ ]
+//execvp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+#include <cstring>
+int main(){
+        char* const arg[3] = {"cat","test.txt",NULL};
+        execvp(arg[0],arg);
+        //works, but get warning when converting "string constant" to "char*"
+}
+
+2. 用strdup把string literal轉成char*，指派給char* const，再放入char* const arg[ ]
+//execvp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+#include <cstring>
+int main(){
+        char* const arg1 = strdup("cat");
+        char* const arg2 = strdup("test.txt");
+        char* const arg[3] = {arg1,arg2,NULL};
+        execvp(arg[0],arg);  //works
+}
+
+3. 把char array放入char* const arg[ ]
+//execvp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+#include <cstring>
+int main(){
+        char arg1[] = "cat";
+        char arg2[] = {'t','e','s','t','.','t','x','t'};
+        char* const arg[3] = {arg1,arg2,NULL};
+        execvp(arg[0],arg);  //works
+}
+
+4. 用strdup把string literal轉成char*，直接放入char* const arg[ ]
+//execvp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+#include <cstring>
+int main(){
+        char* const arg[3] = {strdup("cat"),strdup("test.txt"),NULL};
+        execvp(arg[0],arg);  //works
+}
+
+5. 把std::string放入char* const arg[ ]
+//execvp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+#include <cstring>
+int main(){
+        std::string arg1("cat");
+        std::string arg2("test.txt");
+        char* const arg[3] = {arg1,arg2,NULL};
+        execvp(arg[0],arg);
+        //error, can't convert "std::string" to "char* const"
+}
+
+6. 用c_str()把std::string轉成const char*，再用strdup將它轉成char*
+    最後再放入char* const arg[ ]
+//execvp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+#include <cstring>
+int main(){
+        std::string arg1("cat");
+        std::string arg2("test.txt");
+        char* arg[3] = {strdup(arg1.c_str()),strdup(arg2.c_str()),NULL};
+        execvp(arg[0],arg);  //works
+}
+
+result:
+
+
+
+7. 最後放一個直得一看的範例
+    把const char* arg[ ]丟到execvp裡，而非他所要的char* const arg[ ]
+    這個範例很清楚地可以知道execvp要的是一個char* const* arg
+    英文是arg is a pointer to a constant pointer to a char (從右向左讀，*讀作pointer to )
+    中文是arg是一個指標，他指向一個不變指標，而此不變指標指向一個可變char
+//execvp_test.cpp
+#include <iostream>
+#include <unistd.h>
+#include <string>
+#include <cstring>
+int main(){
+        const char* arg[] = {"cat","test.txt",NULL};
+        execvp(arg[0],arg);
+        //error, can't convert "const char**" to "chat* const*"
+}
