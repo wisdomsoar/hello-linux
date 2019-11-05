@@ -10,3 +10,14 @@ for i in {1..100};
 do
     time curl -o /dev/null https://blog.longwin.com.tw;
 done
+
+範圍需使用變數時：
+END=5
+for i in $(seq 1 $END);
+do
+    echo $i;
+done
+# 印出 1 2 3 4 5 (換行)
+
+
+
