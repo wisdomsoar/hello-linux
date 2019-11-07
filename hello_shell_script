@@ -5,6 +5,7 @@ read -n 1 -p "Press any key to continue..."
 
 Comparison: check if a regular file does not exist in Bash?
 ref: https://stackoverflow.com/questions/638975/how-do-i-tell-if-a-regular-file-does-not-exist-in-bash
+ref: https://www.cyberciti.biz/faq/unix-linux-test-existence-of-file-in-bash/
 if [ ! -f /tmp/foo.txt ]; then
     echo "File not found!"
 fi
