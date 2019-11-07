@@ -9,6 +9,12 @@ if [ ! -f /tmp/foo.txt ]; then
     echo "File not found!"
 fi
 
+   -e FILE
+          FILE exists
+   -f FILE
+          FILE exists and is a regular file
+
+
 Comparison: Not equal
 Using the not equal operator for string comparison
 ref: https://unix.stackexchange.com/questions/67898/using-the-not-equal-operator-for-string-comparison
