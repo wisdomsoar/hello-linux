@@ -1,0 +1,496 @@
+ref: https://b8807053.pixnet.net/blog/post/339561908-linux-c%E7%A8%8B%E5%BC%8F%E5%91%BC%E5%8F%AB%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BC%8F%E7%9A%84%E6%96%B9%E6%B3%95
+
+1、system（執行shell 命令）
+
+相關函數 fork，execve，waitpid，popen
+
+表標頭檔 #include<stdlib.h>
+
+定義函數 int system(const char * string);
+
+函數說明 system()會呼叫fork()產生子行程，由子行程來呼叫/bin/sh -c string來執行參數string字串所代表的命令，此命令執行完後隨即返回原呼叫的行程。在呼叫system()期間SIGCHLD 信號會被暫時擱置，SIGINT和SIGQUIT 信號則會被忽略。
+
+返回值 如果system()在呼叫/bin/sh時失敗則返回127，其他失敗原因返回-1。若參數string為空指針(NULL)，則返回非零值。如果system()呼叫成功則最後會返回執行shell命令後的返回值，但是此返回值也有可能為system()呼叫/bin/sh失敗所返回的127，因此最好能再檢查errno 來確認執行成功。
+
+附加說明 在編寫具有SUID/SGID許可權的程式時請勿使用system()，system()會繼承環境變數，通過環境變數可能會造成系統安全的問題。
+
+範例:
+
+#include<stdlib.h>
+
+main() {
+           system("ls -al /etc/passwd /etc/shadow");
+}
+
+ 
+
+2、popen（建立管道I/O）
+
+相關函數 pipe，mkfifo，pclose，fork，system，fopen
+
+表標頭檔 #include<stdio.h>
+
+定義函數 FILE * popen( const char * command,const char * type);
+
+函數說明 popen()會呼叫fork()產生子行程，然後從子行程中呼叫/bin/sh -c來執行參數command的指令。參數type如果是 "r" 則可以讀取popen回傳的file descriptor，如果是 "w" 則可以對popen回傳的file descriptor進行寫入的動作。依照此type值，popen()會建立管道連到子行程的標準輸出設備或標準輸入裝置，然後返回一個檔指標。隨後行程便可利用此檔指標來讀取子行程的輸出設備或是寫入到子行程的標準輸入設備中。此外，所有使用檔指標(FILE*)操作的函數也都可以使用，除了fclose()以外。
+
+返回值 若成功則返回檔指針，否則返回NULL，錯誤原因存於errno中。
+
+錯誤代碼 EINVAL參數type不合法。
+
+注意事項 在編寫具SUID/SGID許可權的程式時請儘量避免使用popen()，popen()會繼承環境變數，通過環境變數可能會造成系統安全的問題。
+
+範例1:
+
+#include<stdio.h>
+
+main()
+{
+FILE * fp;
+char buffer[80];
+fp=popen("cat /etc/passwd","r");
+fgets(buffer, sizeof (buffer),fp);
+printf("%s",buffer);
+pclose(fp);
+}
+
+執行 root :x:0 0: root: /root: /bin/bash
+
+ 
+
+範例2:
+
+char newline[256];
+FILE *fd = popen("/bin/sh cmd.sh", "r");
+while((fgets(newline, 256, fd)) != NULL) {
+  printf("We've got a newline %s", newline);
+}
+pclose(fd);
+
+3、使用vfork()新建子行程，然後呼叫exec函數族
+http://www.cnblogs.com/mickole/p/3187409.html
+一，exec替換進程映射
+在進程的創建上Unix採用了一個獨特的方法，它將進程創建與載入一個新進程映象分離。這樣的好處是有更多的餘地對兩種操作進行管理。
+
+當我們創建了一個進程之後，通常將子進程替換成新的進程映象，這可以用exec系列的函數來進行。當然，exec系列的函數也可以將當前進程替換掉。
+
+例如：在shell命令列執行ps命令，實際上是shell進程調用fork複製一個新的子進程，在利用exec系統調用將新產生的子進程完全替換成ps進程。
+
+二，exec系列函數（execl、execlp、execle、execv、execvp）
+
+包含標頭檔<unistd.h>
+
+功能：
+
+    用exec函數可以把當前進程替換為一個新進程，且新進程與原進程有相同的PID。exec名下是由多個關聯函數組成的一個完整系列，
+
+標頭檔<unistd.h>
+
+extern char **environ; 
+
+原型：
+
+int execl(const char *path, const char *arg, ...);
+
+int execlp(const char *file, const char *arg, ...);
+
+int execle(const char *path, const char *arg, ..., char * const envp[]);
+
+int execv(const char *path, char *const argv[]);
+
+int execvp(const char *file, char *const argv[]);
+
+參數：
+
+path參數表示你要啟動程式的名稱包括路徑名
+
+arg參數表示啟動程式所帶的參數，一般第一個參數為要執行命令名，不是帶路徑且arg必須以NULL結束
+
+返回值:成功返回0,失敗返回-1
+
+注：上述exec系列函數底層都是通過execve系統調用實現：
+
+       #include <unistd.h>
+
+       int execve(const char *filename, char *const argv[],char *const envp[]);
+
+DESCRIPTION： 
+       execve() executes the program pointed to by filename.  filename must be 
+       either a binary executable, or a script starting with  a  line  of  the form 
+
+以上exec系列函數區別：
+
+1，帶l 的exec函數：execl,execlp,execle，表示後邊的參數以可變參數的形式給出且都以一個空指標結束。
+
+示例：
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+ 
+
+int main(void)
+
+{
+
+    printf("entering main process---\n");
+
+    execl("/bin/ls","ls","-l",NULL);
+
+    printf("exiting main process ----\n");
+
+    return 0;
+
+}
+
+ 
+
+利用execl將當前進程main替換掉，所有最後那條列印語句不會輸出
+
+2，帶 p 的exec函數：execlp,execvp，表示第一個參數path不用輸入完整路徑，只有給出命令名即可，它會在環境變數PATH當中查找命令
+
+示例：
+
+當不帶p但沒給出完整路徑時：
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+ 
+
+int main(void)
+
+{
+
+    printf("entering main process---\n");
+
+    execl("/bin/ls","ls","-l",NULL);
+
+    printf("exiting main process ----\n");
+
+    return 0;
+
+}
+
+ 
+
+3，不帶 l 的exec函數：execv,execvp表示命令所需的參數以char *arg[]形式給出且arg最後一個元素必須
+
+是NULL
+
+示例：
+
+ 
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+ 
+
+int main(void)
+
+{
+
+    printf("entering main process---\n");
+
+    int ret;
+
+    char *argv[] = {"ls","-l",NULL};
+
+    ret = execvp("ls",argv);
+
+    if(ret == -1)
+
+        perror("execl error");
+
+    printf("exiting main process ----\n");
+
+    return 0;
+
+}
+
+ 
+
+4，帶 e 的exec函數：execle表示，將環境變數傳遞給需要替換的進程
+
+從上述的函數原型中我們發現：
+
+extern char **environ;
+
+此處的environ是一個指標陣列，它當中的每一個指標指向的char為“XXX=XXX”
+
+environ保存環境資訊的資料可以env命令查看：
+
+ 
+
+它由shell進程傳遞給當前進程，再由當前進程傳遞給替換的新進程
+
+示例：execle.c
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+ 
+
+int main(int argc, char *argv[])
+
+{
+
+    //char * const envp[] = {"AA=11", "BB=22", NULL};
+
+    printf("Entering main ...\n");
+
+    int ret;
+
+    ret =execl("./hello", "hello", NULL);
+
+    //execle("./hello", "hello", NULL, envp);
+
+    if(ret == -1)
+
+        perror("execl error");
+
+    printf("Exiting main ...\n");
+
+    return 0;
+
+}
+
+hello.c
+
+#include <unistd.h>
+
+#include <stdio.h>
+
+extern char** environ;
+
+ 
+
+int main(void)
+
+{
+
+    printf("hello pid=%d\n", getpid());
+
+    int i;
+
+    for (i=0; environ[i]!=NULL; ++i)
+
+    {
+
+        printf("%s\n", environ[i]);
+
+    }
+
+    return 0;
+
+}
+
+ 
+
+可知原進程確實將環境變數資訊傳遞給了新進程
+
+那麼現在我們可以利用execle函數自己給的需要傳遞的環境變數資訊：
+
+ 
+
+示例程式：execle.c
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+ 
+
+int main(int argc, char *argv[])
+
+{
+
+    char * const envp[] = {"AA=11", "BB=22", NULL};
+
+    printf("Entering main ...\n");
+
+    int ret;
+
+    //ret =execl("./hello", "hello", NULL);
+
+    ret =execle("./hello", "hello", NULL, envp);
+
+    if(ret == -1)
+
+        perror("execl error");
+
+    printf("Exiting main ...\n");
+
+    return 0;
+
+}
+
+hello.c
+
+#include <unistd.h>
+
+#include <stdio.h>
+
+extern char** environ;
+
+ 
+
+int main(void)
+
+{
+
+    printf("hello pid=%d\n", getpid());
+
+    int i;
+
+    for (i=0; environ[i]!=NULL; ++i)
+
+    {
+
+        printf("%s\n", environ[i]);
+
+    }
+
+    return 0;
+
+}
+
+確實將給定的環境變數傳遞過來了
+
+ 
+
+三，fcntl()函數中的FD_CLOEXEC標識在exec系列函數中的作用
+
+#include <unistd.h> 
+#include <fcntl.h>
+
+int fcntl(int fd, int cmd, ... /* arg */ );
+
+File descriptor flags 
+      The following commands manipulate the  flags  associated  with  a  file 
+      descriptor.   Currently, only one such flag is defined: FD_CLOEXEC, the 
+      close-on-exec flag.  If the FD_CLOEXEC bit is 0,  the  file  descriptor 
+      will remain open across an execve(2), otherwise it will be closed.
+
+     //如果FD_CLOEXEC標識位元為0，則通過execve調用後fd依然是打開的，否則為關閉的
+
+      F_GETFD (void) 
+             Read the file descriptor flags; arg is ignored.
+
+      F_SETFD (long) 
+             Set the file descriptor flags to the value specified by arg.
+
+如：fcntl(fd, F_SETFD, FD_CLOEXEC);
+
+測試示例：
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+#include <fcntl.h>
+
+int main(int argc, char *argv[])
+
+{
+
+ 
+
+    printf("Entering main ...\n");
+
+ 
+
+    int ret = fcntl(1, F_SETFD, FD_CLOEXEC);
+
+    if (ret == -1)
+
+        perror("fcntl error");
+
+    int val;
+
+    val =execlp("ls", "ls","-l", NULL);
+
+    if(val == -1)
+
+        perror("execl error");
+
+    printf("Exiting main ...\n");
+
+    return 0;
+
+}
+
+1關閉（標準輸出關閉）ls -l無法將結果顯示在標準輸出
+
+ 
+
+　　
+
+範例1:
+
+#include<unistd.h>
+
+main()
+
+{
+
+char * argv[ ]={"ls","-al","/etc/passwd",(char*) };
+if(vfork() = =0) {
+execv("/bin/ls",argv);
+}else{
+printf("This is the parent process\n");
+} }
+
+ 
+
+範例2:
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+  pid_t child_pid;
+  int status;
+  char prog[]="/bin/ls";
+
+  printf("** Execuing program: ls -l /bin/gzip **\n\n");
+  child_pid = fork();
+  if (child_pid < 0) {
+        exit(1);
+  }
+
+  if (child_pid != 0) // parent
+    waitpid(child_pid,&status,0);
+  else
+     execl(prog,prog,"-l","/bin/gzip",NULL);
+
+  printf("\nchild return exit code: %d\n",WEXITSTATUS(status));
+  return 0;
+
+}
+
+ 
+
+** Execuing program: ls -l /bin/gzip **
+-rwxr-xr-x 1 root root 63080 2008-12-20 02:23 /bin/gzip
+child return exit code: 0
