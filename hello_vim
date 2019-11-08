@@ -84,6 +84,10 @@ yw
 Deletes the word and enter Insert mode
 ce
 
+ref: http://linux.vbird.org/linux_basic/0310vi.php#vim_ws
+:1,$s/word1/word2/g 	從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！(常用)
+:1,$s/word1/word2/gc 	從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！且在取代前顯示提示字元給使用者確認 (confirm) 是否需要取代！(常用)
+
 diff by vim in shell
 vi -d left_file.txt right_file.txt
 
