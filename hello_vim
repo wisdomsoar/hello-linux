@@ -1,0 +1,101 @@
+
+Enter Command mode
+[ESC]
+
+Enter Insert mode
+Inserts text after the cursor
+a
+
+Enter Insert mode
+Append text at the end
+A
+
+Find keyword
+/keyword_to_find
+斜線改成問號變成往前找
+
+Check next keyword
+n
+
+Check previous keyword
+N
+
+Search for the current word
+*
+
+Save/Write file
+:w
+
+Quit without save
+:q!
+
+Quit
+:q
+
+Close all tabs
+:qa
+
+Delete the line
+dd
+
+Undo
+u
+
+Redo
+[Ctrl]+r
+
+Move the cursor to the line 0 (Biginning of the file)
+:0
+gg
+
+Move the cursor to the last line (End of the file)
+:$
+G
+
+Starts visual mode for selecting 
+v
+(開始使用^, v, <-, ->, home, end去選取文字)
+
+承上的動作
+Copy
+y
+
+承上的動作
+Paste
+p
+
+Copy the whole line
+yy
+
+Move the cursor a word forward
+w
+非常像，移到字的結尾Move the cursor to the end a word
+e
+
+Copy from the cursor to the end of a word
+yw
+
+Deletes the word and enter Insert mode
+ce
+
+diff by vim in shell
+vi -d left_file.txt right_file.txt
+
+Jump from one window to another
+[ctrl]+w, w
+先按組合鍵[ctrl]+w，再按一次w
+
+Next difference
+]c
+
+Previous difference
+[c
+
+diff obtain
+do
+
+diff put
+dp
+
+Update diff
+:diffupdate
