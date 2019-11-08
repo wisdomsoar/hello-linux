@@ -32,6 +32,9 @@ Quit without save
 Quit
 :q
 
+Quit and save
+:x
+
 Close all tabs
 :qa
 
