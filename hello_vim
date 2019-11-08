@@ -41,6 +41,9 @@ Close all tabs
 Delete the line
 dd
 
+Delete a word
+dw
+
 Undo
 u
 
