@@ -1,0 +1,8 @@
+
+
+ClangBuiltLinux
+Android has moved away from gcc
+Any remaining gcc use is on a very old version of gcc
+Android Q requires OEMs to build their kernels with clang
+https://linuxplumbersconf.org/event/4/contributions/521/attachments/355/586/LPC-2019-toolchains-ClangBuiltLinux.pdf
+
