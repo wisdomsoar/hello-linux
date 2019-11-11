@@ -125,6 +125,10 @@ find . -type l -ls | grep mnt
 (只有看連去那些連結...)
 find . -type l -lname '/*'
 
+取代
+Replace tab to return break
+cat  matrix.txt  | tr '\t' '\n'
+
 locate "*pub*"
 
 copy: https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string
