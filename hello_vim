@@ -114,6 +114,14 @@ dp
 Update diff
 :diffupdate
 
+Resize the width of the current window
+[Ctrl]+w > 
+先按組合鍵[ctrl]+w，再按一次>
+[Ctrl]+w < 
+[Ctrl]+w 10 > 
+先按組合鍵[ctrl]+w，再按1, 0, >
+[Ctrl]+w 10 > 
+
 vimdiff cheat sheet
 https://gist.github.com/mattratleph/4026987
 
