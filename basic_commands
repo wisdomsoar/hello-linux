@@ -127,6 +127,7 @@ find . -type l -lname '/*'
 
 取代
 Replace tab to return break
+translate or delete characters
 cat  matrix.txt  | tr '\t' '\n'
 
 locate "*pub*"
