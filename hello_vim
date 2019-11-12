@@ -54,6 +54,9 @@ u
 Redo
 [Ctrl]+r
 
+Move the cursor to the first non-white character in current line
+^
+
 Move the cursor to the line 0 (Biginning of the file)
 :0
 gg
@@ -81,6 +84,9 @@ Move the cursor a word forward
 w
 非常像，移到字的結尾Move the cursor to the end a word
 e
+
+Delete the remainder of the line after the cursor
+D
 
 Copy from the cursor to the end of a word
 yw
