@@ -172,3 +172,7 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 In Gvim and vim in terminals with mouse support, it is also possible to use the mouse to resize a window. Simply grab the statusline at the window border and drag it into the desired direction.
 
 See alsoEdit
+
+
+
+http://www.how-hard-can-it.be/advanced-vim/
