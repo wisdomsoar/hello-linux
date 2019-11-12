@@ -119,6 +119,9 @@ l: Do not list binary files (--binary-files=without-match)
 R: Recursively. Follow all symbolic links.
 -e PATTERN
 
+Skip directory 
+--exclude-dir=node_modules
+
 尋找linked files (並看完整路徑)
 find . -type l -ls | grep mnt
 
