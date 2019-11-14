@@ -128,6 +128,10 @@ find . -type l -ls | grep mnt
 (只有看連去那些連結...)
 find . -type l -lname '/*'
 
+How to exclude a directory in find . command
+ref: https://stackoverflow.com/questions/4210042/how-to-exclude-a-directory-in-find-command
+find . -path ./misc -prune -o -name '*.txt' -print
+
 取代
 Replace tab to return break
 translate or delete characters
