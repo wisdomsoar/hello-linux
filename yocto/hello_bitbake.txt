@@ -7,3 +7,7 @@ BitBake：
 
 Yocto实用技巧
 https://www.kancloud.cn/digest/yocto/138623
+
+
+zybo board 開發記錄: 使用 Yocto 建立系統
+ref: https://coldnew.github.io/c3e8558e/
