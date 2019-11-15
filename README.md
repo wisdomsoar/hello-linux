@@ -1,6 +1,7 @@
 
 
 几种linux内核文件的区别(vmlinux、zImage、bzImage、uImage、vmlinuz、initrd )
+
 ref: https://blog.csdn.net/hanxuefan/article/details/7454352#:~:targetText=1%E3%80%81vmlinux%20%E7%BC%96%E8%AF%91%E5%87%BA%E6%9D%A5%E7%9A%84,%E9%AB%98%E7%AB%AF%E5%86%85%E5%AD%98(1M%E4%BB%A5%E4%B8%8A)%E3%80%82
 
 
