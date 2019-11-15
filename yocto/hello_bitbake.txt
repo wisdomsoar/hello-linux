@@ -1,1 +1,6 @@
-test
+
+BitBake 实用指南
+http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide.html
+
+Yocto实用技巧
+https://www.kancloud.cn/digest/yocto/138623
