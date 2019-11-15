@@ -20,6 +20,7 @@ Load Device Tree
   |
   V
 Load Root File System
+(Busybox)
   |
   V
  Run
