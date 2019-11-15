@@ -2,5 +2,8 @@
 BitBake 实用指南
 http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide.html
 
+BitBake：
+基本上，BitBake是一个Python程序，它由用户创建的配置驱动，可以为用户指定的目标执行用户创建的任务，即所谓的配方（recipes）。
+
 Yocto实用技巧
 https://www.kancloud.cn/digest/yocto/138623
