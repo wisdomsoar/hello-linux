@@ -87,6 +87,11 @@ or
 
 grep 'potato:' file.txt | awk '{print $2}'
 
+ref: https://stackoverflow.com/questions/15148796/get-string-after-character
+$ str="GenFiltEff=7.092200e-01"
+$ value=${str#*=}
+結果會是7.092200e-01
+
 
 example: Long list with most recent files last:
 ls -ltr
