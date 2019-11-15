@@ -132,6 +132,10 @@ How to exclude a directory in find . command
 ref: https://stackoverflow.com/questions/4210042/how-to-exclude-a-directory-in-find-command
 find . -path ./misc -prune -o -name '*.txt' -print
 
+o: or
+這裡的解釋：
+當第一個條件成立的話(ie. 修剪掉misc資料夾)，就不會執行第二個條件(ie. -name '*.txt')
+
 取代
 Replace tab to return break
 translate or delete characters
