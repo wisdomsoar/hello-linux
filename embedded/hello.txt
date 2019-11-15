@@ -1,0 +1,35 @@
+zybo board 開發記錄: 執行 Linux 作業系統
+ref:
+https://coldnew.github.io/d9dfdd56/
+
+Boot ROM
+  |
+  V
+Load and execute
+First Stage Boot Loader
+(FSBL)
+  |
+  V
+Load bitstream
+  |
+  V
+Load and Execute U-Boot
+  |
+  V
+Load Device Tree
+  |
+  V
+Load Root File System
+  |
+  V
+ Run
+
+zybo board 開發記錄: 使用 Yocto 建立系統
+ref: 
+https://coldnew.github.io/c3e8558e/
+Yocto Project 是近年來各大 SoC 商以及開發板商皆參與的 Linux 系統構件工具，透過 Yocto Project 的協助，
+使用者可以針對自己的需求構件想要的映像檔(image)或是 Root File System，和 Yocto 類似功能的工具則是 buildroot 。
+
+Poky 是 Yocto 的構建系統
+Yocto 對於不同的 SoC 廠商，會有提供不同的 layer 來對特定的開源程式加上合適的 patch，
+或是添加不同 SoC 廠各自需要的韌體(firmware)，以及各開發板特定的設定
