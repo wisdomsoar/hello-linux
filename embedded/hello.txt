@@ -63,6 +63,9 @@ cd poky
 起始化你的環境并制定一個存放搆建內容的目錄。
 source oe-init-build-env mybuilds
 
+BitBake 实用指南
+http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide.html
+
 Yocto实用技巧
 http://www.kancloud.cn/digest/yocto
 Yocto Linux内核编译目录在哪
