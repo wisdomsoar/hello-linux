@@ -27,10 +27,69 @@ Load Root File System
 
 zybo board 開發記錄: 使用 Yocto 建立系統
 ref: 
-https://coldnew.github.io/c3e8558e/
+http://coldnew.github.io/c3e8558e/
 Yocto Project 是近年來各大 SoC 商以及開發板商皆參與的 Linux 系統構件工具，透過 Yocto Project 的協助，
 使用者可以針對自己的需求構件想要的映像檔(image)或是 Root File System，和 Yocto 類似功能的工具則是 buildroot 。
 
 Poky 是 Yocto 的構建系統
 Yocto 對於不同的 SoC 廠商，會有提供不同的 layer 來對特定的開源程式加上合適的 patch，
 或是添加不同 SoC 廠各自需要的韌體(firmware)，以及各開發板特定的設定
+
+在開始用 Yocto Project 之前，我們需要下載 Poky, Poky 是 Yocto 的構建系統，基本上我們會用到的東西都會在 poky 資料夾內
+git clone git://git.yoctoproject.org/poky -b krogoth
+
+BitBake 实用指南
+http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide
+BitBake 是一種類似 make 的構建工具，主要用於 OpenEmbedded 和 Yocto 工程構建 Linux 發行版本
+
+"一種軟體組建自動化工具程式，以Python語言實作。功能類似於make，特別針對於嵌入式Linux交叉編譯器環境所設計研發"
+BitBake自動化建置處方(recipes)描述了如何抓取原始碼，組態，編譯與安裝指定的應用程式或套件。
+包括了該套件相依性，原始碼路徑，組態，編譯，建置，安裝與移除指令
+
+如果使用 Yocto，则不需要安装 BitBake，Yocto 源代码本身捆绑了 BitBake。
+Yocto 要求你 source 一个脚本，这个脚本和我们这里做的一样，安装 BitBake 到我们的环境中。
+
+
+Yocto实用技巧
+http://www.kancloud.cn/digest/yocto
+https://www.kancloud.cn/digest/yocto/138623
+Yocto Linux内核编译目录在哪
+(2) bitbake -e linux-imx  | grep ^S=
+
+(5) Yocto如何更改source code的下载与git clone地址
+Yocto中在fetch一些软件包的时候经常出现一天也下载不下来，这种情况极大浪费了我们的时间。
+
+例如，下面有三个Package下载了一天也没有完成：
+
+略略略
+
+解决方法
+确定下载的地址，手动下载
+先确定软件包的下载地址，例如对于opencv与opencv-samples软件包：
+
+bitbake -e opencv | grep ^SRC_URI=
+bitbake -e opencv-samples | grep ^SCR_URI=
+
+可以來git clone了(但要clone到哪???)
+
+然後find -name opencv*.bb
+更改bb
+
+再一次獲取
+bitbake opencv -c fetch
+
+可會因為抓到本地的git repository位於不同的branch
+
+到剛剛下載的git repository
+git branch -a | grep 2.4
+remotes/origin/2.4
+.....
+
+git checkout origin/2.4 -b 2.4
+
+再再fetch一次
+bitbake opencv -c fetch
+
+
+
+
