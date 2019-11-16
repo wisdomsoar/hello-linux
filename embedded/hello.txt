@@ -58,10 +58,35 @@ BitBake自動化建置處方(recipes)描述了如何抓取原始碼，組態，�
 如果使用 Yocto，则不需要安装 BitBake，Yocto 源代码本身捆绑了 BitBake。
 Yocto 要求你 source 一个脚本，这个脚本和我们这里做的一样，安装 BitBake 到我们的环境中。
 
+如果要另外下載
+ref: http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide
+https://github.com/openembedded/bitbake。选择一个版本的分支，并下载 zip。解压 zip 包，可找到一个 bitbake-$version 目录。
+
+
 git clone git://git.yoctoproject.org/poky 
 cd poky
 起始化你的環境并制定一個存放搆建內容的目錄。
 source oe-init-build-env mybuilds
+
+practice/poky/meta-poky$ tree -L 2
+.
+├── classes
+│   └── poky-sanity.bbclass
+├── conf
+│   ├── bblayers.conf.sample
+│   ├── conf-notes.txt
+│   ├── distro
+│   ├── layer.conf                                        ################## 每个 layer 需要一个 conf/layer.conf 文件
+│   ├── local.conf.sample
+│   ├── local.conf.sample.extended
+│   ├── site.conf.sample
+│   └── toasterconf.json
+└── recipes-core
+    ├── busybox
+    ├── psplash
+    └── tiny-init
+
+
 
 BitBake 实用指南
 http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide.html
