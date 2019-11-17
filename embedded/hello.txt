@@ -56,6 +56,8 @@ BitBake自動化建置處方(recipes)描述了如何抓取原始碼，組態，�
 包括了該套件相依性，原始碼路徑，組態，編譯，建置，安裝與移除指令
 
 如果使用 Yocto，则不需要安装 BitBake，Yocto 源代码本身捆绑了 BitBake。
+放在這：
+imx6-4.1.15_2.0.0/sources/poky/bitbake/
 Yocto 要求你 source 一个脚本，这个脚本和我们这里做的一样，安装 BitBake 到我们的环境中。
 
 如果要另外下載
