@@ -213,6 +213,12 @@ zip -0r bootanimation.zip desc.txt part0 part1
 0: not use any compression
 r: recursively
 
+current processes report
+ps
+A: Select All processes
+e: Select all processes
+F: Full format
+
 start to use screen
 $ screen
 And press [space] key to skip the spash
