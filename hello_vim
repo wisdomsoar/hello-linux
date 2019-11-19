@@ -23,6 +23,9 @@ N
 Search for the current word
 *
 
+Highlight search
+:set hlsearch
+
 Search and replace
 :%s/search_from/replace_to/gc
 c: Prompt to user before each replacement
@@ -119,6 +122,14 @@ dp
 
 Update diff
 :diffupdate
+
+'z' looks like a folded piece of paper, seen from the side
+z像是折疊的書（從側邊看）
+Open fold
+zo 
+
+Close fold
+zc
 
 Resize the width of the current window
 [Ctrl]+w > 
