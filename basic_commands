@@ -70,10 +70,8 @@ o: only matching 只取出找到的pattern片段
 例
 dmesg | grep -o 'scsi.*Direct-Access.*ADATA'
 
-awk
-以空白做分隔，並列印指定的第幾欄 (從1開始)
-例：以空白做分隔，印出第2欄
-dmesg | grep -o 'scsi.*Direct-Access.*ADATA' | awk '{print $2}'
+OR in grep
+grep "pattern1\|pattern2" file.txt
 
 How to grep for contents after pattern?
 https://stackoverflow.com/questions/10358547/how-to-grep-for-contents-after-pattern
@@ -92,6 +90,10 @@ $ str="GenFiltEff=7.092200e-01"
 $ value=${str#*=}
 結果會是7.092200e-01
 
+awk
+以空白做分隔，並列印指定的第幾欄 (從1開始)
+例：以空白做分隔，印出第2欄
+dmesg | grep -o 'scsi.*Direct-Access.*ADATA' | awk '{print $2}'
 
 example: Long list with most recent files last:
 ls -ltr
