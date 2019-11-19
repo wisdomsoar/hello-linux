@@ -1,0 +1,50 @@
+Print hexadecimal versions of numbers in C
+ref: https://www.lemoda.net/c/printf-hexadecimal/
+
+#include <stdio.h>
+
+int main ()
+{
+    int n = 399;
+    int y = 0xABCDEF;
+
+    /* Upper and lower case. */
+
+    printf ("%X hexadecimal with upper case letters.\n", n);
+    printf ("%x hexadecimal with lower case letters.\n", n);
+
+    /* Different kinds of padding. */
+
+    printf ("<%8x> hexadecimal padded with blanks to width 8.\n", n);
+    printf ("%04x hexadecimal padded with four leading zeros.\n", n);
+    printf ("%08x padded with eight leading zeros.\n", n);
+
+    /* Hash mark, #, adds 0x to number. */
+
+    printf ("%#x automatically add 0x.\n", y);
+    printf ("%#X, capital X, automatically add 0X.\n", y);
+    printf ("%#X, but don't add 0X if zero.\n", 0);
+
+    /* Hash mark plus padding. */
+
+    printf ("%#8x - no padding is added with #.\n", y);
+    printf ("%#8X - no padding is added with #.\n", y);
+    printf ("%#08X - padding is added with 0, but don't add 0X.\n", 0);
+
+    return 0;
+}
+(download)
+
+It outputs the following:
+
+18F hexadecimal with upper case letters.
+18f hexadecimal with lower case letters.
+<     18f> hexadecimal padded with blanks to width 8.
+018f hexadecimal padded with four leading zeros.
+0000018f padded with eight leading zeros.
+0xabcdef automatically add 0x.
+0XABCDEF, capital X, automatically add 0X.
+0, but don't add 0X if zero.
+0xabcdef - no padding is added with #.
+0XABCDEF - no padding is added with #.
+00000000 - padding is added with 0, but don't add 0X.
