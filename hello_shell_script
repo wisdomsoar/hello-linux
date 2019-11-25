@@ -56,3 +56,12 @@ string2=${string:1:7}
 echo $string2
 
 
+Block Comments in a Shell Script
+ref: https://stackoverflow.com/questions/947897/block-comments-in-a-shell-script
+#!/bin/bash
+echo before comment
+: <<'END'
+bla bla
+blurfl
+END
+echo after comment
