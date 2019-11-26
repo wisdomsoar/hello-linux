@@ -1,5 +1,6 @@
-有人會看這vim文件？？？？
-http://vimdoc.sourceforge.net/htmldoc/
+有人會看這vim文件????
+ref: http://vimdoc.sourceforge.net/htmldoc/
+ref: vi basic commands (Free Electrons Embedded Linux Experts)
 
 Enter Command mode
 [ESC]
@@ -99,6 +100,9 @@ yw
 Deletes the word and enter Insert mode
 ce
 
+Join the current line with the next one
+J
+
 ref: http://linux.vbird.org/linux_basic/0310vi.php#vim_ws
 :1,$s/word1/word2/g 	從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！(常用)
 :1,$s/word1/word2/gc 	從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！且在取代前顯示提示字元給使用者確認 (confirm) 是否需要取代！(常用)
@@ -148,9 +152,10 @@ https://gist.github.com/mattratleph/4026987
 https://github.com/wisdomsoar/hello-git/blob/master/git%20diff%20my%20vimdiff
 
 View the full path of the file
-press 1 followed by Ctrl-G
+press 1 followed by [Ctrl]+g
 
-
+View filename
+[Ctrl]+G
 
 You can use the :resize command or its shortcut :res to change the height of the window. To change the height to 60 rows, use:
 
