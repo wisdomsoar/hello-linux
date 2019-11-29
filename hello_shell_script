@@ -72,6 +72,11 @@ adfadf
 adfafd
 afd
 
+How to compare two floating point numbers in Bash?
+ref: https://stackoverflow.com/questions/8654051/how-to-compare-two-floating-point-numbers-in-bash
+if (( $(echo "$num1 > $num2" | bc -l) )); then
+  …
+fi
 
 Block Comments in a Shell Script
 ref: https://stackoverflow.com/questions/947897/block-comments-in-a-shell-script
