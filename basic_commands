@@ -201,6 +201,10 @@ Display these info for all partitions:
 df -h
 
 
+Kill all processes for a given user
+killall -u unix_uer_name
+
+
 ********************************************************************************
 
 mount samba in Linux (/etc/fstab)
