@@ -55,6 +55,23 @@ string="|abcdefg|"
 string2=${string:1:7}
 echo $string2
 
+How to preserve line breaks when storing a command output to a variable in bash?
+ref: https://stackoverflow.com/questions/22101778/how-to-preserve-line-breaks-when-storing-a-command-output-to-a-variable-in-bash
+$ f="fafafda
+> adffd
+> adfadf
+> adfafd
+> afd"
+
+$ echo $f
+fafafda adffd adfadf adfafd afd
+$ echo "$f"
+fafafda
+adffd
+adfadf
+adfafd
+afd
+
 
 Block Comments in a Shell Script
 ref: https://stackoverflow.com/questions/947897/block-comments-in-a-shell-script
