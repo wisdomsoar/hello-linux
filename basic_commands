@@ -173,6 +173,31 @@ j: on the fly bzip2 (un)compression
 
 tar xvf archive.tar -C /path/to/directory
 
+Ubuntu 解壓縮程式 7z & rar
+ref: http://snoopymemory.blogspot.com/2016/04/ubuntu-7zrar.html
+7-ZIP
+ 安裝
+  # apt-get install p7zip-full
+ 指令
+  # 7z x PACKAGE.7z
+
+
+RAR
+ 安裝
+  # apt-get install p7zip-rar
+ 指令
+  # 7z x PACKAGE.rar
+
+ 安裝
+  # apt-get install rar
+ 指令: 解壓縮
+  # rar e PACKAGE.rar
+ 指令: 壓縮
+  把現在目錄下檔案都壓縮到TargetFileName.rar中
+  # rar a TargetFileName.rar
+
+安裝好後, Ubuntu的 Desktop 檔案管理就可以直接用右鍵"在此解壓縮"解開了.
+
 ********************************************************************************
 
 File and partition sizes
