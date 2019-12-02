@@ -1,4 +1,16 @@
 
+
+Print <Tab>
+ref: https://www.unix.com/shell-programming-and-scripting/132905-printing-fixed-width-columns.html
+use -e to enable the use of special characters
+For example....
+echo -e "test \t\t test"
+
+Printing Fixed Width Columns
+ref: https://www.unix.com/shell-programming-and-scripting/132905-printing-fixed-width-columns.html
+printf "%-50s%-20s"   "maybe_variable_length_string_here " "Value: "$Val
+printf "\n"
+
 pause in script:
 ref: http://linux-wiki.cn/wiki/zh-tw/%E7%94%A8shell%E5%AE%9E%E7%8E%B0bat%E7%9A%84pause
 read -n 1 -p "Press any key to continue..."
@@ -23,7 +35,14 @@ if [ "$PHONE_TYPE" != "NORTEL" ] && [ "$PHONE_TYPE" != "NEC" ] &&
    [ "$PHONE_TYPE" != "CISCO" ]; then
    echo "OOXX"
 fi
-   
+
+Array Basics in Shell Scripting
+ref: https://www.geeksforgeeks.org/array-basics-shell-scripting-set-1/
+Array in shell
+ARRAYNAME=(value1 value2  .... valueN)
+
+echo ${ARRAYNAME[*]}
+
 
 for loop in script
 ref: https://blog.longwin.com.tw/2014/07/bash-shell-for-loop-script-2014/
