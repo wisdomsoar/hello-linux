@@ -29,10 +29,6 @@ Search for the current word
 Highlight search
 :set hlsearch
 
-Search and replace
-:%s/search_from/replace_to/gc
-c: Prompt to user before each replacement
-
 Save/Write file
 :w
 
@@ -102,6 +98,10 @@ ce
 
 Join the current line with the next one
 J
+
+Search and replace
+:%s/search_from/replace_to/gc
+c: Prompt to user before each replacement
 
 ref: http://linux.vbird.org/linux_basic/0310vi.php#vim_ws
 :1,$s/word1/word2/g 	
