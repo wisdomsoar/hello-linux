@@ -161,23 +161,37 @@ press 1 followed by [Ctrl]+g
 View filename
 [Ctrl]+G
 
-You can use the :resize command or its shortcut :res to change the height of the window. To change the height to 60 rows, use:
+You can use the :resize (or :res) to change the height of the window.
 
+To change the height to 60 rows, use:
 :resize 60
-You can also change the height in increments. To change the height by increments of 5, use:
+You can also change the height in increments. 
+To change the height by increments of 5, use:
 
 :res +5
 :res -5
 
-You can use :vertical resize to change the width of the current window. To change the width to 80 columns, use:
+You can use :vertical resize to change the width of the current window. 
+To change the width to 80 columns, use:
 
 :vertical resize 80
-You can also change the width in increments. To change the width by increments of 5, use:
+You can also change the width in increments. 
+To change the width by increments of 5, use:
 
 :vertical resize +5
 :vertical resize -5
 
-For a split window: You can use Ctrl-w + and Ctrl-w - to resize the height of the current window by a single row. For a vsplit window: You can use Ctrl-w > and Ctrl-w < to resize the width of the current window by a single column. Additionally, these key combinations accept a count prefix so that you can change the window size in larger steps. [e.g. Ctrl-w 10 + increases the window size by 10 lines]
+For a split window: 
+Ctrl-w + and Ctrl-w - 
+to resize the height of the current window by a single row
+
+
+For a vsplit window: 
+use Ctrl-w > and Ctrl-w < 
+to resize the width of the current window by a single column. 
+
+Additionally, these key combinations accept a count prefix so that you can change the window size in larger steps. 
+[e.g. Ctrl-w 10 + increases the window size by 10 lines]
 
 To resize all windows to equal dimensions based on their splits, you can use Ctrl-w =.
 
