@@ -1,0 +1,6 @@
+
+
+強迫進DL mode?
+mw.l 0x20d8040 0x30
+mw.l 0x20d8044 0x10000000
+reset
