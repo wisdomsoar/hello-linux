@@ -80,9 +80,9 @@ Paste
 p
 
 Select all
-:1  =>  v  =>  GG
+:1  =>  v  =>  G
 或者
-gg  =>  V  =>  GG
+gg  =>  V  =>  G
 
 Copy the whole line
 yy
