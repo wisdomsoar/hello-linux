@@ -79,6 +79,11 @@ y
 Paste
 p
 
+Select all
+:1  =>  v  =>  GG
+或者
+gg  =>  V  =>  GG
+
 Copy the whole line
 yy
 
