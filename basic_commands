@@ -124,7 +124,13 @@ find . -type f 2>/dev/null | xargs  grep -H  keyword_to_find 2>/dev/null > find_
 grep -Ire keryword_to_find
 l: Do not list binary files (--binary-files=without-match)
 R: Recursively. Follow all symbolic links.
+大 R 跟小 r 不一樣，請看man grep...
+-r recursive
 -e PATTERN
+-n line-number
+--include=GLOB Search only files whose base name matches GLOB
+
+grep -rnws --include="*.bp" "word_to_find"
 
 Skip directory 
 --exclude-dir=node_modules
