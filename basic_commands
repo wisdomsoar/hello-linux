@@ -260,6 +260,8 @@ sudo mount -t ext4 /dev/sdb1 /mnt/p
 
 picocom -b BAUD_RATE /dev/SERIAL_DEVICE
 
+To quit picocom, you need to press Ctrl-a, then Ctrl-q.
+
 History
 從history 中找關鍵字
 [Ctrl] + r ,  keyword
