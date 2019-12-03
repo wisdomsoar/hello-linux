@@ -7,6 +7,8 @@ Description:    Ubuntu 16.10
 Release:        16.10
 Codename:       yakkety
 
+看環境變數
+env
 
 ref: GNU/Linux most wanted
 
@@ -20,6 +22,11 @@ Copy directories recursively:
 cp -r source_dir/ dest_dir/
 rsync -a source_dir/ dest_dir/
 rsync -av --exclude='path/to/exclude' source_dir/ dest_dir
+
+讓某檔案的others屬性跟owner User一樣
+chmod -R o=u filename
+
+chown -R username:groupname *
 
 Create a symbolic link:
 ln -s linked_file link
@@ -130,6 +137,10 @@ R: Recursively. Follow all symbolic links.
 -n line-number
 --include=GLOB Search only files whose base name matches GLOB
 
+-H 顯示檔名
+-n 顯示行數
+-a 視二進制為文字檔
+
 grep -rnws --include="*.bp" "word_to_find"
 
 Skip directory 
@@ -235,6 +246,29 @@ df -h
 Kill all processes for a given user
 killall -u unix_uer_name
 
+Write MAC address
+ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
+
+netstat -tulpn
+t: tcp
+u: udp
+l: listen
+p: programs
+n: numeric
+
+sudo mount -t ext4 /dev/sdb1 /mnt/p
+
+picocom -b BAUD_RATE /dev/SERIAL_DEVICE
+
+History
+從history 中找關鍵字
+[Ctrl] + r ,  keyword
+
+
+Count the time taken by a commdn
+time find_charming_prince -cute -rich
+在time之前TIMEFORMAT=%R
+讓time只回傳real的 (sec)
 
 ********************************************************************************
 
