@@ -54,6 +54,8 @@ ex:
 cd /.../imx6-4.1.15_2.0.0/sources
 cd ./poky/meta/recipes-kernel
 
+sources/meta-fsl-bsp-release/imx/meta-bsp/recipes-kernel/linux/linux-imx_4.1.15.bb
+
 這麼多個，怎麼知道試選哪個？？？？
 ./meta-fsl-arm/openembedded-layer/recipes-kernel
 ./meta-fsl-arm/recipes-kernel
@@ -75,6 +77,22 @@ cd ./poky/meta/recipes-kernel
 ./poky/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel
 ./poky/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel
 ./poky/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel
+
+
+The kernel recipes reference the git repos via SRC_URIs:
+gep -Ire SRC_URI
+kernel-module-imx-gpu-viv/kernel-module-imx-gpu-viv_5.0.11.p8.6.bb:SRC_URI = "${FSL_MIRROR}/${PN}-${PV}.tar.gz"
+kernel-module-imx-gpu-viv/kernel-module-imx-gpu-viv_5.0.11.p8.6.bb:SRC_URI[md5sum] = "ed31740763b2aa6d56ecbe64d9cea565"
+kernel-module-imx-gpu-viv/kernel-module-imx-gpu-viv_5.0.11.p8.6.bb:SRC_URI[sha256sum] = "3e748fc53ee46ffcf80b94d5f9535c58a3875aa107a3c77b550d8100df15de4f"
+linux/linux-imx_4.1.15.bb:#SRC_URI = "${KERNEL_SRC};branch=${SRCBRANCH}"
+linux/linux-imx_4.1.15.bb:SRC_URI = ""
+linux/linux-imx_4.1.15.bb:#SRC_URI += "file://0001-ARM-imx-imx6ul-add-PHY-KSZ8081-new-silicon-revision-.patch \
+linux-libc-headers/linux-libc-headers_4.1.bb:SRC_URI[md5sum] = "fe9dc0f6729f36400ea81aa41d614c37"
+linux-libc-headers/linux-libc-headers_4.1.bb:SRC_URI[sha256sum] = "caf51f085aac1e1cea4d00dbbf3093ead07b551fc07b31b2a989c05f8ea72d9f"
+
+
+
+
 
 
 The kernel for a given machine is actually built from two git branches
