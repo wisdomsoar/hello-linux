@@ -1,5 +1,8 @@
 ref: Building Custom Embedded Images with the Yocto Project
 
+
+https://wiki.yoctoproject.org/wiki/How_do_I
+
 An image is a collection of 'baked' recipes (packages)
 A 'recipe' is a set of instructions for building 'packages'
 
