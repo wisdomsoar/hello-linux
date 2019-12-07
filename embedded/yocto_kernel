@@ -7,3 +7,9 @@ https://www.yoctoproject.org/docs/3.0/kernel-dev/kernel-dev.html
 https://www.yoctoproject.org/docs/3.0/kernel-dev/kernel-dev.html#using-traditional-kernel-development-to-patch-the-kernel
 
 
+2.4. Working With Your Own Sources
+https://ziladoc.com/queue/ltgt-5af11cdfd13c6_pdf?queue_id=-1
+
+ poky/meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb
+ 
+ 
