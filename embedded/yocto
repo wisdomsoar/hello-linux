@@ -1,0 +1,111 @@
+ref: Building Custom Embedded Images with the Yocto Project
+
+An image is a collection of 'baked' recipes (packages)
+A 'recipe' is a set of instructions for building 'packages'
+
+recipe
+(1) 會定義哪裡取得source code，以及是否要打patch(s)
+(2) 解與其他recipe(s)相依的問題
+(3) compile config/option, install option
+
+recipe是一群指令用來建造(bake; bitbake)出package
+一群packages建完後，即是映像檔(image)
+
+A 'layer' is a logical collection of recipes representing the core, a board support package (BSP), or an application stack
+而layer是recipe的集合
+
+bitbake + metadata (Poky)
+bitbake - a task executor and scheduler
+metadata – task definitions in recipes, classes + config
+
+configuration (.conf) – global definition of variables
+build/conf/local.conf (local user-defined variables)
+ex:
+cd /.../imx6-4.1.15_2.0.0/build-imx-qsip2/conf
+vi bblayers.conf
+BBLAYERS += " ${BSPDIR}/sources/meta-your-awsome-layer "
+
+distro/poky.conf (Yocto 'distro' config variables)
+machine/beagleboard.conf (machine-specific variables)
+
+classes (.bbclass) – encapsulation and inheritance of logic
+recipes (.bb) – the logical unit of execution, software/images to build
+
+BSP 'Layers'
+Image contents can be modified by 'layers'
+Layers specialize images by adding or modifying recipes
+Added to the BBLAYERS variable in build/conf/bblayers.conf
+ex: (again)
+cd /.../imx6-4.1.15_2.0.0/build-imx-qsip2/conf
+vi bblayers.conf
+BBLAYERS += " ${BSPDIR}/sources/meta-your-awsome-layer "
+
+Machine settings are specified in a layer's conf/machine/xxx.conf file(s)
+
+Machine config
+ex:
+cd /.../imx6-4.1.15_2.0.0/sources/meta-fsl-arm/conf/machine
+vi imx6dlsabresd_qsip2.conf
+
+classes (.bbclass) – encapsulation and inheritance of logic
+
+Selecting KERNEL
+ex:
+cd /.../imx6-4.1.15_2.0.0/sources
+cd ./poky/meta/recipes-kernel
+
+這麼多個，怎麼知道試選哪個？？？？
+./meta-fsl-arm/openembedded-layer/recipes-kernel
+./meta-fsl-arm/recipes-kernel
+./meta-fsl-arm-extra/recipes-kernel
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-kernel
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+./meta-openembedded/meta-initramfs/recipes-kernel
+./meta-openembedded/meta-networking/recipes-kernel
+./meta-openembedded/meta-oe/recipes-kernel
+./poky/meta/recipes-kernel
+./poky/meta-skeleton/recipes-kernel
+./poky/meta-yocto-bsp/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/common/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/mips64/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel
+./poky/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel
+
+
+The kernel for a given machine is actually built from two git branches
+The 'machine' branch (KBRANCH above), and the 'meta' branch
+
+Machine branch = base kernel + patches
+
+The 'meta' Branch
+
+Practical Requirements for a BSP
+(1) create a machine layer:
+       Define a machine configuration to match hardware
+       Add machine-specific recipes or extend existing recipes
+(2) Custimize: 
+      All BSPs must select and configure a kernel       
+      Machines with graphics capabilities probably also want to select and configure graphics recipes
+      Custom recipes can be added for special hardware
+      Most other things covered by standard recipes
+
+layout of BSP Layer
+???
+imx6-4.1.15_2.0.0/sources/meta-fsl-bsp-release/imx/meta-bsp/recipes-bsp
+tree -L 1
+.
+├── alsa-state
+├── firmware-imx
+├── formfactor
+├── imx-kobs
+├── imx-lib
+├── imx-test
+├── imx-uuc
+├── imx-vpu
+└── u-boot
+
