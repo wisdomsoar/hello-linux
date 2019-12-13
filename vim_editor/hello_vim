@@ -213,10 +213,22 @@ In Gvim and vim in terminals with mouse support, it is also possible to use the 
 
 See alsoEdit
 
-
-
 http://www.how-hard-can-it.be/advanced-vim/
 
+********************************************************************
+利用vimgrep + quickfix window來達到像notepad++一樣的搜尋效果
+在vim輸入以下指令
+1.)
+:vimgrep + <search word> + %  在當前文件搜尋
+ 
+2.)
+:copen
+
+接下來就可以用ctrl+w來切換視窗來查看你的搜尋結果
+
+3.)
+:cclose 關閉quickfix window
+********************************************************************
 
 better color style for vimdiff
 vi ~/.vimrc
