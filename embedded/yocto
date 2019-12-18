@@ -123,7 +123,8 @@ Practical Requirements for a BSP
        Add machine-specific recipes or extend existing recipes
 (2) Custimize: 
       All BSPs must select and configure a kernel       
-      Machines with graphics capabilities probably also want to select and configure graphics recipes
+      Machines with graphics capabilities probably also want to select and 
+      configure graphics recipes
       Custom recipes can be added for special hardware
       Most other things covered by standard recipes
 
