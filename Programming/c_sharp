@@ -1,0 +1,12 @@
+C#
+1.	Convert Decimal to Hexadecimal
+int decValue = 182;
+string hexValue = decValue.ToString("X");
+
+2.	Convert Hexadecimal to Decimal
+int decAgain = int.Parse(hexValue, System.Globalization.NumberStyles.HexNumber);
+
+
+DateTime.Now.ToString("yyMMddHHmmss");
+                         ("HH:MM:ss");
+                         ("yyyy/M/d");
