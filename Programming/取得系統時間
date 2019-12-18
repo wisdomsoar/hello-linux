@@ -1,0 +1,18 @@
+C++
+取得系統時間
+#include <time.h>
+#include <string>
+string getNow() 
+{
+    time_t t = time(0);
+    char buffer[9] = {0};
+    strftime(buffer, 9, "%H:%M:%S", localtime(&t));
+    return string(buffer);
+}
+
+取得某程序花了多少時間(in millisecond)
+clock_t t1 = clock();
+//some processing
+clock_t t2 = clock();
+float t3 = (float)t2 - (float)t1;
+printf("Takes %f ms\n", t3/(CLOCKS_PER_SEC / 1000));
