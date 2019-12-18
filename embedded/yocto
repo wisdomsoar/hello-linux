@@ -95,6 +95,7 @@ linux-libc-headers/linux-libc-headers_4.1.bb:SRC_URI[sha256sum] = "caf51f085aac1
 
 
 supports utf-8
+ref: https://github.com/RobertBerger/meta-mainline/issues/8
 sudo apt-get install locales
 sudo dpkg-reconfigure locales
 
