@@ -14,7 +14,8 @@ recipe
 recipe是一群指令用來建造(bake; bitbake)出package
 一群packages建完後，即是映像檔(image)
 
-A 'layer' is a logical collection of recipes representing the core, a board support package (BSP), or an application stack
+A 'layer' is a logical collection of recipes representing the core, 
+a board support package (BSP), or an application stack
 而layer是recipe的集合
 
 bitbake + metadata (Poky)
