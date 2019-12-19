@@ -22,6 +22,13 @@ bitbake + metadata (Poky)
 bitbake - a task executor and scheduler
 metadata – task definitions in recipes, classes + config
 
+bitbake -c cleanall -f <recipe_name>
+-c: Specify the task to execute
+    -c cleanall: to tell BitBake to just execute the do_clean task
+    
+-f: Force the specified targets/task to run
+
+
 configuration (.conf) – global definition of variables
 build/conf/local.conf (local user-defined variables)
 ex:
