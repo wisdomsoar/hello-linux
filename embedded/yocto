@@ -36,6 +36,13 @@ bitbake -c cleanall -f <recipe_name>
     => Find the directory with sources you need to patch: 
     bitbake -e <your_recipe_name> | grep ^S=
     
+    bitbake -e <recipe_name> | grep ^PACKAGES=
+    
+    xxxx listed in PACKAGES multiple times, this leads to packaging errors
+    ref: https://www.yoctoproject.org/pipermail/yocto/2016-October/032268.html
+    PACKAGES = "${PN}" should work (or use bitbake -e recipename | less, search 
+for ^PACKAGES= (with /) 
+    
     ex.
     S="/mnt/1600/chihyang/Project/8155/lv/snapdragon-auto-gen3-lv-0-1_hlos_dev_boot.git/apps/apps_proc/
     poky/build/tmp-glibc/work/aarch64-agl-linux/pulseaudio/12.2-r0/pulseaudio-12.2"
