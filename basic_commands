@@ -294,6 +294,13 @@ A: Select All processes
 e: Select all processes
 F: Full format
 
+
+diff --ruN original_src modified_src > 0026-patch-name.patch
+r: recursively compare any subdirectories found
+u: output NUM (default 3) lines of unified context
+   -U NUM
+N: treat absent files as empty
+
 start to use screen
 $ screen
 And press [space] key to skip the spash
