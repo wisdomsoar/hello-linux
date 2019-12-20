@@ -222,9 +222,10 @@ http://www.how-hard-can-it.be/advanced-vim/
 
 Insert the same characters across multiple lines
 ref: https://stackoverflow.com/questions/9549729/vim-insert-the-same-characters-across-multiple-lines
+(游標移到你想開始打字的地方)
 Move the cursor to the n in name
 Enter visual block mode (ctrl+v)
-Press j three times (or 3j)
+Press j three times (or 3j) (按'下'鍵也可以)
 Press I (capital i)
 Type in vendor_
 Press esc
