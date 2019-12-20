@@ -21,6 +21,10 @@ recipe是一群指令用來建造(bake; bitbake)出package
 
 Chapter8 Recipes: Syntax of recipes
 ref: http://www.embeddedlinux.org.cn/OEManual/recipes_syntax.html
+
+https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html
+ref: 1.5.1. Usage and syntax
+
 O functions
 The following is an example function from the sed recipe:
 
@@ -95,6 +99,31 @@ SRC_URI_append = " file://fix-makefile.patch;patch=1"
 SRC_URI_append += "file://fix-install.patch;patch=1"
 
 O Prepending: _prepend
+The following example show the space being explicitly added to the end to ensure the 
+prepended value is not merged with the existing value:
+
+CFLAGS_prepend = "-I${S}/myincludes "
+                                   ^ 要自己加空格
+
+for the specified target or machine
+CFLAGS_prepend_sh4 = " file://fix-makefile.patch;patch=1"
+               
+
+Note also the lack of a space when using += to append to a prepend value
+remember that the += operator is adding space itself.
+
+O Using Space
+
+O Style: oe-stylize.py
+contrib/oe-stylize.py myrecipe.bb > fixed-recipe.bb
+vi fixed-recipe.bb
+mv fixed.recipe.bb myrecipe.bb
+
+O Using python for complex operations: ${@...}
+Python code is indicated by a proceeding @ sign in the variable assignment.
+CXXFLAGS := "${@'${CXXFLAGS}'.replace('-frename-registers', '')}"
+
+O Shell syntax
 
 
 *************************************************************************
