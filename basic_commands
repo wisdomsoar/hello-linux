@@ -129,7 +129,9 @@ find . -type f 2>/dev/null | xargs  grep -H  keyword_to_find 2>/dev/null > find_
 
 在當前目錄找某關鍵字
 grep -Ire keryword_to_find
-l: Do not list binary files (--binary-files=without-match)
+I: Process a binary file as if it did not contain matching data 
+   (--binary-files=without-match)
+l: Use line buffering on output
 R: Recursively. Follow all symbolic links.
 大 R 跟小 r 不一樣，請看man grep...
 -r recursive
