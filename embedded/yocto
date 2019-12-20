@@ -35,6 +35,11 @@ bitbake -c cleanall -f <recipe_name>
     => Find the directory with sources you need to patch: 
     bitbake -e <your_recipe_name> | grep ^S=
     
+    ex.
+    S="/mnt/1600/chihyang/Project/8155/lv/snapdragon-auto-gen3-lv-0-1_hlos_dev_boot.git/apps/apps_proc/
+    poky/build/tmp-glibc/work/aarch64-agl-linux/pulseaudio/12.2-r0/pulseaudio-12.2"
+
+    
 configuration (.conf) – global definition of variables
 build/conf/local.conf (local user-defined variables)
 ex:
