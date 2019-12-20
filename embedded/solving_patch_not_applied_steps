@@ -48,28 +48,35 @@ bbappend 範例
 
 # 執行 oe-init-build-env 進行 yocto 編譯環境設定
 [yijyun@localhost poky]$ . oe-init-build-env
+
 # 建立 3rd-pkgs, 並把 giflib 放至此
 [yijyun@localhost build]$ mkdir 3rd-pkgs; cd 3rd-pkgs/
 [yijyun@localhost 3rd-pkgs]$ ls
 giflib-5.1.4.tar.bz2
+
 # 建立 meta-custom, 並加入yocto 環境
 [yijyun@localhost build]$ bitbake-layers create-layer meta-custom
 [yijyun@localhost build]$ bitbake-layers add-layer meta-custom
+
 # 在底下建立 giflib  目錄
 [yijyun@localhost build]$ cd meta-custom/recipes-example
 yijyun@localhost recipes-example]$ rm -rf example/
 [yijyun@localhost recipes-example]$ mkdir giflib
+
 # 透過 recipetool 產生 bb
 [yijyun@localhost recipes-example]$ cd ../../
 [yijyun@localhost build]$ recipetool create -o meta-custom/recipes-example/giflib/giflib_5.1.4.bb  3rd-pkgs/giflib-5.1.4.tar.bz2
+
 以 devtool 產生 .bbappend
 新增 meta-custom-devtool-patch layer 來存放 devtool 之後產生的 bbappend.
 
 # 建立 meta-custom-devtool-patch layer
 [yijyun@localhost build]$ bitbake-layers create-layer meta-custom-devtool-patch
 [yijyun@localhost build]$ bitbake-layers add-layer meta-custom-devtool-patch
+
 # 建立  giflib 目錄
 [yijyun@localhost build]$ mkdir meta-custom-devtool-patch/recipes-example/giflib
+
 使用 devtool 修改 source code 會產生 workspace layer, 並複製一份 giflib code 至 workspace/source
 這邊針對 util/giffix.c 修改. 於 main 函數裡添加 printf("devtool hello !!\n");
 
@@ -89,9 +96,11 @@ int main(int argc, char **argv)
 # git add 與 commit
 [yijyun@localhost giflib]$ git add util/giffix.c
 [yijyun@localhost giflib]$ git commit -m "use devtool to create bbappend"
+
 # 最後 devtool finish 表示完成修改, 把更新至於 meta-custom-devtool-patch
 [yijyun@localhost sources]$ cd -
 [yijyun@localhost sources]$ devtool finish giflib meta-custom-devtool-patch
+
 # ls 查看相關檔案
 yijyun@localhost build]$ ls meta-custom-devtool-patch/recipes-example/giflib/*
 meta-custom-devtool-patch/recipes-example/giflib/giflib_%.bbappend
@@ -106,6 +115,7 @@ meta-custom-devtool-patch/recipes-example/giflib/giflib:
 # 新增 meta-custom-manual-patch layer 於環境
 [yijyun@localhost build]$ bitbake-layers create-layer meta-custom-manual-patch
 [yijyun@localhost build]$ bitbake-layers add-layer meta-custom-manual-patch
+
 # 建立 giflib 相關目錄
 [yijyun@localhost build]$ mkdir meta-custom-manual-patch/recipes-example/giflib/ meta-custom-manual-patch/recipes-example/giflib/giflib
 這邊在 3rd-pkgs 手動複製一份 giflib, 並於 util/giffix.c 中添加 printf("hellow !! (manual)\n");.
