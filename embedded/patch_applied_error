@@ -1,3 +1,7 @@
+[OE-core] IMPORTANT: do_patch() fuzz warnings and how to deal with them
+ref: http://lists.openembedded.org/pipermail/openembedded-core/2018-March/148675.html
+
+
 poky/build/tmp-glibc/work/aarch64-agl-linux/pulseaudio/12.2-r0/temp/log.do_patch.30605
 
 NOTE: Applying patch '0001-disable-timer-based-scheduling.patch' (../../meta-qti-bsp/meta-qti-extra/recipes-audio/pulseaudio/pulseaudio-12.2/0001-disable-timer-based-scheduling.patch)
