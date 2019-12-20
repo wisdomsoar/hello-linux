@@ -28,7 +28,8 @@ bitbake -c cleanall -f <recipe_name>
     
 -f: Force the specified targets/task to run
     => bitbake -c build -f <recipe_name>
-    
+(幹嘛force，不force會少做什麼嗎?)...
+
 -e: Show the global or per-recipe Environment complete
     with information about where variables were
     set/changed.
@@ -39,7 +40,10 @@ bitbake -c cleanall -f <recipe_name>
     S="/mnt/1600/chihyang/Project/8155/lv/snapdragon-auto-gen3-lv-0-1_hlos_dev_boot.git/apps/apps_proc/
     poky/build/tmp-glibc/work/aarch64-agl-linux/pulseaudio/12.2-r0/pulseaudio-12.2"
 
-    
+bitbake -c listtasks -f <recipe_name>
+
+do_patch() is one of the common tasks and it fails because of wrong patch.
+
 configuration (.conf) – global definition of variables
 build/conf/local.conf (local user-defined variables)
 ex:
