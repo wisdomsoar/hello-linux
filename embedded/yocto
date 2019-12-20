@@ -113,6 +113,17 @@ linux-libc-headers/linux-libc-headers_4.1.bb:SRC_URI[md5sum] = "fe9dc0f6729f3640
 linux-libc-headers/linux-libc-headers_4.1.bb:SRC_URI[sha256sum] = "caf51f085aac1e1cea4d00dbbf3093ead07b551fc07b31b2a989c05f8ea72d9f"
 
 
+
+/mnt/1600/chihyang/Project/8155/lv/snapdragon-auto-gen3-lv-0-1_hlos_dev_boot.git/
+apps/apps_proc/meta-qti-bsp/meta-qti-extra/recipes-audio/pulseaudio
+vi pulseaudio_12.2.bbappend
+SRC_URI += "\
+file://0008-Pulseaudio-service-need-to-wait-for-sound-card-ready.patch \
+file://0003-default.pa-Load-agl-audio-plugin-module.patch \
+...
+"
+
+
 supports utf-8
 ref: https://github.com/RobertBerger/meta-mainline/issues/8
 sudo apt-get install locales
