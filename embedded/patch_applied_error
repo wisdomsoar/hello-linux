@@ -22,3 +22,32 @@ drwxr-xr-x 3 chihyang chihyang  4096 Dec 18 20:04 ../
 
 
 apps/apps_proc/poky/build/tmp-glibc/work/aarch64-agl-linux/pulseaudio/12.2-r0/pulseaudio-12.2/src/daemon
+
+
+
+src/daemon/default.pa.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/daemon/default.pa.in b/src/daemon/default.pa.in
+index 5ec4641..d157da7 100755
+--- a/src/daemon/default.pa.in
++++ b/src/daemon/default.pa.in
+@@ -68,7 +68,7 @@ ifelse(@HAVE_MKFIFO@, 1, [dnl
+ ### Automatically load driver modules depending on the hardware available
+ ifelse(@HAVE_UDEV@, 1, [dnl
+ .ifexists module-udev-detect@PA_SOEXT@
+-load-module module-udev-detect
++load-module module-udev-detect tsched=0
+ .else
+ ], [dnl
+ .ifexists module-detect@PA_SOEXT@
+ 
+ 
+ 
+ Removed patchs:
+ file://0001-disable-timer-based-scheduling.patch \
+file://0002-default.pa-Load-acdb-and-codec-control-modules.patch \
+file://0001-pulseaudio-config-default.pa-to-disable-default-ALSA.patch \
+0008-Pulseaudio-service-need-to-wait-for-sound-card-ready.patch
+0003-default.pa-Load-agl-audio-plugin-module.patch
+0006-Support-PulseAudio-Client-API-for-Module-Codec-Control.patch
