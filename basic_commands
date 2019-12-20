@@ -142,6 +142,7 @@ R: Recursively. Follow all symbolic links.
 -H 顯示檔名
 -n 顯示行數
 -a 視二進制為文字檔
+-v Invert the sense of matching
 
 grep -rnws --include="*.bp" "word_to_find"
 
