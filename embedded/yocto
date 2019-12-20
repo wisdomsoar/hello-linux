@@ -14,6 +14,89 @@ recipe
 recipe是一群指令用來建造(bake; bitbake)出package
 一群packages建完後，即是映像檔(image)
 
+Chapter8 Recipes: Syntax of recipes
+ref: http://www.embeddedlinux.org.cn/OEManual/recipes_syntax.html
+O functions
+The following is an example function from the sed recipe:
+
+do_install () {
+    autotools_do_install
+    install -d ${D}${base_bindir}
+    mv ${D}${bindir}/sed ${D}${base_bindir}/sed.${PN}
+}
+
+O variables
+The follow example shows the some of the ways variables can be used in recipes:
+
+S = "${WORKDIR}/postfix-${PV}"
+PR = "r4"
+CFLAGS += "-DNO_ASM"
+SRC_URI_append = "file://fixup.patch;patch=1"
+
+O keywords
+inherit: including common functions
+include
+require: loading parts of a recipe from other files
+export: exporting variables to the environment
+
+The following example shows the use of some of these keywords:
+
+export POSTCONF = "${STAGING_BINDIR}/postconf"
+inherit autoconf
+require otherfile.inc
+
+O # This is a comment
+
+O Line continuation: \
+  #反斜後面(該行)後面不能有任何字元
+  VAR = "A really long \
+       line"
+
+O Using variables: ${...}
+To access the contents of a variable you need to access it via ${}:
+
+SRC_URI = "${SOURCEFORGE_MIRROR}/libpng/zlib-${PV}.tar.gz"
+
+O Quote all assignments
+  VAR1 = "${OTHERVAR}"
+  VAR2 = "The version is ${PV}"
+
+O Conditional assignment
+前面還沒被定義時，才給值
+VAR1 ?= "New value"
+will set VAR1 to "New value" if its currently empty. 
+However if it was already set it would be unchanged. 
+In the following VAR1 is left with the value "Original value":
+
+VAR1 = "Original value"
+VAR1 ?= "New value"
+
+O Appending: +=
+this operator will add a space between the new content and the existing content of the variable.
+VAR =+ "Starts"
+
+O Appending: _append
+SRC_URI_append = " file://fix-makefile.patch;patch=1"
+                  ^要空格的話，自己要加
+
+for the specified target or machine
+SRC_URI_append_sh4 = " file://fix-makefile.patch;patch=1"
+
+(不是很懂?)
+Note that the appended information is a variable itself, 
+and therefore it's possible to used += or =+ to assign variables to the _append information:
+
+SRC_URI_append = " file://fix-makefile.patch;patch=1"
+SRC_URI_append += "file://fix-install.patch;patch=1"
+
+O Prepending: _prepend
+
+
+*************************************************************************
+
+
+
+
 A 'layer' is a logical collection of recipes representing the core, 
 a board support package (BSP), or an application stack
 而layer是recipe的集合
