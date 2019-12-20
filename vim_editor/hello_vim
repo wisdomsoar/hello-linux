@@ -219,6 +219,17 @@ See alsoEdit
 http://www.how-hard-can-it.be/advanced-vim/
 
 ********************************************************************
+
+Insert the same characters across multiple lines
+ref: https://stackoverflow.com/questions/9549729/vim-insert-the-same-characters-across-multiple-lines
+Move the cursor to the n in name
+Enter visual block mode (ctrl+v)
+Press j three times (or 3j)
+Press I (capital i)
+Type in vendor_
+Press esc
+
+********************************************************************
 利用vimgrep + quickfix window來達到像notepad++一樣的搜尋效果
 在vim輸入以下指令
 1.)
