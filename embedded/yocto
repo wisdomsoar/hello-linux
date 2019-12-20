@@ -24,11 +24,17 @@ metadata – task definitions in recipes, classes + config
 
 bitbake -c cleanall -f <recipe_name>
 -c: Specify the task to execute
-    -c cleanall: to tell BitBake to just execute the do_clean task
+    => -c cleanall: to tell BitBake to just execute the do_clean task
     
 -f: Force the specified targets/task to run
-
-
+    => bitbake -c build -f <recipe_name>
+    
+-e: Show the global or per-recipe Environment complete
+    with information about where variables were
+    set/changed.
+    => Find the directory with sources you need to patch: 
+    bitbake -e <your_recipe_name> | grep ^S=
+    
 configuration (.conf) – global definition of variables
 build/conf/local.conf (local user-defined variables)
 ex:
