@@ -7,7 +7,11 @@ Remove your patch from SRC_URI.
 Execute: bitbake -c cleanall -f <recipe_name>
 Execute: bitbake -c build -f <recipe_name>
 Find the directory with sources you need to patch: bitbake -e <your_recipe_name> | grep ^S= and go there.
-Copy the file/files you need to patch. Add to them your changes where you need. Create new patch via diff tool. As a reference use original file/files and as a changed the one(s) with your modifications, e.g.: diff --ruN original_src modified_src > 0026-patch-name.patch.
+Copy the file/files you need to patch. 
+Add to them your changes where you need. 
+Create new patch via diff tool. 
+As a reference use original file/files and as a changed the one(s) with your modifications, 
+e.g.: diff --ruN original_src modified_src > 0026-patch-name.patch.
 Move patch to appropriate directory and add it to SRC_URI.
 Rebuild the target recipe: bitbake -c cleanall -f <recipe_name> && bitbake -c build -f <recipe_name>
 Please notice: <recipe_name> should be passed without the .bb extension.
@@ -17,10 +21,13 @@ ref: yocto recipe : (2) 撰寫 bbappend
 http://yi-jyun.blogspot.com/2018/04/yocto-3-bbappend.html
 
 前言
-xxx.bb 檔案是用來描述一個 recipe. 然而 xxx.bb 會因為 patch codes、新增 tasks、等等的因素修改. 這邊介紹如何使用 xxx.bbappend[1] 檔案. 以不修改 xxx.bb 的情況下擴充需求. 文章將以 patch codes 為例子, 並個別以 devtool 工具和手動的方式示範.
+xxx.bb 檔案是用來描述一個 recipe. 然而 xxx.bb 會因為 patch codes、新增 tasks、等等的因素修改. 
+這邊介紹如何使用 xxx.bbappend[1] 檔案. 以不修改 xxx.bb 的情況下擴充需求. 文章將以 patch codes 為例子, 
+並個別以 devtool 工具和手動的方式示範.
 
 bbapend 簡介
-.bbappend 是擴充 .bb 的方式. 藉由 .bbappend 來新增 tasks、patch code、新增/修改變數等等諸此之類的事. 其名稱必須跟所要修改的相同, 而版本號則依據需求寫.
+.bbappend 是擴充 .bb 的方式. 藉由 .bbappend 來新增 tasks、patch code、新增/修改變數等等諸此之類的事. 
+其名稱必須跟所要修改的相同, 而版本號則依據需求寫.
 
 舉例:
 bb file 名稱: giflib_5.1.4.bb
@@ -30,11 +37,14 @@ bbappend 名稱: giflib_5.1.4.bbappend 或 giflib_%.bbappend.
 
 使用 .bbappend 的情況, 我個人認為有以下情況再使用
 (1) 當 recipe 已存在 yocto 最基本的 layer, 不應隨便修改. 舉例: u-boot_2017.09.bb 存在於 yocto 的 meta layer
-(2) 某些 layers 會共用此 recipe 的情況下. 舉例: meta-raspberrypi 與 meta-ti 分別各自使用自己的 xserver-xf86-config_0.1.bbappend 來對 yocto meta layer 的 xserver-xf86-config_0.1.bb 做擴充修改.
+(2) 某些 layers 會共用此 recipe 的情況下. 
+舉例: meta-raspberrypi 與 meta-ti 分別各自使用自己的 xserver-xf86-config_0.1.bbappend 
+來對 yocto meta layer 的 xserver-xf86-config_0.1.bb 做擴充修改.
 
 bbappend 範例
 事前準備
-用 giflib [4] 作為測試程式. 先下載 giflib-5.1.4.tar.bz2. 接著使用 bitbake-layer 建立 meta-custom layer, 再透過 recipetool 把產生的 giflib_5.1.4.bb 存放於此 layer.
+用 giflib [4] 作為測試程式. 先下載 giflib-5.1.4.tar.bz2. 接著使用 bitbake-layer 建立 meta-custom layer, 
+再透過 recipetool 把產生的 giflib_5.1.4.bb 存放於此 layer.
 
 # 執行 oe-init-build-env 進行 yocto 編譯環境設定
 [yijyun@localhost poky]$ . oe-init-build-env
@@ -138,7 +148,8 @@ SRC_URI_append = "\
     file://00_giflib_util_giffix.patch \
 "
 驗證
-可於 tmp/work/i586-poky-linux/giflib/5.1.4-r0 查看是否有相關的 patch. 以及 於tmp/work/i586-poky-linux/giflib/5.1.4-r0/giflib-5.1.4/util/giffix.c 看 source code 是否有被修改
+可於 tmp/work/i586-poky-linux/giflib/5.1.4-r0 查看是否有相關的 patch. 以及 
+於tmp/work/i586-poky-linux/giflib/5.1.4-r0/giflib-5.1.4/util/giffix.c 看 source code 是否有被修改
 
 # 檢查是否有 patch 檔案
 [yijyun@localhost build]$ ls tmp/work/i586-poky-linux/giflib/5.1.4-r0/
