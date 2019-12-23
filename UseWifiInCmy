@@ -1,0 +1,5 @@
+IPv4 configuration in GUI:
+
+route:
+address, mask, gateway:
+172.16.0.0,    255.255.0.0,    172.16.31.254
