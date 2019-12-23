@@ -1,0 +1,24 @@
+
+ps -aux | grep net
+
+平常應該DHCP client要有執行
+ps -aux | grep Network
+... /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/...
+
+sudo lshw -C network
+
+ref: https://www.cyberciti.biz/faq/howto-linux-renew-dhcp-client-ip-address/
+
+How can I renew or release an IP in Linux for eth0?
+To renew or release an IP address for the eth0 interface, enter:
+$ sudo dhclient -r eth0
+$ sudo dhclient eth0
+
+In this example, I am renewing an IP address for my wireless interface:
+
+sudo dhclient -v -r eth0
+sudo dhclient -v eth0
+
+dhclient enp58s0f1 -v
+
+
