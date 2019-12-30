@@ -43,6 +43,17 @@ ARRAYNAME=(value1 value2  .... valueN)
 
 echo ${ARRAYNAME[*]}
 
+what's wrong with Android shell??? mksh
+syntax error: unexpected '(('
+for-loop改用：
+GPIO_pins=( 100 123 )
+len=${#GPIO_pins[@]}
+#Android有seq嗎?????????????
+for i in $(seq 1 $len);
+do
+    echo $i ${GPIO_pins[$i-1]}
+done
+
 ref: https://www.opencli.com/linux/shell-script-for-loop-array-foreach
 arr=("value1" "value2" "value3" "value4" "value5")
 for ((i=0; i < ${#arr[@]}; i++))
