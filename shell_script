@@ -43,6 +43,13 @@ ARRAYNAME=(value1 value2  .... valueN)
 
 echo ${ARRAYNAME[*]}
 
+ref: https://www.opencli.com/linux/shell-script-for-loop-array-foreach
+arr=("value1" "value2" "value3" "value4" "value5")
+for ((i=0; i < ${#arr[@]}; i++))
+do
+    ### 印出 array 的 key 及 value
+    echo $i ${arr[$i]}
+done
 
 for loop in script
 ref: https://blog.longwin.com.tw/2014/07/bash-shell-for-loop-script-2014/
