@@ -22,3 +22,8 @@ sudo dhclient -v eth0
 dhclient enp58s0f1 -v
 
 
+
+
+How to remove all default gateways
+ref: https://unix.stackexchange.com/questions/59033/how-to-remove-all-default-gateways
+ip route del 0/0
