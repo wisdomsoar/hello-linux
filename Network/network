@@ -1,3 +1,9 @@
+mount samba in Linux (/etc/fstab)
+
+sudo vi /etc/fstab
+
+//172.16.70.151/your_name /path/to/your/local/directory/ cifs rw,username=your_name,password=your_password,uid=your_uid,gid=your_gid,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm 0 0
+
 
 ps -aux | grep net
 
