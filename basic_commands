@@ -177,6 +177,11 @@ sed '/pattern to match/d' ./infile
 Remove lines with specified pattern directly from the file:
 sed -i '/pattern to match/d' ./infile
 
+Remove empty line
+ref: https://serverfault.com/questions/252921/how-to-remove-empty-blank-lines-from-a-file-in-unix-including-spaces
+sed -i '/^$/d' file.txt
+-i: edit files In place
+
 Archiving
 Create a compressed archive (TApe ARchive):
 tar jcvf archive.tar.bz2 dir
