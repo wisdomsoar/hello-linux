@@ -375,6 +375,8 @@ Then run ffmpeg:
 
 2. ffmpeg -f concat -i list.txt -c copy output.mp4
 
+ffmpeg -i output_filename.avi -ss 00:00 -to 00:04 frame_%3d.png
+
 dd
 /data/local/bin/dd 'if=/data/local/tmp/rnd_64M.img' 'of=/mnt/user/rnd_64M.img' 'bs=1024k' 'count=64' 'iflag=fullblock'
 
