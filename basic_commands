@@ -360,6 +360,10 @@ andy@t5r120a:/mnt/code/sa8155p/newES6/8155_LA_ES6_r00007.4_hlos_rm_repo/LINUX/an
 patch  -p1 < 0002-Fix-sa8155-camera-loopback-test_ais.patch
 
 multimedia:
+
+ref: ffmpeg/avconv 視訊音訊轉碼命令列工具
+https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/629169/
+
 ffmpeg
 
 make mp4 video from bmp files
