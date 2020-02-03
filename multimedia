@@ -1,0 +1,7 @@
+
+
+
+
+ffmpeg -vcodec rawvideo -f rawvideo -pix_fmt rgb32 -s 320x480 -i fb0 -f image2 -vcodec png image.png
+
+
