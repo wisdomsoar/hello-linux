@@ -33,3 +33,39 @@ dhclient enp58s0f1 -v
 How to remove all default gateways
 ref: https://unix.stackexchange.com/questions/59033/how-to-remove-all-default-gateways
 ip route del 0/0
+
+
+
+ssh keygen 免輸入密碼
+發佈日期: 2005 年 12 月 28 日，作者: Tsung
+懶得打密碼, 以 key 做認證登錄.
+
+步驟如下:
+
+ssh-keygen -t rsa 或 ssh-keygen -d (dsa) => 產生出 id_rsa, id_rsa.pub
+scp id_rsa.pub server_hostname:~/.ssh/
+ssh server_hostname
+cat .ssh/id_rsa.pub >> .ssh/authorized_keys 即可
+這樣子就可以 key 認證登入, 不需輸入密碼.
+注意: gen 時會問 Enter passphrase (empty for no passphrase): # 此處直接 enter 跳過,下次才不會詢問password
+
+簡單解說一下:
+
+id_rsa: private key
+id_rsa.pub: public key
+將 public key(id_rsa.pub) 拷貝到遠端的電腦後, 加到那 user 的 .ssh/authorized_keys 中.
+
+之後連線時, 就會用本機的 private key(id_rsa) 與遠端電腦的 public key(authorized_keys) 做認證, 確認完成就可以直接登入, 不需輸入帳號密碼, 而且也比較安全.
+
+要關閉使用密碼登入, 只允許使用 Key 來做登入, 可修改此檔案的下述兩個參數: vim /etc/ssh/sshd_config
+
+PubkeyAuthentication yes
+PasswordAuthentication no
+將 Key cp 並寫入 authorized_keys 的方式, 有下述幾種簡便的方法:
+
+cat .ssh/id_rsa.pub | ssh hostname 'cat >> .ssh/authorized_keys' # 缺點, 機器沒有 .ssh 目錄會有問題
+ssh-copy-id -i .ssh/id_rsa.pub hostname # 推薦
+ssh-copy-id -i hostname # 預設會用 .ssh/id_rsa.pub 或現在 ssh-agent 載入的 key
+
+
+
