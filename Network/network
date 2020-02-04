@@ -37,6 +37,7 @@ ip route del 0/0
 
 
 ssh keygen 免輸入密碼
+ref: https://blog.longwin.com.tw/2005/12/ssh_keygen_no_passwd/
 發佈日期: 2005 年 12 月 28 日，作者: Tsung
 懶得打密碼, 以 key 做認證登錄.
 
