@@ -1,0 +1,11 @@
+ref: https://blog.camel2243.com/2016/02/29/ubuntu-apt-get-update%E3%80%81upgrade-%E8%88%87-dist-upgrade-%E5%B7%AE%E5%88%A5/
+
+update
+更新我們的套件清單 /etc/apt/sources.list，這樣在我們更新時才能比對最新的套件清單，決定是否更新
+upgrade
+根據前述的更新清單 /etc/apt/sources.list，比對是否更新套件。若有相依性問題，則放棄更新。
+dist-upgrade
+根據前述的更新清單 /etc/apt/sources.list，比對是否更新套件。若有相依性問題，會嘗試做安裝/移除，將相依性問題解決並更新。
+PS. 通常視為較危險的更新
+
+apt install aptitude
