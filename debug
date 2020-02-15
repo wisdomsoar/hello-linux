@@ -5,7 +5,25 @@ android / kernel / common / bcmdhd-3.10 / . / Documentation / sysrq.txt
 ref: https://android.googlesource.com/kernel/common/+/bcmdhd-3.10/Documentation/sysrq.txt
 
 console:/proc # echo help > sysrq-trigger
-[ 3006.832414] sysrq: SysRq : HELP : loglevel(0-9) reboot(b) crash(c) terminate-all-tasks(e) memory-full-oom-kill(f) kill-all-tasks(i) thaw-filesystems(j) show-backtrace-all-active-cpus(l) show-memory-usage(m) nice-all-RT-tasks(n) poweroff(o) show-registers(p) show-all-timers(q) sync(s) show-task-states(t) unmount(u) show-blocked-tasks(w) dump-ftrace-buffer(z)
+[ 3006.832414] sysrq: SysRq : HELP : 
+loglevel(0-9) 
+reboot(b) 
+crash(c) 
+terminate-all-tasks(e) 
+memory-full-oom-kill(f) 
+kill-all-tasks(i) 
+thaw-filesystems(j) 
+show-backtrace-all-active-cpus(l) 
+show-memory-usage(m) 
+nice-all-RT-tasks(n) 
+poweroff(o) 
+show-registers(p) 
+show-all-timers(q) 
+sync(s) 
+show-task-states(t) 
+unmount(u) 
+show-blocked-tasks(w) 
+dump-ftrace-buffer(z)
 console:/proc #
 
 console:/proc # echo w > sysrq-trigger
