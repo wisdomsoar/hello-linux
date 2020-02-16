@@ -23,6 +23,16 @@ cp -r source_dir/ dest_dir/
 rsync -a source_dir/ dest_dir/
 rsync -av --exclude='path/to/exclude' source_dir/ dest_dir
 
+a: archive mode; equals -rlptgoD
+r: --recursive
+l: --links                 copy symlinks as symlinks
+p: --perms                 set the destination permissions to be the same  as  the  source  permissions
+t: --times                 transfer modification times along with the files and update them on the remote system
+g: --group                 set the group of the destination file to be the same as the source file
+o: --omit-dir-times
+D: --devices --specials
+
+
 讓某檔案的others屬性跟owner User一樣
 chmod -R o=u filename
 
