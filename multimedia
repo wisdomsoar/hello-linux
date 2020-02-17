@@ -5,3 +5,32 @@
 ffmpeg -vcodec rawvideo -f rawvideo -pix_fmt rgb32 -s 320x480 -i fb0 -f image2 -vcodec png image.png
 
 
+
+multimedia:
+
+ref: ffmpeg/avconv 視訊音訊轉碼命令列工具
+https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/629169/
+
+ffmpeg
+
+make mp4 video from bmp files
+ffmpeg -framerate 60 -i img%03d.bmp -c:v libx264 -pix_fmt yuv420p -crf 0 output_60f.mp4
+-crf 0: to create a lossless video
+
+Repeat/loop Input Video with ffmpeg:
+copy: https://video.stackexchange.com/questions/12905/repeat-loop-input-video-with-ffmpeg
+This allows you to loop an input without needing to re-encode.
+
+1. Make a text file. Contents of an example text file to repeat 4 times.
+
+file 'input.mp4'
+file 'input.mp4'
+file 'input.mp4'
+file 'input.mp4'
+Then run ffmpeg:
+
+2. ffmpeg -f concat -i list.txt -c copy output.mp4
+
+ffmpeg -i output_filename.avi -ss 00:00 -to 00:04 frame_%3d.png
+
+
