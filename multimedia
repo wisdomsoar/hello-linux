@@ -17,6 +17,10 @@ make mp4 video from bmp files
 ffmpeg -framerate 60 -i img%03d.bmp -c:v libx264 -pix_fmt yuv420p -crf 0 output_60f.mp4
 -crf 0: to create a lossless video
 
+bluexxx.bmp:
+ffmpeg -framerate 60 -i blue%03d.bmp -c:v libx264 -pix_fmt yuv420p -crf 0 output_60f.mp4
+
+
 Repeat/loop Input Video with ffmpeg:
 copy: https://video.stackexchange.com/questions/12905/repeat-loop-input-video-with-ffmpeg
 This allows you to loop an input without needing to re-encode.
