@@ -1,6 +1,6 @@
 
-
-
+extract frames in video file:
+ffmpeg –i output_filename.avi –ss 00:00 –to 00:04 frame_%3d.png
 
 ffmpeg -vcodec rawvideo -f rawvideo -pix_fmt rgb32 -s 320x480 -i fb0 -f image2 -vcodec png image.png
 
