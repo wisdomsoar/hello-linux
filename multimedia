@@ -1,4 +1,10 @@
 
+resize image
+convert "input.jpg" -resize 500x500 -quality 100 "output.png"
+!: force
+convert "input.jpg" -resize 500x500! -quality 100 "output.png"
+
+
 extract frames in video file:
 ffmpeg –i output_filename.avi –ss 00:00 –to 00:04 frame_%3d.png
 
