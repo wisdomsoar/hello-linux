@@ -37,4 +37,9 @@ Then run ffmpeg:
 
 ffmpeg -i output_filename.avi -ss 00:00 -to 00:04 frame_%3d.png
 
-
+list.txt:
+file 'output.mp4'
+file 'output.mp4'
+file 'output.mp4'
+file 'output.mp4'
+...
