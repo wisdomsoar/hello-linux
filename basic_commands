@@ -391,11 +391,17 @@ Output:
 
 UPDATED
 
+取小數部分 (for what...?)
 echo "scale=3; 300/7" | bc -l | sed 's/[0-9]*\././g'
 
 Output:
 .857
 
+echo "scale=3; 300/7" | bc -l | sed 's/[0-9]*\././g'
+
+若輸出<1，在前面補0：
+printf "%.4f" $(echo "scale=4; 1/3" | bc)
+printf "\n"
 
 dd
 /data/local/bin/dd 'if=/data/local/tmp/rnd_64M.img' 'of=/mnt/user/rnd_64M.img' 'bs=1024k' 'count=64' 'iflag=fullblock'
