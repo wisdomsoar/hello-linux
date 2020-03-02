@@ -306,3 +306,14 @@ tree -L 1
 ├── imx-vpu
 └── u-boot
 
+Recipe
+PV
+The version of the recipe. 
+The version is normally extracted from the recipe filename. 
+For example, if the recipe is named expat_2.0.1.bb, 
+then the default value of PV will be "2.0.1". 
+PV is generally not overridden within a recipe unless it is building an unstable (i.e. development) version 
+from a source code repository (e.g. Git or Subversion).
+
+PV is the default value of the PKGV variable.
+
