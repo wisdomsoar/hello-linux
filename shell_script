@@ -109,6 +109,29 @@ adfadf
 adfafd
 afd
 
+Arithmetic
+# Like everything else in shell, these are strings, not
+# floating-point values
+d1=0.003
+d2=0.0008
+
+# bc parses its input to perform math
+d1d2=$(echo "$d1 + $d2" | bc)
+
+# These, too, are strings (not integers)
+mean1=7
+mean2=5
+
+# $((...)) is a built-in construct that can parse
+# its contents as integers; valid identifiers
+# are recursively resolved as variables.
+meandiff=$((mean1 - mean2))
+
+----------------------------------------------------
+用這樣來比較兩個float是否相等
+$(echo "$num1  $num2" | bc -l)
+
+
 How to compare two floating point numbers in Bash?
 ref: https://stackoverflow.com/questions/8654051/how-to-compare-two-floating-point-numbers-in-bash
 if (( $(echo "$num1 > $num2" | bc -l) )); then
