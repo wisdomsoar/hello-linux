@@ -56,6 +56,10 @@ u
 Redo
 [Ctrl]+r
 
+
+Indetns 4 spaces instead of tab by '>'
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
 Move the cursor to the first non-white character in current line
 ^
 
