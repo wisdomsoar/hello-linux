@@ -110,10 +110,14 @@ J
 
 Search and replace
 :%s/search_from/replace_to/gc
+g: global
 c: Prompt to user before each replacement
 
 Replace two line breaks to one
-%s/\n\n/\r
+:%s/\n\n/\r
+
+Replace line break to blank
+:%s/\n\/ /g
 
 ref: http://linux.vbird.org/linux_basic/0310vi.php#vim_ws
 :1,$s/word1/word2/g 	
