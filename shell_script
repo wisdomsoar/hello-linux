@@ -109,6 +109,12 @@ adfadf
 adfafd
 afd
 
+Heximal to Decimal:
+ref: http://blog.ilc.edu.tw/blog/index.php?op=printView&articleId=470941&blogId=25793
+16 進位轉成 10 進位
+# echo $((16#c0))
+192
+
 Arithmetic
 # Like everything else in shell, these are strings, not
 # floating-point values
