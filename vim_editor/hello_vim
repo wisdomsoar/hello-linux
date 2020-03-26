@@ -75,6 +75,8 @@ Starts visual mode for selecting
 v
 (開始使用^, v, <-, ->, home, end去選取文字)
 
+可以用[Ctrl]+v來作垂直選擇哦~
+
 承上的動作
 Copy
 y
