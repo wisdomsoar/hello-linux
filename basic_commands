@@ -208,6 +208,7 @@ c: create
 t: test
 x: extract
 j: on the fly bzip2 (un)compression
+f: file
 
 tar xvf archive.tar -C /path/to/directory
 
