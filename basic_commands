@@ -321,6 +321,11 @@ u: output NUM (default 3) lines of unified context
    -U NUM
 N: treat absent files as empty
 
+
+screen
+-X: Send the specified command to a running screen session.
+-S: session name
+
 start to use screen
 $ screen
 And press [space] key to skip the spash
