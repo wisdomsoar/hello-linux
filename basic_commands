@@ -93,6 +93,11 @@ highlight matched
 OR in grep
 grep "pattern1\|pattern2" file.txt
 
+ref: How do I grep for multiple patterns with pattern having a pipe character?
+grep -- 'foo\|bar' *.txt
+grep -E -- 'foo|bar' *.txt
+grep -e foo -e bar -- *.txt
+
 How to grep for contents after pattern?
 https://stackoverflow.com/questions/10358547/how-to-grep-for-contents-after-pattern
 取冒號之後的文字：
