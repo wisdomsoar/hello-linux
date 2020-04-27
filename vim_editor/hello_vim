@@ -32,6 +32,10 @@ Highlight search
 Save/Write file
 :w
 
+Save another file
+:w FULL_PATH_NAME
+:w /home/vivek/backups/foo.txt
+
 Quit without save
 :q!
 
