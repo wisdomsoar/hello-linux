@@ -82,6 +82,12 @@ do
 	ffmpeg -i capture_color_bar.avi -vf "select=eq(n\,$i)" -vframes 1 img_$i.png
 done
 
+infinite loop
+while true
+do
+  echo "Do something; hit [CTRL+C] to stop!"
+done
+
 Bash remove first and last characters from a string
 substring
 ref: https://stackoverflow.com/questions/638975/how-do-i-tell-if-a-regular-file-does-not-exist-in-bash
