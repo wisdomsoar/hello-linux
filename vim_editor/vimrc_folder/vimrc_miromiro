@@ -12,6 +12,8 @@ if exists("syntax on")
     syntax reset
 endif
 
+set hlsearch
+
 let g:color_name="miromiro"
 " Normal colors  --- 
 hi Normal          ctermfg=15
