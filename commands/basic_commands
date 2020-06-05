@@ -379,6 +379,7 @@ testuser@localhost ~/p7zip_9.20.1 $ patch -p1 -i ../CVE-2015-1038.patch
 
  -p1 的參數，代表要跳過一層目錄結構，
 (因為patch檔內，通常有a, b 資料夾，我們用-p1去跳過這層資料夾)
+-i patchfile or --input=patchfile
 
 andy@t5r120a:/mnt/code/sa8155p/newES6/8155_LA_ES6_r00007.4_hlos_rm_repo/LINUX/android/vendor/qcom/proprietary/camx/ais$ 
 patch  -p1 < 0002-Fix-sa8155-camera-loopback-test_ais.patch
