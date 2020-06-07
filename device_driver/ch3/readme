@@ -1,0 +1,14 @@
+
+su -
+cd /usr/src/linux-headers-5.4.0-31-generic/scull
+
+make
+
+./load_scull.sh
+
+echo hello > /dev/scull0
+cat /dev/scull0
+hello
+
+./unload_scull.sh
+
