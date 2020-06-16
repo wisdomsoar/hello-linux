@@ -1,26 +1,26 @@
 
 
-几种linux内核文件的区别(vmlinux、zImage、bzImage、uImage、vmlinuz、initrd )
+幾種linux內核檔的區別(vmlinux、zImage、bzImage、uImage、vmlinuz、initrd )
 
 ref: https://blog.csdn.net/hanxuefan/article/details/7454352#:~:targetText=1%E3%80%81vmlinux%20%E7%BC%96%E8%AF%91%E5%87%BA%E6%9D%A5%E7%9A%84,%E9%AB%98%E7%AB%AF%E5%86%85%E5%AD%98(1M%E4%BB%A5%E4%B8%8A)%E3%80%82
 
 
-zImage是ARM Linux常用的一种压缩映像文件，
-uImage是U-boot专用的映像文件，它是在zImage之前加上一个长度为0x40的“头”，说明这个映像文件的类型、加载位置、生成时间、大小等信息。换句话说，如果直接从uImage的0x40位置开始执行，zImage和uImage没有任何区别
+zImage是ARM Linux常用的一種壓縮映像檔，
+uImage是U-boot專用的映像檔，它是在zImage之前加上一個長度為0x40的“頭”，說明這個映像檔的類型、載入位置、生成時間、大小等資訊。換句話說，如果直接從uImage的0x40位置開始執行，zImage和uImage沒有任何區別
 
-1、vmlinux  编译出来的最原始的内核文件，未压缩。
-   vmlinuz是可引导的、压缩的内核。“vm”代表“Virtual Memory”。Linux 支持虚拟内存
-   Linux能够使用硬盘空间作为虚拟内存，因此得名“vm”
+1、vmlinux  編譯出來的最原始的內核檔，未壓縮。
+   vmlinuz是可引導的、壓縮的內核。“vm”代表“Virtual Memory”。Linux 支持虛擬記憶體
+   Linux能夠使用硬碟空間作為虛擬記憶體，因此得名“vm”
    
-2、zImage   是vmlinux经过gzip压缩后的文件。
+2、zImage   是vmlinux經過gzip壓縮後的檔。
    make zImage
    
    copy imx6-4.1.15_2.0.0/build-imx-qsip2/tmp/deploy/images/imx6dlsabresd_qsip2 path/to/local
 
-3、bzImage bz表示“big zImage”，不是用bzip2压缩的。两者的不同之处在于，zImage解压缩内核到低端内存(第一个640K)，bzImage解压缩内核到高端内存(1M以上)。如果内核比较小，那么采用zImage或bzImage都行，如果比较大应该用bzImage。
+3、bzImage bz表示“big zImage”，不是用bzip2壓縮的。兩者的不同之處在于，zImage解壓縮內核到低端記憶體(第一個640K)，bzImage解壓縮內核到高端記憶體(1M以上)。如果內核比較小，那麼採用zImage或bzImage都行，如果比較大應該用bzImage。
 
-4、uImage   U-boot专用的映像文件，它是在zImage之前加上一个长度为0x40的tag。
+4、uImage   U-boot專用的映射檔，它是在zImage之前加上一個長度為0x40的tag。
 
-5、vmlinuz  是bzImage/zImage文件的拷贝或指向bzImage/zImage的链接。
+5、vmlinuz  是bzImage/zImage檔的拷貝或指向bzImage/zImage的連結。
 
-6、initrd   是“initial ramdisk”的简写。一般被用来临时的引导硬件到实际内核vmlinuz能够接管并继续引导的状态。
+6、initrd   是“initial ramdisk”的簡寫。一般被用來臨時的引導硬體到實際內核vmlinuz能夠接管並繼續引導的狀態。
