@@ -1,0 +1,20 @@
+LINUX/android/kernel/msm-4.14/drivers/nvme/host/pci.c
+
+static const struct pci_device_id nvme_id_table[] = {
+
+...
+        { PCI_DEVICE_CLASS(PCI_CLASS_STORAGE_EXPRESS, 0xffffff) },
+        { PCI_DEVICE(PCI_VENDOR_ID_APPLE, 0x2001) },
+        { PCI_DEVICE(PCI_VENDOR_ID_APPLE, 0x2003) },
+        { PCI_DEVICE(0x1179, 0x0115) }, /* TOSHIBA 4.0 device */
+        { PCI_DEVICE(0x1179, 0x0116) }, /* TOSHIBA 5.0 device */
+
+        { PCI_DEVICE(0x1987, 0x5008) }, /* PHISON PS5008-E8T */
+        { PCI_DEVICE(0x126f, 0x2263) }, /* SMI MD681 */
+        { PCI_DEVICE(0x15b7, 0x5001) }, /* WD  */
+
+        { PCI_DEVICE(0x1344, 0x6001) }, /* Micro 2100AI Automative-grade */
+        { PCI_DEVICE(0x1344, 0x6001) }, /* Micro 2100AI Automative-grade */
+
+        { 0, }
+};
