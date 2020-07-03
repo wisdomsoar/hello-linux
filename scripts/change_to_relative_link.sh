@@ -1,3 +1,6 @@
+#change_to_relative_link.sh --force
+#
+
 my_root=$(pwd)
 
 find . -type l -ls | grep mnt  | while read one_line; do
