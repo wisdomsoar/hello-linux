@@ -384,6 +384,22 @@ testuser@localhost ~/p7zip_9.20.1 $ patch -p1 -i ../CVE-2015-1038.patch
 andy@t5r120a:/mnt/code/sa8155p/newES6/8155_LA_ES6_r00007.4_hlos_rm_repo/LINUX/android/vendor/qcom/proprietary/camx/ais$ 
 patch  -p1 < 0002-Fix-sa8155-camera-loopback-test_ais.patch
 
+-pnum or --strip=num
+          Strip the smallest prefix containing num leading slashes from each file name found in the patch file.  A sequence of one or more adjacent slashes is counted as a single slash.  This controls how file names  found  in
+          the patch file are treated, in case you keep your files in a different directory than the person who sent out the patch.  For example, supposing the file name in the patch file was
+
+          /u/howard/src/blurfl/blurfl.c
+
+       setting -p0 gives the entire file name unmodified, -p1 gives
+
+          u/howard/src/blurfl/blurfl.c
+
+       without the leading slash, -p4 gives
+
+          blurfl/blurfl.c
+
+       and not specifying -p at all just gives you blurfl.c.  Whatever you end up with is looked for either in the current directory, or the directory specified by the -d option.
+
 Bash limiting precision of floating point variables
 ref: https://unix.stackexchange.com/questions/175744/bash-limiting-precision-of-floating-point-variables
 There is a special variable called scale.You can set this variable to limit the precision.
