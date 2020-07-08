@@ -1,0 +1,6 @@
+
+cat /boot/config-`uname -r` | grep CONFIG_MODULE_SIG_FORCE
+
+
+
+
