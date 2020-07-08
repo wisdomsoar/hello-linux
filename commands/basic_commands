@@ -1,14 +1,4 @@
-# hello-linux
-How can I find the version of Ubuntu that is installed?
-lsb_release -a
-No LSB modules are available.
-Distributor ID: Ubuntu
-Description:    Ubuntu 16.10
-Release:        16.10
-Codename:       yakkety
 
-看環境變數
-env
 
 ref: GNU/Linux most wanted
 
