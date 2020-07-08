@@ -1,6 +1,6 @@
 
 0. Set root passward:
-   sudo passwd roo
+   sudo passwd root
 
 1. Change to root
    su -
