@@ -400,6 +400,9 @@ patch  -p1 < 0002-Fix-sa8155-camera-loopback-test_ais.patch
 
        and not specifying -p at all just gives you blurfl.c.  Whatever you end up with is looked for either in the current directory, or the directory specified by the -d option.
 
+ref: https://jyhshin.pixnet.net/blog/post/42727873-diff-and-patch-%E7%94%A8%E6%B3%95
+--dry-run: 不會真的上補丁，而只是給你看會修改哪些檔案測試是否會成功。
+
 Bash limiting precision of floating point variables
 ref: https://unix.stackexchange.com/questions/175744/bash-limiting-precision-of-floating-point-variables
 There is a special variable called scale.You can set this variable to limit the precision.
