@@ -263,6 +263,9 @@ df -h
 Kill all processes for a given user
 killall -u unix_uer_name
 
+killall power_off_wait.sh
+kill -9 $(ps -w | grep power_off_wait.sh | grep -v grep | awk '{print $1}')
+
 Write MAC address
 ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
 
