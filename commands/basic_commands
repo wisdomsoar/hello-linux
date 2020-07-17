@@ -311,7 +311,7 @@ ps
 A: Select All processes
 e: Select all processes
 F: Full format
-
+w: Wide output (what is it?)
 
 diff --ruN original_src modified_src > 0026-patch-name.patch
 r: recursively compare any subdirectories found
