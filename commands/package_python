@@ -1,0 +1,10 @@
+
+
+create symbolic link to python 2.7.
+
+$ which python
+/usr/bin/python
+
+$ ls -al /usr/bin/python
+lrwxrwxrwx 1 root root 9 Nov 24 2017 /usr/bin/python -> python2.7
+
