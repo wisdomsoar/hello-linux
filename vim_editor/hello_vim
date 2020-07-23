@@ -17,6 +17,15 @@ Find keyword
 /keyword_to_find
 斜線改成問號變成往前找
 
+ref: https://kb.ucla.edu/articles/case-insensitive-searching-in-vi
+Search case-insensitive
+:set ignorecase
+:set ic
+
+To change back to case-sensitive mode, type
+:set noignorecase
+:set noic
+
 Check next keyword
 n
 
