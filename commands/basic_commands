@@ -85,6 +85,7 @@ grep "pattern1\|pattern2" file.txt
 
 ref: How do I grep for multiple patterns with pattern having a pipe character?
 grep -- 'foo\|bar' *.txt
+USE THIS!!!!!vvvvvvvvvvvvv
 grep -E -- 'foo|bar' *.txt
 grep -e foo -e bar -- *.txt
 
