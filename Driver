@@ -1,0 +1,6 @@
+Epson XP-225
+
+sudo apt --fix-broken install
+sudo apt-get install lsb
+sudo dpkg -i epson-inkjet-printer-escpr_1.4.1-1lsb3.2_amd64.deb
+
