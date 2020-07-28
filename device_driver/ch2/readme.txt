@@ -73,3 +73,12 @@ clean:
 8. dmesg | tail
    See the result
 
+
+O Troble shooting
+# insmod ERROR - could not insert module - Operation not permitted
+ref: https://stackoverflow.com/questions/29036987/insmod-error-in-kernel-module-programming
+If you have secure boot enabled, the newer kernels won't allow inserting arbitrary kernel modules. 
+So, either you can disable secure boot in your BIOS or you need to sign the kernel modules you want to install.
+
+
+
