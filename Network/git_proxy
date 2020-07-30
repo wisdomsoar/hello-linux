@@ -1,0 +1,67 @@
+I. Set Git Proxy
+0. install socat (You need to access Internet for this step) :
+$ sudo apt-get install socat
+
+1. Create file: /etc/profile.d/proxy.sh
+export http_proxy=http://172.16.100.51:3128/
+export https_proxy=http://172.16.100.51:3128/
+   
+2. sudo visudo
+
+    Add new line:
+Defaults        env_keep="http_proxy https_proxy"
+
+3. Choose the one method as below:
+    (1)  Create file: /etc/gitconfig
+[core]
+gitproxy = /bin/gitproxy.sh
+    (2) git config --global core.gitproxy /bin/gitproxy.sh
+    ref: https://stackoverflow.com/questions/12254076/how-do-i-show-my-global-git-config 
+
+4. Create file: /bin/gitproxy.sh
+#!/bin/sh
+# Use socat to proxy git through an HTTP CONNECT firewall.
+# Useful if you are trying to clone git:// from inside a company.
+# Requires that the proxy allows CONNECT to port 9418.
+#
+# Save this file as gitproxy somewhere in your path (e.g., ~/bin) and then run
+# chmod +x gitproxy
+# git config --global core.gitproxy gitproxy
+#
+# More details at http://tinyurl.com/8xvpny
+# Configuration. Common proxy ports are 3128, 8123, 8000.
+_proxy=172.16.100.51
+_proxyport=3128
+exec socat STDIO PROXY:$_proxy:$1:$2,proxyport=$_proxyport
+
+-------------------------------------------------------------------------------
+sudo chmod 777 /bin/gitproxy.sh
+
+5. Set DNS servers: 172.16.100.2
+    (by GUI)
+
+    reference IPv4 Settings:
+    Address: xxx
+    Netmask: 23
+    Gateway: 172.16.235.254
+
+6. Set HTTP Proxy: 172.16.100.51
+   Set HTTPS Proxy: 172.16.100.51
+    (by GUI)
+
+
+7. Here you can fetch code via URL: git://XXXXXX
+
+II. Set ssh Proxy
+0. install connect-proxy
+$ sudo apt-get install connect-proxy
+1. create file: /etc/ssh_proxy contains:
+
+Host *
+        ProxyCommand connect -H 172.16.100.51:3128 %h %p
+        ServerAliveInterval 30
+
+2. for "each" unix user
+$ cd ~/.ssh
+$ ln -s /etc/ssh_proxy config
+3. Here you can fetch code via URL: ssh://XXXXXX
