@@ -346,6 +346,8 @@ $ screen -r 19668
 force attach to a specified session
 screen -d -r 19668
 
+d: Detaches the elsewhere running screen session.
+
 for loop
 END=5
 for i in $(seq 1 $END);
