@@ -1,0 +1,3 @@
+https://b8807053.pixnet.net/blog/post/347760131-linux-gpio-driver-guide
+
+$ cat /sys/kernel/debug/gpio
