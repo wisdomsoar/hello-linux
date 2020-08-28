@@ -11,3 +11,9 @@ total 0
 
 2-1's "1" means USB stick
 0 lrwxrwxrwx 1 root root 0 2020-07-29 09:51 2-1 -> ../../../devices/platform/soc/a400000.ssusb/a400000.dwc3/xhci-hcd.0.auto/usb2/2-1
+
+
+echo 2-0:1.0 > /sys/bus/usb/drivers/hub/unbind;
+echo 1d6b 0003 > /sys/bus/usb/drivers/lvs/new_id;
+echo 2-0:1.0 > /sys/bus/usb/drivers/lvs/bind;
+echo 1 > /sys/bus/usb/drivers/lvs/2-0:1.0/enable_compliance; 
