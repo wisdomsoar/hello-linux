@@ -17,3 +17,57 @@ echo 2-0:1.0 > /sys/bus/usb/drivers/hub/unbind;
 echo 1d6b 0003 > /sys/bus/usb/drivers/lvs/new_id;
 echo 2-0:1.0 > /sys/bus/usb/drivers/lvs/bind;
 echo 1 > /sys/bus/usb/drivers/lvs/2-0:1.0/enable_compliance; 
+
+
+
+
+
+以下USB port3 
+echo 2-0:1.0 > /sys/bus/usb/drivers/hub/unbind
+echo 1d6b 0003 > /sys/bus/usb/drivers/lvs/new_id
+echo 2-0:1.0 > /sys/bus/usb/drivers/lvs/bind
+echo 1 > /sys/bus/usb/drivers/lvs/2-0:1.0/enable_compliance 
+
+
+echo 4-0:1.0 > /sys/bus/usb/drivers/hub/unbind
+echo 1d6b 0003 > /sys/bus/usb/drivers/lvs/new_id
+echo 4-0:1.0 > /sys/bus/usb/drivers/lvs/bind
+echo 1 > /sys/bus/usb/drivers/lvs/4-0:1.0/enable_compliance 
+
+
+
+abcb:
+port 3:
+[    6.458019] usb 2-1: new SuperSpeed USB device number 2 using xhci-hcd
+[    6.488448] usb 2-1: New USB device found, idVendor=2d42, idProduct=5000
+[    6.495332] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    6.502666] usb 2-1: Product: USB DISK 3.0
+[    6.506878] usb 2-1: Manufacturer:
+[    6.511191] usb 2-1: SerialNumber: 0703562B234E2415
+[    6.517584] usb-storage 2-1:1.0: USB Mass Storage device detected
+[    6.524343] scsi host2: usb-storage 2-1:1.0
+console:/ # 
+
+
+
+abcb
+port 4:
+[    6.458023] usb 2-2: new SuperSpeed USB device number 2 using xhci-hcd
+[    6.488464] usb 2-2: New USB device found, idVendor=2d42, idProduct=5000
+[    6.495340] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    6.502676] usb 2-2: Product: USB DISK 3.0
+[    6.506890] usb 2-2: Manufacturer:
+[    6.511204] usb 2-2: SerialNumber: 0703562B234E2415
+
+[   27.161756] usb usb4: New USB device found, idVendor=1d6b, idProduct=0003
+[   27.161760] usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[   27.161765] usb usb4: Product: xHCI Host Controller
+[   27.161768] usb usb4: Manufacturer: Linux 4.14.163 xhci-hcd
+[   27.161771] usb usb4: SerialNumber: xhci-hcd.1.auto
+
+[    6.502676] usb 2-2: Product: USB DISK 3.0
+[    6.517578] usb-storage 2-2:1.0: USB Mass Storage device detected
+
+
+
+
