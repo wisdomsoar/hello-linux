@@ -1,3 +1,8 @@
+a600000.ssusb => USB0, USB1
+a800000.ssusb => USB2
+a400000.ssusb => USB3/USB4_HS
+
+
 msmnile_au:/ # ls -ls /sys/bus/usb/devices/
 total 0
 0 lrwxrwxrwx 1 root root 0 2020-08-21 03:54 1-0:1.0 -> ../../../devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb1/1-0:1.0
