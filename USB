@@ -1,0 +1,13 @@
+msmnile_au:/ # ls -ls /sys/bus/usb/devices/
+total 0
+0 lrwxrwxrwx 1 root root 0 2020-08-21 03:54 1-0:1.0 -> ../../../devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb1/1-0:1.0
+0 lrwxrwxrwx 1 root root 0 2020-08-21 03:54 2-0:1.0 -> ../../../devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb2/2-0:1.0
+0 lrwxrwxrwx 1 root root 0 2020-08-21 03:54 usb1 -> ../../../devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb1
+0 lrwxrwxrwx 1 root root 0 2020-08-21 03:54 usb2 -> ../../../devices/platform/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb2 
+1-0
+2-0 SS
+3   HS
+4   SS
+
+2-1's "1" means USB stick
+0 lrwxrwxrwx 1 root root 0 2020-07-29 09:51 2-1 -> ../../../devices/platform/soc/a400000.ssusb/a400000.dwc3/xhci-hcd.0.auto/usb2/2-1
