@@ -376,6 +376,8 @@ $ foo=$(printf "%02d" 5)
 $ echo "${foo}"
 05
 
+Check kernel config
+zcat /proc/config.gz
 
 打patch:
 testuser@localhost ~/p7zip_9.20.1 $ patch -p1 -i ../CVE-2015-1038.patch
