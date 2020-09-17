@@ -177,6 +177,13 @@ Replace tab to return break
 translate or delete characters
 cat  matrix.txt  | tr '\t' '\n'
 
+ref: https://medium.com/@zoejoyuliao/%E7%94%A8%E4%B8%80%E8%A1%8C%E6%8C%87%E4%BB%A4%E5%AF%A6%E7%8F%BE%E5%A4%9A%E6%AA%94%E6%A1%88%E6%96%87%E5%AD%97%E5%8F%96%E4%BB%A3-9c04093dc689
+用一行指令實現多檔案文字取代
+perl -pi -e 's/OLD/NEW/g;' <PATH>
+p: print loop
+i: In-Place Editing (後面不接副檔名，就是在直接該檔案作用/取代的意思)
+e: Execute a program
+
 locate "*pub*"
 
 copy: https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string
