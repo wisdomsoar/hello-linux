@@ -13,6 +13,17 @@ network={
     psk="testingPassword"
 }
 
+ref: http://bigpxuan.blogspot.com/2016/12/wpasupplicant.html
+例子3 使用WPA/WPA2，加密都支援，密碼是用PSK的方式
+network={
+ ssid="example"
+ proto=RSN WPA
+ key_mgmt=WPA-PSK
+ pairwise=CCMP TKIP
+ group=CCMP TKIP
+ psk=無線網路的密碼
+}
+
 ref: https://www.raspberrypi.com.tw/2152/setting-up-wifi-with-the-command-line/
 network={
         ssid="foo"
