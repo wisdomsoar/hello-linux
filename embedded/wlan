@@ -13,6 +13,21 @@ network={
     psk="testingPassword"
 }
 
+ref: https://www.raspberrypi.com.tw/2152/setting-up-wifi-with-the-command-line/
+network={
+        ssid="foo"
+        psk="1234567890123"
+        proto=RSN
+        key_mgmt=WPA-PSK
+        pairwise=CCMP
+        auth_alg=OPEN
+}
+掃描結果與設定檔對應的欄位說明如下。
+
+IE: IEEE 802.11i/WPA2 Version 1
+表示加密方式為 WPA2，所對應的欄位 proto。
+RSN：WPA(2)
+WPA：WPA(1)
 
 ref: https://www.raspberrypi.com.tw/tag/wpa_supplicant-conf/
 啟用 Pi 3B+的WiFi
