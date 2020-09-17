@@ -1,0 +1,11 @@
+
+ref: https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+Setting up a wireless LAN via the command line
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+
+Go to the bottom of the file and add the following:
+
+network={
+    ssid="testing"
+    psk="testingPassword"
+}
