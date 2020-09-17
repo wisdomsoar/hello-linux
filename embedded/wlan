@@ -1,4 +1,7 @@
 
+https://w1.fi/cgit/hostap/plain/wpa_supplicant/wpa_supplicant.conf
+
+
 ref: https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 Setting up a wireless LAN via the command line
 sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
@@ -9,3 +12,21 @@ network={
     ssid="testing"
     psk="testingPassword"
 }
+
+
+ref: https://www.raspberrypi.com.tw/tag/wpa_supplicant-conf/
+啟用 Pi 3B+的WiFi
+$ iw dev
+phy#0
+	Unnamed/non-netdev interface
+		wdev 0x2
+		addr ba:27:eb:18:80:cb
+		type P2P-device
+		txpower 31.00 dBm
+	Interface wlan0
+		ifindex 3
+		wdev 0x1
+		addr b8:27:eb:18:80:cb
+		type managed
+		channel 165 (5825 MHz), width: 20 MHz, center1: 5825 MHz
+		txpower 31.00 dBm
