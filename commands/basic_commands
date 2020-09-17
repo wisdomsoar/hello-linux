@@ -111,6 +111,11 @@ awk
 例：以空白做分隔，印出第2欄
 dmesg | grep -o 'scsi.*Direct-Access.*ADATA' | awk '{print $2}'
 
+
+Grep only the first match and stop
+grep -o -a -m 1 -h -r "Pulsanti Operietur" /path/to/directory
+(我用hcitool scan看BT list時，只需找第一個BT MAC)
+
 example: Long list with most recent files last:
 ls -ltr
 
