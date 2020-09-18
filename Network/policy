@@ -1,0 +1,9 @@
+
+遇到問某IP的MAC，卻回另外一介面的MAC
+$ sysctl -w net.ipv4.conf.all.arp_announce=1
+$ sysctl -w net.ipv4.conf.all.arp_ignore=2 
+
+允許telnet連線
+iptables -I INPUT -p 23 -j ACCEPT
+iptables -L -nv
+
