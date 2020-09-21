@@ -3,6 +3,39 @@
 $ sysctl -w net.ipv4.conf.all.arp_announce=1
 $ sysctl -w net.ipv4.conf.all.arp_ignore=2 
 
+arp_announce:
+arp_announce - INTEGER
+Define different restriction levels for announcing the local
+source IP address from IP packets in ARP requests sent on
+interface:
+0 - (default) Use any local address, configured on any interface
+1 - Try to avoid local addresses that are not in the target's
+subnet for this interface. This mode is useful when target
+hosts reachable via this interface require the source IP
+address in ARP requests to be part of their logical network
+configured on the receiving interface. When we generate the
+request we will check all our subnets that include the
+target IP and will preserve the source address if it is from
+such subnet. If there is no such subnet we select source
+address according to the rules for level 2.
+
+arp_ignore:
+Define different modes for sending replies in response to
+received ARP requests that resolve local target IP addresses:
+0 - (default): reply for any local target IP address, configured
+on any interface
+1 - reply only if the target IP address is local address
+configured on the incoming interface
+2 - reply only if the target IP address is local address
+configured on the incoming interface and both with the
+sender's IP address are part from same subnet on this interface
+
+
+Androdi Device使用telnetd
+su
+busybox telnetd -l /system/bin/sh
+
+
 允許telnet連線
 iptables -I INPUT -p 23 -j ACCEPT
 iptables -L -nv
