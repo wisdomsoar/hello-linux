@@ -1,3 +1,33 @@
+wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
+ifup wlan0 
+root@lytxcommon:~# wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
+Successfully initialized wpa_supplicant
+rfkill: Cannot open RFKILL control device
+root@lytxcommon:~# ifu[  118.668522] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+p wlan0
+Successfully initialized wpa_supplicant
+rfkill: Cannot open RFKILL control device
+ioctl[SIOCSIWENCODEEXT]: Invalid argument
+ioctl[SIOCSIWENCODEEXT]: Invalid argument
+ctrl_iface exists and seems to be in use - cannot override it
+Delete '/var/run/wpa_supplicant/wlan0' manually if it is not used anymore
+Failed to initialize control interface '/var/run/wpa_supplicant'.
+You may have another wpa_supplicant process already running or the file was
+left by an unclean termination of wpa_supplicant in which case you will need
+to manually remove this file before starting wpa_supplicant again.
+
+udhcpc: started, v1.31.0
+udhcpc: sending discover
+udhcpc: sending discover
+[  128.054997] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+udhcpc: sending discover
+udhcpc: sending select for 172.20.10.11
+udhcpc: lease of 172.20.10.11 obtained, lease time 85536
+/etc/udhcpc.d/50default: Adding DNS 172.20.10.1
+root@lytxcommon:~#
+
+
+
 WPA_supplicant的設定方式
 ref: http://bigpxuan.blogspot.com/2016/12/wpasupplicant.html
 
