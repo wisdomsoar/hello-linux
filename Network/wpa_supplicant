@@ -1,0 +1,40 @@
+WPA_supplicant的設定方式
+ref: http://bigpxuan.blogspot.com/2016/12/wpasupplicant.html
+
+無線網路的一些基本說明
+驗證方式
+目前常用的驗證方式有 兩種 : WPA和WPA2(RSN)
+一般WPA會配合TKIP加密
+而WPA2會配合AES(CCMP)加密
+有些高級的AP可以混搭使用，如WPA2使用TKIP加密
+
+
+
+輸入密碼的方式分兩種
+PSK : AP預先打好一組密碼，使用者要連線就要輸入相同的密碼。
+有些AP會稱為「個人」(Personal)
+
+EAP : 密碼自動產生。使用者需要經過認證(如輸入帳號和密碼)才能加入AP。
+有些AP會稱為「企業」(Enterprise)
+
+
+
+注 : 全域設定要有這兩行，最好是放在最上面
+ctrl_interface=/var/run/wpa_supplicant #讓supplicant可以建立行程pid
+update_config=1 #讓wpa_cli程式可以更新控制wpa_supplicant
+
+
+
+常見的例子
+
+想直接設定的人可以看底下的常用例子
+
+例子1 使用WPA/TKIP，密碼是用PSK的方式
+network={
+ ssid="你的SSID名稱，限英文"
+ proto=WPA                     #要用WPA或WPA2
+ key_mgmt=WPA-PSK    #要用PSK或EAP
+ pairwise=TKIP                #要用AES(CCMP)或TKIP加密
+ group=TKIP                    #廣播和群播在用的加密
+ psk=無線網路的密碼          #psk的密碼，如果用key_mgmt=WPA-PSK，就必須要有
+}
