@@ -1,3 +1,5 @@
+Linux多網絡卡同網段問題
+ref: https://www.itread01.com/content/1547417014.html
 
 遇到問某IP的MAC，卻回另外一介面的MAC
 $ sysctl -w net.ipv4.conf.all.arp_announce=1
