@@ -20,3 +20,5 @@ https://developer.ridgerun.com/wiki/index.php?title=MAX96705_MAX9286_GMSL_SERDES
 
 max9286.c
 https://kernel.googlesource.com/pub/scm/linux/kernel/git/kbingham/rcar/+/gmsl/renesas-drivers-2018-01-30-v4.15/squashed/drivers/media/i2c/max9286.c
+
+https://elixir.bootlin.com/linux/v5.9-rc6/source/drivers/media/i2c/max9286.c
