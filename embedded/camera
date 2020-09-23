@@ -7,6 +7,8 @@ The RDACM20 is a GMSL camera supporting 1280x800 resolution images
 developed by IMI based on an Omnivision 10635 sensor and a Maxim MAX9271
 GMSL serializer.
 
+[PATCH v9 0/4] MAX9286 GMSL Support (+RDACM20)
+
 The GMSL link carries power, control (I2C) and video data over a
 single coax cable.
 
