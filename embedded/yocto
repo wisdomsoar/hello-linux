@@ -256,6 +256,15 @@ file://0008-Pulseaudio-service-need-to-wait-for-sound-card-ready.patch \
 file://0003-default.pa-Load-agl-audio-plugin-module.patch \
 ...
 "
+6.2.21. build/tmp/work/
+This directory contains architecture-specific work sub-directories for packages built by BitBake. 
+All tasks execute from the appropriate work directory. For example, the source for a particular package is unpacked, patched, 
+configured and compiled all within its own work directory. Within the work directory, organization is based on the package group 
+and version for which the source is being compiled as defined by the WORKDIR.
+
+6.2.22. build/tmp/work-shared/
+For efficiency, the OpenEmbedded build system creates and uses this directory to hold recipes that share a work directory with other recipes. 
+In practice, this is only used for gcc and its variants (e.g. gcc-cross, libgcc, gcc-runtime, and so forth).
 
 
 supports utf-8
