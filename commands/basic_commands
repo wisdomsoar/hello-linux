@@ -444,6 +444,10 @@ echo "scale=3; 300/7" | bc -l | sed 's/[0-9]*\././g'
 printf "%.4f" $(echo "scale=4; 1/3" | bc)
 printf "\n"
 
+make console busy (for what...?)
+while true; do head -c200 /dev/urandom | od -An -w50 -x | grep -E --color "([[:alpha:]][[:digit:]]){2}"; sleep 1; done
+
+
 dd
 /data/local/bin/dd 'if=/data/local/tmp/rnd_64M.img' 'of=/mnt/user/rnd_64M.img' 'bs=1024k' 'count=64' 'iflag=fullblock'
 
