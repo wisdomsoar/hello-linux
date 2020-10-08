@@ -83,6 +83,14 @@ highlight matched
 OR in grep
 grep "pattern1\|pattern2" file.txt
 
+ref: https://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/
+AND in grep
+Grep AND using -E ‘pattern1.*pattern2’
+There is no AND operator in grep. But, you can simulate AND using grep -E option.
+
+grep -E 'pattern1.*pattern2' filename
+grep -E 'pattern1.*pattern2|pattern2.*pattern1' filename
+
 ref: How do I grep for multiple patterns with pattern having a pipe character?
 grep -- 'foo\|bar' *.txt
 USE THIS!!!!!vvvvvvvvvvvvv
