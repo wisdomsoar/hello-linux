@@ -1,0 +1,13 @@
+ref:
+https://huenlil.pixnet.net/blog/post/27883431
+
+Linux file system & eMMC
+eMMC
+
+eMMC 各家廠商都有自己名字, 這點還蠻有趣的, Samsung 的 eMMC 叫 "moviNAND", Sandisk 叫 "iNAND", Hynix 叫 "eNAND" (Ref)
+
+eMMC 和 傳統nand flash 最大的差異點在 eMMC 內建 controller，且由其負責wear leveling 而傳統 nand flash 則是由 file system 負責
+
+- Embedded MMC(eMMC) boot
+
+- Support eMMC boot in LK
