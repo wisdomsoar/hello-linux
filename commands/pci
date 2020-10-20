@@ -1,0 +1,5 @@
+ref: https://b8807053.pixnet.net/blog/post/45059362
+Linux下查看PCI-E插槽信息
+
+lspci -n
+lspci -n -d 1077:2432 -vvv | grep -i width
