@@ -1,0 +1,19 @@
+root@lytxcommon:~# hwclock -w -f /dev/rtc0
+root@lytxcommon:~# hwclock -r -f /dev/rtc0
+2018-01-01 10:11:22.343397+00:00
+
+-w
+--systohc
+Set the Hardware Clock from the System Clock
+
+-f
+--rtc=filename
+default order: 
+/dev/rtc
+/dev/rtc0
+
+-r 
+Read the Hardware Clock and print the time on standard output.
+
+
+
