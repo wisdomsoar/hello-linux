@@ -33,6 +33,13 @@ ref: http://www.embeddedlinux.org.cn/OEManual/recipes_syntax.html
 https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html
 ref: 1.5.1. Usage and syntax
 
+ref: https://github.com/shantanoo-desai/yoctoproject-cheatsheet
+Find a recipe in a layer	
+cd sources && find --name "*busybox*.bb*"
+
+Search recipe	
+bitbake-layers show-recipes "gdb*"
+
 O functions
 The following is an example function from the sed recipe:
 
