@@ -154,6 +154,10 @@ bitbake + metadata (Poky)
 bitbake - a task executor and scheduler
 metadata – task definitions in recipes, classes + config
 
+顯示 recipes 和 tasks 列表
+Show current and preferred versions of all recipes.
+$bitbake -s
+
 bitbake -c cleanall -f <recipe_name>
 -c: Specify the task to execute; CMD的c
     => -c cleanall: to tell BitBake to just execute the do_clean task
