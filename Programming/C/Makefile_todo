@@ -1,0 +1,25 @@
+CXX_SRCS = $(wildcard *.cpp)
+SRCS := $(wildcard *.c)
+CXX_OBJ = $(SRCS:.cpp=.o)
+OBJ := $(SRCS:.c=.o)
+#READ_HDC_OBJS := $(filter read_HDC%.o, $(OBJS))
+#TARGET_READ_HDC := read_HDC
+#targets
+#TARGET := $(TARGET_READ_HDC) 
+
+LIBS :=
+
+.PHONY: clean all
+
+#TEMP_BIN=read_HDC
+
+#all: $(TARGET)
+
+%.o : %.c
+	$(CC) -c $< -o $@ ${LDFLAGS} ${LIBS}
+
+%.o : %.cpp
+	$(CXX) -c $< -o $@ ${LDFLAGS} ${LIBS}
+
+#${TARGET_read_HDC} : $(READ_HDC_OBJS)
+#        $(CC) $(READ_HDC_OBJS) -o $@ ${LIBS} ${LDFLAGS}
