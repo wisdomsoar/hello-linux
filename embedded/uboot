@@ -4,3 +4,24 @@
 mw.l 0x20d8040 0x30
 mw.l 0x20d8044 0x10000000
 reset
+
+
+改boot argument
+(1) 進uboot:
+(2)
+Environment size: 2262/4092 bytes
+u-boot=> setenv mmcroot "/dev/mmcblk2p2 rootwait rw gpuProfiler=1"
+u-boot=> save
+Saving Environment to MMC... Writing to MMC(2)... OK
+u-boot=> run bootcmd
+switch to partitions #0, OK
+mmc2(part 0) is current device
+28062208 bytes read in 114 ms (234.8 MiB/s)
+Booting from mmc ...
+57665 bytes read in 10 ms (5.5 MiB/s)
+## Flattened Device Tree blob at 43000000
+   Booting using the fdt blob at 0x43000000
+(3) 開進linux後，確認一下有沒有改到
+   cat /proc/cmdline
+console=ttymxc1,115200 root=/dev/mmcblk2p2 rootwait rw gpuProfiler=1
+   
