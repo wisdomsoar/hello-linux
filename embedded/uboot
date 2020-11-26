@@ -25,3 +25,13 @@ Booting from mmc ...
    cat /proc/cmdline
 console=ttymxc1,115200 root=/dev/mmcblk2p2 rootwait rw gpuProfiler=1
    
+   
+另個方法
+u-boot=> editenv mmcroot
+edit: /dev/mmcblk2p2 rootwait ro
+u-boot=>
+u-boot=> boot
+     OR
+u-boot=> save
+Saving Environment to MMC... Writing to MMC(2)... OK
+u-boot=> run bootcmd
