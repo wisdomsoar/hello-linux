@@ -192,7 +192,7 @@ function show_time () {
     else
         ((sec=num))
     fi
-    echo "$day"d "$hour"h "$min"m "$sec"s
+    echo "DURATION: $day"d "$hour"h "$min"m "$sec"s
 }
 
 
