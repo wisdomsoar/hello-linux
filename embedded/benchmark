@@ -1,1 +1,21 @@
 ./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=28800 --max_secs=28800
+
+
+哪有這樣測的...
+
+一個benchmark_model 1.5 hr
+./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=9000 --max_secs=9000
+
+兩個benchmark_model, 8hr
+./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=28800 --max_secs=28800 &./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=28800 --max_secs=28800 &
+
+./label_image -m mobilenet_v1_1.0_224_quant.tflite -i grace_hopper.bmp -l labels.txt -a 1 &./label_image -m mobilenet_v1_1.0_224_quant.tflite -i grace_hopper.bmp -l labels.txt -a 1 &./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=7200 --max_secs=7200 &
+
+兩個label_image
+./label_image -m mobilenet_v1_1.0_224_quant.tflite -i grace_hopper.bmp -l labels.txt -a 1 &./label_image -m mobilenet_v1_1.0_224_quant.tflite -i grace_hopper.bmp -l labels.txt -a 1
+
+兩個benchmark_model
+./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=30 --max_secs=30 &./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=30 --max_secs=30 &
+
+三個label_image
+./label_image -m mobilenet_v1_1.0_224_quant.tflite -i grace_hopper.bmp -l labels.txt -a 1 &./label_image -m mobilenet_v1_1.0_224_quant.tflite -i grace_hopper.bmp -l labels.txt -a 1 &./label_image -m mobilenet_v1_1.0_224_quant.tflite -i grace_hopper.bmp -l labels.txt -a 1 &
