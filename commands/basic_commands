@@ -281,6 +281,22 @@ Display these info for all partitions:
 df -h
 
 
+ref: http://puremonkey2010.blogspot.com/2011/02/linux-linux-ps-l-ps-aux-ps-axjf.html
+ps ：將某個時間點的程序運作情況擷取下來
+[root@www ~]# ps aux <==觀察系統所有的程序資料 
+[root@www ~]# ps -lA <==也是能夠觀察所有系統的資料
+[root@www ~]# ps axjf <==連同部分程序樹狀態
+選項與參數：
+-A ：所有的 process 均顯示出來，與 -e 具有同樣的效用；
+-a ：不與 terminal 有關的所有 process ；
+-u ：有效使用者 (effective user) 相關的 process ；
+x ：通常與 a 這個參數一起使用，可列出較完整資訊。
+輸出格式規劃：
+l ：較長、較詳細的將該 PID 的的資訊列出；
+j ：工作的格式 (jobs format)
+-f ：做一個更為完整的輸出。
+
+
 Kill all processes for a given user
 killall -u unix_uer_name
 
