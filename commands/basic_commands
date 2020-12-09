@@ -267,6 +267,9 @@ use
 du -sch
 -c, --total
          produce a grand total
+-x, --one-file-system
+         skip directories on different file systems
+--max-depth=1
 
 Number of bytes, words and lines in file:
 wc file (Word Count)
