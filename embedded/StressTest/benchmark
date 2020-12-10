@@ -6,6 +6,8 @@
 一個benchmark_model 1.5 hr
 ./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=9000 --max_secs=9000
 
+./benchmark_model --graph=inception_v4_quant_1_default_1.tflite --use_nnapi=true --min_secs=9000 --max_secs=9000
+
 兩個benchmark_model, 8hr
 ./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=28800 --max_secs=28800 &./benchmark_model --graph=mobilenet_v1_1.0_224_quant.tflite --use_nnapi=true --min_secs=28800 --max_secs=28800 &
 
