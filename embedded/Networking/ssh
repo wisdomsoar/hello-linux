@@ -1,0 +1,47 @@
+
+
+https://jornathunderlinkcom.wordpress.com/2017/11/17/there-are-30-seconds-delay-when-ssh-to-s5700-switch/
+There are 30 seconds delay when SSH to S5700 switch
+***************************************************
+Change the key algorithm on SSH client.
+Add below command in file /root/.ssh/config or /etc/ssh/ssh_config
+KexAlgorithms=diffie-hellman-group1-sha1
+
+https://unix.stackexchange.com/questions/65068/why-ssh-takes-a-long-time-to-connect
+Why SSH takes a long time to Connect [duplicate]
+***************************************************
+Edit your /etc/ssh/sshd_config to set GSSAPIAuthentication no
+
+https://serverfault.com/questions/290601/ssh-disconnection-issue-tcp-rst-packets
+SSH disconnection issue - TCP RST packets
+***************************************************
+/etc/ssh/sshd_config
+ClientAliveInterval 150
+ClientAliveCountMax 10
+
+https://www.tecmint.com/increase-ssh-connection-timeout/
+How to Increase SSH Connection Timeout in Linux
+***************************************************
+一樣是改ClientAliveInterval
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+https://www.cyberciti.biz/tips/open-ssh-server-connection-drops-out-after-few-or-n-minutes-of-inactivity.html
+OpenSSH Server connection drops out after few minutes of inactivity
+***************************************************
+介紹ClientAliveInterval
+
+
+https://unix.stackexchange.com/questions/179038/increase-ssh-connecttimeout-greater-than-60-seconds
+Increase SSH ConnectTimeout greater than 60 seconds
+***************************************************
+sysctl net.ipv4.tcp_syn_retries???????  default是6了
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+https://stackoverflow.com/questions/25263297/max-value-of-paramiko-ssh-connection-timeout/25263938#25263938
+Max value of Paramiko SSH connection timeout?
+***************************************************
+一樣在講sysctl net.ipv4.tcp_syn_retries
+
+
