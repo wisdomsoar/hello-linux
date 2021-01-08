@@ -13,3 +13,6 @@ https://ziladoc.com/queue/ltgt-5af11cdfd13c6_pdf?queue_id=-1
  poky/meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb
  
  
+ 暫時在這改kernel 
+build-imx-llll/tmp/work/llllcommon-poky-linux/linux-imx/5.4+llllcommon-r0/build/.config
+CONFIG_CFG80211=m
