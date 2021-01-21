@@ -342,3 +342,37 @@ from a source code repository (e.g. Git or Subversion).
 
 PV is the default value of the PKGV variable.
 
+
+
+
+kernel config path:
+build/tmp/work/.../build     (這裡沒有kernel的.git)
+
+kernel driver .o files path:
+build/tmp/work/lllllll-poky-linux/linux-imx/5.4+llllllllll-r0/build/drivers/media/...
+
+暫時改kernel driver:
+build/tmp/work-shared/llllllccccc/kernel-source/driver/...
+使用bitbake linux-imx -c clean會清除這裡所有檔案
+
+deploy:
+build/tmp/work/llllcccc-pocky.../linux-imx/meta-ddddddd/recipe-kernel/linux-imx/...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
