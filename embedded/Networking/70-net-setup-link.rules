@@ -1,0 +1,25 @@
+#/etc/udev/rules.d/70-net-setup-link.rules
+# for 8996-lv
+# 20170728 comment out
+# 20170613 change DRIVERS as e1000e from DWC_ETH_QOS
+# disable ethernet rename, fix its name to eth0 (DWC_ETH_QOS)
+# SUBSYSTEM=="net", ACTION=="add", DRIVERS=="e1000e", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
+
+# 20170728
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="e1000e", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNELS=="0000:01:00.0", NAME="eth_pcie1"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="e1000e", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNELS=="0001:01:00.0", NAME="eth_pcie2"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="e1000e", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNELS=="0002:01:00.0", NAME="eth_pcie3"
+#SUBSYSTEM=="net", ACTION=="add", DRIVERS=="e1000e", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNELS!="0000:01:00.0", KERNEL=="eth*", NAME="eth0"
+
+# 20170728 comment out
+# fix gaget to eth1
+#SUBSYSTEM=="net", SUBSYSTEMS=="usb", ACTION=="add", , ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth1"
+
+# 20170915 add "RUN" rule for usb3 
+# 20170728
+SUBSYSTEM=="net", SUBSYSTEMS=="usb", DRIVERS=="lan78xx", ACTION=="add", , ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth_usb3", RUN+="/usr/bin/config_usb3.sh"
+SUBSYSTEM=="net", SUBSYSTEMS=="usb", DRIVERS=="smsc95xx", ACTION=="add", , ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth_usb2"
+
+# fix wlan & p2p names
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan0"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="p2p*", NAME="p2p0"
