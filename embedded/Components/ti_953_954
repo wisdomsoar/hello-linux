@@ -7,3 +7,19 @@ https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-4-luca
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-5-luca@lucaceresoli.net/
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-6-luca@lucaceresoli.net/
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-7-luca@lucaceresoli.net/
+
+
+
+https://e2e.ti.com/support/interface/f/138/t/921503?DS90UB954-Q1-Linux-driver-support-
+Hello Ajith,
+
+ Unfortunately, we do not have a Linux driver for DS90UB940-Q1. You can reference the datasheet for programming guidance and also use our Analog Launchpad GUI to try out different programming. Please let us know if you have any specific programming questions.
+
+Actually for these devices, if you have correct hardware sittings, then you will not need any software settings or very limited settings.
+
+Regards,
+
+Hamzeh
+
+https://training.ti.com/ds90ub953954-system-design-operation-typical-customer-issues?context=1128572-1139169-1128575
+https://www.ti.com/tool/ALP
