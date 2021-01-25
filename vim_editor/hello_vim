@@ -70,6 +70,8 @@ Redo
 [Ctrl]+r
 
 
+CTRL-O			Go to [count] Older cursor position in jump list
+
 Indetns 4 spaces instead of tab by '>'
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
