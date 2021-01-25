@@ -2,10 +2,20 @@ TI camera serdes
 
 https://patchwork.ozlabs.org/project/linux-i2c/cover/20190723203723.11730-1-luca@lucaceresoli.net/
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-2-luca@lucaceresoli.net/
+
+[RFC,v2,2/6] i2c: add I2C Address Translator (ATR) support
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-3-luca@lucaceresoli.net/
+
+[RFC,v2,3/6] media: dt-bindings: add DS90UB954-Q1 video deserializer
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-4-luca@lucaceresoli.net/
+
+[RFC,v2,4/6] media: dt-bindings: add DS90UB953-Q1 video serializer
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-5-luca@lucaceresoli.net/
+
+[RFC,v2,5/6] media: ds90ub954: new driver for TI DS90UB954-Q1 video deserializer
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-6-luca@lucaceresoli.net/
+
+[RFC,v2,6/6] media: ds90ub953: new driver for TI DS90UB953-Q1 video serializer
 https://patchwork.ozlabs.org/project/linux-i2c/patch/20190723203723.11730-7-luca@lucaceresoli.net/
 
 
