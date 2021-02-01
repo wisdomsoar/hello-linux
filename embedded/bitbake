@@ -9,7 +9,7 @@ BitBake
 
 Config、tasks 與 recipes
 
-通過 BitBake 執行特定目的的設定檔 Config、tasks 與 recipes，這些設定檔包含變量與可執行的 shell、python 代碼。
+通過 BitBake 執行特定目的的設定檔 Config、tasks 與 recipes，這些設定檔包含變數與可執行的 shell、python 代碼。
 
 所以理論上，BitBake 可以執行代碼，你也可以使用 BitBake 執行建構專案程式之外的事情，但是並不推薦這麼做。
 
