@@ -99,6 +99,7 @@ MACHINE = " "
 DISTRO  = " "
 --------------------
 
+ref: https://elinux.org/Bitbake_Cheat_Sheet
 顯示 bitbake 輔助文件。
 bitbake --help
 
