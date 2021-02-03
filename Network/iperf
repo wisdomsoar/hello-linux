@@ -1,0 +1,7 @@
+iperf -c 192.168.1.100 -u -b 5m -l 60000 -i 1 -t 10000
+where
+-l = data length max of 65550
+-t = Timing
+-i = Interval
+-u = UDP tests
+-b = Bandwidth settings
