@@ -1,0 +1,19 @@
+
+ref: https://dreamtails.pixnet.net/blog/post/31579740-format-usb-device-to-fat32-for-ubuntu.
+Format USB device to FAT32 for Ubuntu.
+
+
+If the /dev/sdb is USB device.
+
+# sudo -i
+
+# fdisk /dev/sdb
+--> n    (Create partition)
+．．．．．．．
+--> w
+
+ 
+
+Format device to FAT32
+
+# mkdosfs -F 32 -I /dev/sdb1
