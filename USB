@@ -1,3 +1,11 @@
+
+3.3.4.29. USB DWC3
+Introduction
+
+DWC3 is a SuperSpeed (SS) USB 3.0 Dual-Role-Device (DRD) from Synopsys.
+https://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/Foundational_Components/Kernel/Kernel_Drivers/USB/DWC3.html
+
+
 a600000.ssusb => USB0, USB1
 a800000.ssusb => USB2
 a400000.ssusb => USB3/USB4_HS
