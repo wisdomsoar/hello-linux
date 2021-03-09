@@ -35,3 +35,18 @@ u-boot=> boot
 u-boot=> save
 Saving Environment to MMC... Writing to MMC(2)... OK
 u-boot=> run bootcmd
+
+
+將filesystem改成read/write
+
+原本是ReadOnly: rootfstype=ext4 ro rootwait
+setbootargs=setenv bootargs ${jh_clk} console=${console} root=${rfs} rootfstype=ext4 ro rootwait
+
+editenv setbootargs
+改成Read/Write: rootfstype=ext4 rw rootwait
+setbootargs=setenv bootargs ${jh_clk} console=${console} root=${rfs} rootfstype=ext4 rw rootwait
+
+fw_setenv setbootargs=setenv bootargs ${jh_clk} console=${console}
+ root=${rfs} rootfstype=ext4 rw rootwait
+
+
