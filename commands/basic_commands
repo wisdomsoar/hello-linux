@@ -256,6 +256,9 @@ RAR
 ********************************************************************************
 
 File and partition sizes
+列出當下各檔案/資料夾的檔案大小
+du * -sh
+
 Show the total size on disk of files or
 directories (Disk Usage):
 du -sh dir1 dir2 file1 file2
