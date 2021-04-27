@@ -100,11 +100,12 @@ DISTRO  = " "
 --------------------
 
 ref: https://elinux.org/Bitbake_Cheat_Sheet
+https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/Useful-bitbake-commands/ta-p/1128559
 顯示 bitbake 輔助文件。
 bitbake --help
 
 顯示 recipes 和 tasks 列表。
-$bitbake -s
+bitbake -s
 
 運行所有 recipes 的所有 tasks。
 bitbake world
@@ -119,14 +120,25 @@ bitbake <image-name> -g -u depexp
 (e.g.)
 $bitbake fsl-image-gui -g -u depexp
 
-取得目標映像的原始碼。
+取得目標映像的原始碼
 bitbake <image-name> -c fetchall
 
-執行編譯目標 package 中的某個 task 任務。
+執行編譯目標 package 中的某個 task 任務
 bitbake <package> -c <task>
 (e.g.)
-$bitbake linux-imx
-$bitbake linux-imx -f -c compile
+bitbake linux-imx
+-f (Force)
+bitbake linux-imx -f -c compile
+Execute a particular package's task. 
+Default Tasks names: fetch, unpack, patch, configure, compile, install, package, package_write, and build
+
+compile顧名思義，改source code後，用compile
+另外常用task還有bitbake linux-imx -c deploy
+製造出object file (或說binary file)?
+
+開啟編譯核心的設定
+Interactive kernel configuration
+bitbake virtual/kernel -c menuconfig
 
 構建一個 recipe，執行該 recipe 的所有 tasks。
 bitbade <package>
@@ -135,8 +147,24 @@ bitbade <package>
 顯示特定 package 提供的 task。
 bitbake <package> -c listtasks
 
-開啟包含編譯目標 package 所需系統環境的新 shell。
+Show the package dependency for image. (這個需要GUI)
+bitbake <image > -g -u depexp
+
+Example: To show all packages included on fsl-image-gui
+$ bitbake fsl-image-gui -g -u depexp
+
+
+開啟包含編譯目標 package 所需系統環境的新 shell (什麼..意思?..)
+Open a new shell where with neccesary system values already defined for package
 bitbake <package> -c devshell
+
+Show image's packages
+bitbake -g <image> && cat pn-depends.dot | \
+grep -v -e '-native' | \
+grep -v digraph | \
+grep -v -e '-image' | \
+awk '{print $1}' | \
+sort | uniq
 
 列出所有 layer
 bitbake-layers show-layers
@@ -147,5 +175,11 @@ bitbake-layers show-recipes
 列出跟 image 有關的所有 recipes
 bitbake-layers show-recipes "*-image-*"
 
-開啟編譯核心的設定
-bitbake virtual/kernel -c menuconfig
+Check if certain package is present on current Yocto Setup
+bitbake -s | grep <pkg>
+Example:
+bitbake -s | grep murata
+murata-binaries                                       :1.0-r0
+
+
+
