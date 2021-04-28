@@ -11,7 +11,7 @@ PS. 通常視為較危險的更新
 apt install aptitude
 
 
-
+另外參考這...https://gist.github.com/zuyu/7d5682a5c75282c596449758d21db5ed
 因為yocto新版sdk (kernel 5.10.x)需要新的
 安裝gcc6
 ref: https://gist.github.com/application2000/73fd6f4bf1be6600a2cf9f56315a2d91
