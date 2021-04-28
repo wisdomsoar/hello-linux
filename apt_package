@@ -9,3 +9,37 @@ dist-upgrade
 PS. 通常視為較危險的更新
 
 apt install aptitude
+
+
+
+因為yocto新版sdk (kernel 5.10.x)需要新的
+安裝gcc6
+ref: https://gist.github.com/application2000/73fd6f4bf1be6600a2cf9f56315a2d91
+sudo apt-get update && \
+sudo apt-get install build-essential software-properties-common -y && \
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y && \
+sudo apt-get update && \
+sudo apt-get install gcc-snapshot -y && \
+sudo apt-get update && \
+sudo apt-get install gcc-6 g++-6 -y && \
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6 && \
+#############上面這個我會有錯誤，
+###有人說可以分開
+###版权声明：本文为CSDN博主「Longlongaaago」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+###ref: https://blog.csdn.net/Willen_/article/details/103343316
+###
+###k@1k ~ $ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 80
+###k@1k ~ $ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 70
+###k@1k ~ $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 80
+###k@1k ~ $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70
+
+sudo apt-get install gcc-4.8 g++-4.8 -y && \
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8;
+
+When completed, you must change to the gcc you want to work with by default. Type in your terminal:
+###這裡可以開出清單，選擇要的版本
+sudo update-alternatives --config gcc
+
+To verify if it worked. Just type in your terminal
+gcc -v
+000000
