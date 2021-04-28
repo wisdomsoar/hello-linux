@@ -2,6 +2,9 @@
 
 ref: GNU/Linux most wanted
 
+Ubuntu記一下: 看版本
+lsb_release -a
+
 Handling files and directories
 Changing directories:
 cd ~bill (home directory of user bill)
