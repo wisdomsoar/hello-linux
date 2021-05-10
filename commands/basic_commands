@@ -315,11 +315,12 @@ kill -9 $(ps -w | grep power_off_wait.sh | grep -v grep | awk '{print $1}')
 Write MAC address
 ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
 
-netstat -tulpn
+netstat -tulpen
 t: tcp
 u: udp
 l: listen
 p: programs
+e: extend
 n: numeric
 
 sudo mount -t ext4 /dev/sdb1 /mnt/p
