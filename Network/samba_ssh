@@ -1,6 +1,7 @@
 Add a user to samba
-Now user joe has account on Linux/UNIX box. Use smbpasswd command to specifies that the username following should be added to the local smbpasswd file:
-# smbpasswd -a joe
+Now user joe has account on Linux/UNIX box. Use smbpasswd command to specifies that the username 
+following should be added to the local smbpasswd file:
+# sudo smbpasswd -a joe
 
 
 /etc/samba/smb.conf
@@ -9,6 +10,7 @@ Now user joe has account on Linux/UNIX box. Use smbpasswd command to specifies t
    writeable = yes
    browseable = yes
 
+sudo service smbd restart
 
 
 mount samba in Linux (/etc/fstab)
