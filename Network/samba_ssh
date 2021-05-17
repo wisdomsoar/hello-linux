@@ -10,8 +10,9 @@ following should be added to the local smbpasswd file:
    writeable = yes
    browseable = yes
 
-sudo service smbd restart
 
+sudo service smbd restart
+有錯誤的話，在安裝一次apt-get install samba (why!!??)
 
 mount samba in Linux (/etc/fstab)
 sudo vi /etc/fstab
