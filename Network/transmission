@@ -1,0 +1,4 @@
+cd /v2/@appstore/transmission/bin
+
+export TR_AUTH=name:pw
+./transmission-remote 9091 -ne -u 40
