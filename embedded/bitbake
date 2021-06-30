@@ -136,6 +136,11 @@ compile顧名思義，改source code後，用compile
 另外常用task還有bitbake linux-imx -c deploy
 製造出object file (或說binary file)?
 
+看環境變數之看source code跑去哪了
+ bitbake u-boot-imx -e | grep ^S=
+S="/XXXXXX/imx8_yocto_5.10.9_1.0.0/build-LLLL-AAAAA/tmp/work/AAAAA-poky-linux/u-boot-imx/2020.04+AAAAA-r0/git"
+
+
 開啟編譯核心的設定
 Interactive kernel configuration
 bitbake virtual/kernel -c menuconfig
