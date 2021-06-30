@@ -1,5 +1,12 @@
 
 
+在linux更新uboot
+echo 0 > /sys/block/mmcblk2boot0/force_ro 
+time dd if=/run/media/mmcblk1p1/imx-boot-PROJECT-sd.bin-flash_evk  of=/dev/mmcblk2boot0 bs=1k 
+
+
+
+
 強迫進DL mode?
 mw.l 0x20d8040 0x30
 mw.l 0x20d8044 0x10000000
