@@ -1,0 +1,8 @@
+
+
+
+awk -F ' ' '{printf $1}'
+
+-F
+--field-separator fs
+              Use fs for the input field separator (the value of the FS predefined variable).
