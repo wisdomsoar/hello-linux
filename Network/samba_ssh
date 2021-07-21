@@ -9,6 +9,19 @@ following should be added to the local smbpasswd file:
    comment = Home Directories
    writeable = yes
    browseable = yes
+   
+另一個設定檔，試試
+[yourname]
+comment = yourname
+path = /DATA
+available = yes
+browsable = yes
+public    = yes
+writable  = yes
+valid users = yourname
+
+
+   
 
 
 sudo service smbd restart
