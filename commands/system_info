@@ -1,6 +1,8 @@
 
 cat /boot/config-`uname -r` | grep CONFIG_MODULE_SIG_FORCE
 
+zcat /proc/config.gz > running.config
+
 # hello-linux
 How can I find the version of Ubuntu that is installed?
 lsb_release -a
