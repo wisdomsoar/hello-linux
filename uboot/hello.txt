@@ -13,4 +13,19 @@ CONFIG_UBOOT_NEWAPI=y
 .h" 294 lines --52%-
 
 
+https://elinux.org/U-boot_environment_variables_in_linux
 
+fw_env.config file:
+
+  # Configuration file for fw_(printenv/setenv) utility.
+  # Up to two entries are valid, in this case the redundant
+  # environment sector is assumed present.
+  # MTD device name       Device offset   Env. size       Flash sector size
+         /dev/mtd2               0x0000          0x20000         0x20000
+
+# fw_printenv stdin
+  stdin=serial
+  
+# fw_setenv mytestvariable abcdefg
+ # fw_printenv mytestvariable
+ mytestenv=abcdefg
