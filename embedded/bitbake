@@ -107,6 +107,10 @@ bitbake --help
 顯示 recipes 和 tasks 列表。
 bitbake -s
 
+https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/Useful-bitbake-commands/ta-p/1128559
+Check if certain package is present on current Yocto Setup
+bitbake -s | grep <pkg>
+
 運行所有 recipes 的所有 tasks。
 bitbake world
 
