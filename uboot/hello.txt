@@ -29,3 +29,42 @@ fw_env.config file:
 # fw_setenv mytestvariable abcdefg
  # fw_printenv mytestvariable
  mytestenv=abcdefg
+ 
+ 
+ 
+  
+ ***********************************************************************
+ 
+ 
+ How to write u-boot environment variables with fw_setenv fdt_file
+ 
+ https://www.toradex.com/community/questions/16737/how-to-write-u-boot-environment-variables-with-fw.html
+ 
+ 
+ I don't know what exactly goes wrong in your case. You seem to mix various components of the Image from different versions which do not work together.
+So I sum up here what is involved in the U-Boot environment handling.
+
+U-Boot
+
+U-Boot is reading its environment from the eMMC. This used to be in the user area of the eMMC at byte address 0x80000 and with with Linux Image V2.5 Beta 2 this moved to the first boot area of the eMMC, 0x2200 before the end of that partition. If U-Boot does not find a valid checksum it uses defaults compiled into the U-Boot binary.
+Note that by default we do not store an U-Boot environment ex. factory and rely on the defaults compiled in.
+
+User Space Tools, e.g. the relevant files in the rootfs
+
+fw_printenv and fw_setenv use the file '/etc/fw_env.config' to get the U-Boot environment location. The fw_printenv/fw_setenv binaries also fall back to defaults in the binary if they do not find a valid checksum in the eMMC.
+
+Kernel
+
+The kernel needs to be able to read and write the eMMC location were the environment is stored. I think that only very old kernel versions could be affected. But the boot area is only accessible read only by default, setting this to rw can be accomplished by executing 'source /etc/profile.d/fw_unlock_mmc.sh'. On a serial getty this is done automatically when one does login.
+
+So, you have to make sure that your version of U-Boot and the file '/etc/fw_env.config' agree on the location were the environment is stored.
+
+Additionally, you have to either save the environment once from U-Boot before using the fw_printenv/fw_saveenv tools OR you must be able to live with the default environment stored in the fw_saveenv binary.
+
+Max
+ 
+ 
+ 
+ 
+ 
+ 
