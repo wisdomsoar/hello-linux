@@ -1,0 +1,16 @@
+sbabic/swupdate
+https://github.com/sbabic/swupdate/blob/master/doc/source/building-with-yocto.rst
+What about libubootenv ?
+To avoid possible mismatch, a new library was developed to be hardware independent. A strict match with the bootloader is not required anymore. The meta-swupdate layer contains recipes to build the new library (libubootenv) and adjust SWUpdate to be linked against it. To use it as replacement for u-boot-fw-utils:
+
+set PREFERRED_PROVIDER_u-boot-fw-utils = "libubootenv"
+add to SWUpdate config:
+CONFIG_UBOOT=y
+CONFIG_UBOOT_NEWAPI=y
+
+
+/DATA/lllllll/imx8_yocto_5.10.9_1.0.0/build-lllllll-aaaaaaa/tmp/work/llllllla-poky-linux/u-boot-imx/2020.04+lllllllaaaa-r0/git/include/configs/imx8mp_evk
+.h" 294 lines --52%-
+
+
+
