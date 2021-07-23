@@ -4,8 +4,17 @@
 echo 0 > /sys/block/mmcblk2boot0/force_ro 
 time dd if=/run/media/mmcblk1p1/imx-boot-PROJECT-sd.bin-flash_evk  of=/dev/mmcblk2boot0 bs=1k 
 
+********************************************************************
 
+https://github.com/ARM-software/u-boot/blob/master/tools/env/fw_env.config
+# On a block device a negative offset is treated as a backwards offset from the
+# end of the device/partition, rather than a forwards offset from the start.
 
+# Block device example
+#/dev/mmcblk0		0xc0000		0x20000
+#/dev/mmcblk0		-0x20000	0x20000
+
+********************************************************************
 
 強迫進DL mode?
 mw.l 0x20d8040 0x30
