@@ -1,0 +1,15 @@
+
+
+pid=$(ps aux | grep test.sh | grep -v grep | awk '{print $2}')
+kill -9 $pid
+kill can test process...
+
+test_CAN_echo.sh can0 &
+test_CAN.sh can1
+
+pid=$(ps aux | grep test.sh | grep -v grep | awk '{print $2}')
+kill -9 $pid
+kill can test process...
+
+test_CAN_echo.sh can1 &
+test_CAN.sh can0
