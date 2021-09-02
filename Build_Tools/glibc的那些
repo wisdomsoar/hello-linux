@@ -1,0 +1,11 @@
+5.7.1. Installation of Glibc
+https://www.linuxfromscratch.org/lfs/view/7.9/chapter05/glibc.html
+
+注意：Centos 为了稳定使用的glibc版本通常比较低。而安装有些程序需要依赖新版本。升级glibc需要慎重，因很多人升级失败后导致系统不能用了。
+https://www.daimajiaoliu.com/daima/4761adac19003fe
+
+编译glibc遇到的问题
+https://blog.wh98.me/2019/03/20/%E7%BC%96%E8%AF%91glibc%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/
+
+Avoid .symver on common symbols [BZ #21666]
+https://patchwork.ozlabs.org/project/glibc/patch/20170623161158.GA5384@gmail.com/
