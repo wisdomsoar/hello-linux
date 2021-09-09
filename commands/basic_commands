@@ -152,6 +152,9 @@ find . -type f | xargs -n | xxx.sh
 在當前目錄遞迴找某關鍵字，並忽略find和grep警告訊息
 find . -type f 2>/dev/null | xargs  grep -H  keyword_to_find 2>/dev/null > find_result.txt
 
+find then grep
+find . -name '*.py' -print0 | xargs -0 grep 'something' > output.txt
+
 在當前目錄找某關鍵字
 grep -Ire keryword_to_find
 I: Process a binary file as if it did not contain matching data 
