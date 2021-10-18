@@ -1,3 +1,15 @@
+
+Start
+
+sudo service smbd start
+Stop
+
+sudo service smbd stop
+Restart
+
+sudo service smbd restart
+
+
 Add a user to samba
 Now user joe has account on Linux/UNIX box. Use smbpasswd command to specifies that the username 
 following should be added to the local smbpasswd file:
