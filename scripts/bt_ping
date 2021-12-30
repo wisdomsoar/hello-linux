@@ -1,0 +1,42 @@
+prog=$(basename $0)
+
+Target_By_Name_Or_MAC=$1
+
+hci_entry=$(hciconfig hci0)
+if [[ -z $hci_entry ]]; then
+  source /usr/sbin/hw_ver.sh
+  if [[ "$MODEL" == "AI14" ]]; then
+    hciattach /dev/ttymxc0 any 115200 flow
+  else
+    hciattach /dev/ttymxc0 bcm43xx 3000000 flow -t 20
+  fi
+  hciconfig hci0 up
+fi
+
+sleep 5s
+
+scan_result=$(hcitool scan)
+
+if [[ $Target_By_Name_Or_MAC == "MAC" ]]; then
+  BT_Master_MAC=$2
+else
+  Name=$2
+  if [[ ${Name} == "" ]]; then
+    set +x
+    echo "Finding first MAC..."
+    set -x
+    BT_Master_MAC=$(echo ${scan_result} | grep -o -m 1 -e "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | head -n1)
+  else
+    BT_Master_MAC=$(echo ${scan_result} | grep ${Name} | grep -o -m 1 -e "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | head -n1)
+  fi
+fi
+
+l2ping ${BT_Master_MAC} -c 5
+ping_result=$?
+
+set +x
+if [[ "$ping_result" == "0" ]]; then
+  echo "$prog: PASS"
+else
+  echo "$prog: FAIL"
+fi
