@@ -1,0 +1,30 @@
+Rx測試: (Tx 測試就是兩個腳色互換，改別的channel (1->2); rfcomm0->rfcomm1):
+
+陪測物:
+####Attach hci0 BT device for first time usage by
+hciattach /dev/ttymxc0 bcm43xx 3000000 flow -t 20
+hciconfig hci0 up
+
+DUT:
+####(1) Attach hci0 BT device for first time usage by
+hciattach /dev/ttymxc0 bcm43xx 3000000 flow -t 20
+(2)
+hciconfig hci0 piscan
+rfcomm listen rfcomm0 1 &
+
+陪測物:
+####以下填入DUT BT MAC
+rfcomm connect rfcomm0 74:6F:F7:44:EE:BE 1 &
+
+DUT: (rx side)
+rm ethtool
+rz -t 30 < /dev/rfcomm0 > /dev/rfcomm0
+
+陪測物: (tx side)
+sz -t 30 -vvv -b /usr/sbin/ethtool < /dev/rfcomm0 > /dev/rfcomm0
+
+ 
+
+Rx BPS: 125297
+
+Tx BPS: 34604, 78312
