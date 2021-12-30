@@ -4,10 +4,8 @@ Target_By_Name_Or_MAC=$1
 
 hci_entry=$(hciconfig hci0)
 if [[ -z $hci_entry ]]; then
-  source /usr/sbin/hw_ver.sh
-  if [[ "$MODEL" == "AI14" ]]; then
-    hciattach /dev/ttymxc0 any 115200 flow
-  else
+  
+    #hciattach /dev/ttymxc0 any 115200 flow
     hciattach /dev/ttymxc0 bcm43xx 3000000 flow -t 20
   fi
   hciconfig hci0 up
