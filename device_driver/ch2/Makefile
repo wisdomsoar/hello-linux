@@ -1,5 +1,5 @@
 #
-# Makefile by appleboy <appleboy.tw at="" gmail.com="">
+# Makefile by appleboy
 #
 obj-m       += hello.o
 KVERSION := $(shell uname -r)

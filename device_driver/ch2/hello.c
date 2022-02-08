@@ -5,7 +5,7 @@
 #include <linux/sched.h>  /* current (process info) requires this */
 
 MODULE_DESCRIPTION("Hello World !!");
-MODULE_AUTHOR("Bo-Yi Wu <appleboy.tw at="" gmail.com="">");
+MODULE_AUTHOR("Bo-Yi Wu");
 MODULE_LICENSE("GPL");
 
 static int __init hello_init(void)
