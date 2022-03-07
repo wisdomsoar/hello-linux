@@ -174,6 +174,11 @@ zo
 Close fold
 zc
 
+Partial diff put/get
+用v選擇想要diff put/get的區段 (小寫v然後用方向鍵可以選)
+然後:diffput 或者:diffget
+ref: https://superuser.com/questions/404333/how-do-i-only-dp-or-do-just-the-lines-not-the-entire-block-in-vim-diff
+
 Resize the width of the current window
 [Ctrl]+w > 
 先按組合鍵[ctrl]+w，再按一次>
