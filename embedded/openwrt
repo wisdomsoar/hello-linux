@@ -4,6 +4,18 @@
 /data/bin # watch -n 3 logread | grep mnldtest
 
 
+guide:
+OpenWrt	Development	Guide
+https://www.ccs.neu.edu/home/noubir/Courses/CS6710/S12/material/OpenWrt_Dev_Tutorial.pdf
+
+OpenWrt 建置 – 使用方法
+https://openwrt.org/zh-tw/doc/howto/build
+
+openwrt make defconfig 详解
+https://www.litreily.top/2020/12/29/make-defconfig/
+
+Build system usage
+https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem
 
 docker run -it \
 --volume="/home/YOURNAME/mtk/:/home/dev/mtk" \
