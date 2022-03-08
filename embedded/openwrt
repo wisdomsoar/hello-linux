@@ -2,3 +2,30 @@
 
 /data/bin #
 /data/bin # watch -n 3 logread | grep mnldtest
+
+
+
+docker run -it \
+--volume="/home/YOURNAME/mtk/:/home/dev/mtk" \
+--volume="${HOME}/.ssh:/home/${USER}/.ssh" \
+--volume="${HOME}/.gitconfig:/home/${USER}/.gitconfig" \
+--volume="/etc/localtime:/etc/localtime:ro" \
+--env=HOST_UID=$(id -u) \
+--env=HOST_GID=$(id -g) \
+--env=USER=${USER} \
+--restart=always \
+--name PROJECT_NAME-YOURNAME \
+--entrypoint "/bin/bash" \
+10.10.3.21:5000/CHIPSETXXX-images:xsdev
+
+make package/symlinks
+cp target/linux/CHIPSET_NAME/MODEL_NAME/target.config .config
+make defconfig
+make –j 5 V=s
+
+***********************************************
+只make某package
+***********************************************
+make package/feeds/luci/luci-mod-network/{clean,compile} V=s
+make package/feeds/luci/luci-mod-system/{clean,compile} V=s
+********************************************************************
