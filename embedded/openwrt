@@ -1,0 +1,4 @@
+看log...
+
+/data/bin #
+/data/bin # watch -n 3 logread | grep mnldtest
