@@ -217,6 +217,9 @@ ref: https://serverfault.com/questions/252921/how-to-remove-empty-blank-lines-fr
 sed -i '/^$/d' file.txt
 -i: edit files In place
 
+Relace string in file (Use Suffix .bak to create another file to backup)
+sed -i.bak "s/Name=[a-zA-Z]*/Name=Nena/" input_file.txt 
+
 Archiving
 Create a compressed archive (TApe ARchive):
 tar jcvf archive.tar.bz2 dir
