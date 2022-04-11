@@ -2,8 +2,18 @@
 
 ref: GNU/Linux most wanted
 
+INFORMATION
+FILES 
+LIST FILES
+
+INFORMATION
+************************************************************************************************************
+
 Ubuntu記一下: 看版本
 lsb_release -a
+
+FILES
+*************************************************************************************************************
 
 Handling files and directories
 Changing directories:
@@ -62,7 +72,9 @@ rm -rf dir
 Remove non-empty directories Recursively:
 rm -rf `find . -name .git`
 
-Listing files
+LISTING FILES
+*******************************************************************************************************
+
 ls
 l: long listing
 a: list all files (including hidden files)
@@ -73,6 +85,9 @@ r: reverse sort order
 List link file recursively:
 ls -alR | grep "/home/chhuang/500G" -B10
 R: recursive
+
+Handling file contents
+*************************************************************************************************
 
 grep
 B NUM: --before-context=NUM
@@ -126,6 +141,10 @@ dmesg | grep -o 'scsi.*Direct-Access.*ADATA' | awk '{print $2}'
 awk -F'"' '{print $2}'
 F: Field separator
 
+cut
+以等號(=)做分隔，並列印第二欄
+cut -f2 -d "="
+
 Grep only the first match and stop
 grep -o -a -m 1 -h -r "Pulsanti Operietur" /path/to/directory
 (我用hcitool scan看BT list時，只需找第一個BT MAC)
@@ -145,7 +164,7 @@ head -10 file
 Display the last lines of a file:
 tail -10 file
 
-********************************************************************************
+****************************************************************************************************************
 
 Looking for files
 Find *log* files in current (.) directory recursively
@@ -228,6 +247,8 @@ sed -i '/^$/d' file.txt
 Relace string in file (Use Suffix .bak to create another file to backup)
 sed -i.bak "s/Name=[a-zA-Z]*/Name=Nena/" input_file.txt 
 
+****************************************************************************************************************
+
 Archiving
 Create a compressed archive (TApe ARchive):
 tar jcvf archive.tar.bz2 dir
@@ -253,7 +274,6 @@ ref: http://snoopymemory.blogspot.com/2016/04/ubuntu-7zrar.html
  指令
   # 7z x PACKAGE.7z
 
-
 RAR
  安裝
   # apt-get install p7zip-rar
@@ -270,7 +290,7 @@ RAR
 
 安裝好後, Ubuntu的 Desktop 檔案管理就可以直接用右鍵"在此解壓縮"解開了.
 
-********************************************************************************
+****************************************************************************************************************
 
 File and partition sizes
 列出當下各檔案/資料夾的檔案大小
@@ -303,6 +323,8 @@ df -h .
 Display these info for all partitions:
 df -h
 
+ADMINISTRATION
+***********************************************************************************************************
 
 ref: http://puremonkey2010.blogspot.com/2011/02/linux-linux-ps-l-ps-aux-ps-axjf.html
 ps ：將某個時間點的程序運作情況擷取下來
@@ -353,7 +375,7 @@ time find_charming_prince -cute -rich
 在time之前TIMEFORMAT=%R
 讓time只回傳real的 (sec)
 
-********************************************************************************
+****************************************************************************************************************
 
 mount samba in Linux (/etc/fstab)
 
@@ -380,6 +402,7 @@ u: output NUM (default 3) lines of unified context
    -U NUM
 N: treat absent files as empty
 
+****************************************************************************************************************
 
 screen
 -X: Send the specified command to a running screen session.
@@ -408,6 +431,8 @@ screen -d -r 19668
 
 d: Detaches the elsewhere running screen session.
 
+****************************************************************************************************************
+
 for loop
 END=5
 for i in $(seq 1 $END);
@@ -431,6 +456,8 @@ $ echo "${foo}"
 
 Check kernel config
 zcat /proc/config.gz
+
+****************************************************************************************************************
 
 打patch:
 testuser@localhost ~/p7zip_9.20.1 $ patch -p1 -i ../CVE-2015-1038.patch
@@ -460,6 +487,8 @@ patch  -p1 < 0002-Fix-sa8155-camera-loopback-test_ais.patch
 
 ref: https://jyhshin.pixnet.net/blog/post/42727873-diff-and-patch-%E7%94%A8%E6%B3%95
 --dry-run: 不會真的上補丁，而只是給你看會修改哪些檔案測試是否會成功。
+
+****************************************************************************************************************
 
 Bash limiting precision of floating point variables
 ref: https://unix.stackexchange.com/questions/175744/bash-limiting-precision-of-floating-point-variables
@@ -492,9 +521,12 @@ echo "scale=3; 300/7" | bc -l | sed 's/[0-9]*\././g'
 printf "%.4f" $(echo "scale=4; 1/3" | bc)
 printf "\n"
 
+****************************************************************************************************************
+
 make console busy (for what...?)
 while true; do head -c200 /dev/urandom | od -An -w50 -x | grep -E --color "([[:alpha:]][[:digit:]]){2}"; sleep 1; done
 
+****************************************************************************************************************
 
 dd
 /data/local/bin/dd 'if=/data/local/tmp/rnd_64M.img' 'of=/mnt/user/rnd_64M.img' 'bs=1024k' 'count=64' 'iflag=fullblock'
