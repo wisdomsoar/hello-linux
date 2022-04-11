@@ -122,10 +122,18 @@ awk
 例：以空白做分隔，印出第2欄
 dmesg | grep -o 'scsi.*Direct-Access.*ADATA' | awk '{print $2}'
 
+以雙引號(")做分隔，並列印第二欄
+awk -F'"' '{print $2}'
+F: Field separator
 
 Grep only the first match and stop
 grep -o -a -m 1 -h -r "Pulsanti Operietur" /path/to/directory
 (我用hcitool scan看BT list時，只需找第一個BT MAC)
+o: Only-matching
+a: (text) Process a binary file as if it were text
+m: Max-count
+h: no-filename (搜尋多個檔案時，不顯示檔名的prefix)
+r: recursive
 
 example: Long list with most recent files last:
 ls -ltr
