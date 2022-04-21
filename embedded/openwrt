@@ -41,3 +41,30 @@ make –j 5 V=s
 make package/feeds/luci/luci-mod-network/{clean,compile} V=s
 make package/feeds/luci/luci-mod-system/{clean,compile} V=s
 ********************************************************************
+
+
+
+試vps
+MsH3WwMPKB
+
+root@XSQUAREIOT:~# uci set omr-tracker.proxy.enabled=0
+root@XSQUAREIOT:~# uci set omr-tracker.server.enabled=0
+root@XSQUAREIOT:~# uci commit omr-tracker
+
+
+root@XSQUAREIOT:~# uci set omr-tracker.defaults.hosts='192.168.3.53'
+root@XSQUAREIOT:~# uci commit omr-tracker
+root@XSQUAREIOT:~# /etc/init.d/omr-tracker restart
+
+
+root@XSQUAREIOT:~# uci set omr-tracker.defaults.enabled=0
+root@XSQUAREIOT:~# uci commit omr-tracker
+root@XSQUAREIOT:~# /etc/init.d/omr-tracker restart
+
+
+
+
+
+
+
+
