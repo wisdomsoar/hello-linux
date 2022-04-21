@@ -1,0 +1,28 @@
+
+Windows
+IP
+fdf2:3d78:1065:0:878:e89:79e8:aa7a
+
+linux device
+br-lan IP: fdf2:3d78:1065::1
+ifconfig br-lan fdf2:3d78:1065::1
+
+
+
+linux device:
+ip -6 route add fdf2:3d78:1065::/60 dev br-lan
+
+看routing table:
+ip -6 route
+
+
+windows 
+netsh
+interface ipv6
+netsh interface ipv6>add route fdf2:3d78:1065::/60 22 store=persistent
+
+看routing table:
+route PRINT -6
+
+Clear all routes
+route -f
