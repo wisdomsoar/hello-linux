@@ -26,3 +26,5 @@ route PRINT -6
 
 Clear all routes
 route -f
+
+/volume2/@appstore/transmission/bin$ ./transmission-remote --auth=test:@@PW -u 4
