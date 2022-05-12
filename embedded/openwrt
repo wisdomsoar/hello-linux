@@ -34,6 +34,10 @@ make package/symlinks
 cp target/linux/CHIPSET_NAME/MODEL_NAME/target.config .config
 make defconfig
 make –j 5 V=s
+j: # of jobs
+V: verbosity (s: stdout, stderr)
+             (c: commands (for build systems that suppress commands by default, e.g. kbuild, cmake))
+             (w: warnings/errors only (equal to the old V=1))
 
 ***********************************************
 只make某package
