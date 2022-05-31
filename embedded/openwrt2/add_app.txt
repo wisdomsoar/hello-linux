@@ -1,0 +1,83 @@
+PROJ/openwrt/package/YOURPACKAGE_NAME/my_datalink$
+-Makefile (file)(這個是openwrt的makefile)
+-src (folder) (裡面又有一個原生的makefile)
+--> https://github.com/glhrmv/datalink (我是放這支app...)
+
+*******************************************************************************************
+
+Makefile: (這個是openwrt的makefile)
+include $(TOPDIR)/rules.mk
+
+PWD := $(shell pwd)
+
+PKG_NAME:=my_datalink
+PKG_VERSION:=1.0.1
+PKG_RELEASE:=1
+
+PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/my_datalink
+    CATEGORY:=SomeCompany
+    TITLE:=file transfer via serial
+endef
+
+define Package/my_datalink/description
+    SomeCompany file transfer via serial
+endef
+
+
+define Build/Configure
+
+endef
+
+define Build/Prepare
+
+endef
+
+define Build/Compile
+    cp src/* $(PKG_BUILD_DIR)
+        $(MAKE) -C $(PKG_BUILD_DIR) \
+                CC="$(TARGET_CC)" \
+                CFLAGS="$(TARGET_CFLAGS) -Wall" \
+                LDFLAGS="$(TARGET_LDFLAGS)"
+endef
+
+define Package/my_datalink/install
+        $(INSTALL_DIR) $(1)/usr/sbin
+        $(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/datalink $(1)/usr/sbin
+endef
+
+$(eval $(call BuildPackage,my_datalink))
+
+*******************************************************************************************
+
+src/Makefile:
+CC = gcc
+PROG := datalink
+CFLAGS := -Wall -Wextra
+CCFLAGS = -g -O3 -Wall
+SRCS := $(wildcard *.c)
+
+OBJS := $(SRCS:.c=.o)
+DEPS := $(OBJS:.o=.d)
+
+OUT = bin
+
+all: $(PROG)
+
+$(PROG): $(OBJS)
+        mkdir -p $(OUT)
+        $(CC) $(CFLAGS) $(OBJS) -o $(OUT)/$(PROG)
+
+-include $(DEPS)
+
+clean:
+        rm -f $(OUT)/$(PROG)
+        rm -f $(DEPS) $(OBJS)
+
+
+
+
+
