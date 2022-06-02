@@ -1,0 +1,57 @@
+
+ref:
+Build OpenWRT於Raspberry Pi4
+https://ithelp.ithome.com.tw/articles/10255724?sc=rss.qu
+
+Raspberry Pi 筆記(67)：樹莓派官方SD卡燒錄程式Imager及格式化軟體SDFormatter
+https://atceiling.blogspot.com/2020/03/raspberry-pi-67-sdimagersdformatter.html
+
+*************************************************************************************************************
+
+git clone --single-branch --branch openwrt-21.02 https://github.com/openwrt/openwrt.git
+cd openwrt
+./scripts/feeds update -a
+./scripts/feeds install -a
+make menuconfig
+************************************************
+####底下直接抄 "Build OpenWRT於Raspberry Pi4"
+1. Target System = Broadcom BCM27xx
+2. Subtarget = BCM2711 boards 64bit
+3. Target Profile = Raspberry Pi 4b
+4. Target Images = squashfs
+5. Kernel Modules -
+   -- USB Support = kmod-usb-hid
+         = kmod-usb-net
+         = kmod-usb-net-asix
+         = kmod-usb-net-asix-ax88179
+         = kmod-usb2
+         = kmod-usb3
+6. Libraries
+   -- libssh
+   -- libssh2
+   -- (N) libustream-mbedtls
+   -- (Y) libustream-openssl
+   -- (N) libustream-wolfssl
+7. LUCI -
+   -- Collections -
+        = luci
+        = luci-ssl-openssl
+9. Exit
+10. save
+************************************************
+make -j5 V=s
+
+****************************************************************************************************
+
+Build好的image在
+openwrt\bin\targets\bcm27xx\bcm2711\openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz
+
+準備一張SD卡
+Format用SDFormatter tool (抄"Raspberry Pi 筆記(67)：樹莓派官方SD卡燒錄程式Imager及格式化軟體SDFormatter")
+記得要"[邏輯大小調整]設定為「開啟 (on)」，會將 SD卡格式化成原來SD卡規格的容量大小"
+
+接著下載官網下載Raspberry Pi Imager
+https://www.raspberrypi.org/downloads/
+
+燒好插進Raspberry Pi就可以了...
+
