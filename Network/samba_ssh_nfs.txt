@@ -59,7 +59,9 @@ cat /etc/passwd
 
 NFS:
 
-需求: Windows當NFS Server, Linux (這裡是embedded，使用busybox的mount)當作NFS Client (請留意Filesystem要build in NFS)
+需求: 
+Server: Windows當NFS Server, 
+Client: Linux (這裡是embedded，使用busybox的mount)當作NFS Client (請留意Filesystem要build in NFS)
 
 Windows:
 下載這個WinNFSd.exe
