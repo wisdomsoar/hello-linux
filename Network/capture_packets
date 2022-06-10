@@ -1,19 +1,20 @@
-
+ref: How to capture a Wi-Fi handshake in tcpdump
+https://miloserdov.org/?p=3687
 
 
  tcpdump -i wlp0s20f0u1 -w test.cap -e -U ether proto 0x888e
  
- i: 指定Interface
- w: write to file (raw packets)
- -I: 使用Monitor mode (但無線網卡要有支援才行)
- -e: Print the link-level header on each dump line
- -U: 什麼意思 Make output saved via the -w option ''packet-buffered''; 
-i.e., as each packet is saved, it will be written to the 
-output file, rather than being written only when the output buffer fills.
- 
+-i: 指定Interface
+-w: write to file (raw packets)
+-I: 使用Monitor mode (但無線網卡要有支援才行)
+-e: Print the link-level header on each dump line
+-U: means immediately write packets when they are received. 
+     Make output saved via the -w option ''packet-buffered''; 
+     i.e., as each packet is saved, it will be written to the 
+     output file, rather than being written only when the output buffer fills.
 
 ex:
-tcpdump -i ra0 -w /tmp/ra0.cap 1>/dev/null 2>/dev/null &
+tcpdump -i ra0 -w /tmp/ra0.cap -U 1>/dev/null 2>/dev/null &
  
  
  
