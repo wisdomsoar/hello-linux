@@ -182,6 +182,9 @@ find . -type f 2>/dev/null | xargs  grep -H  keyword_to_find 2>/dev/null > find_
 find then grep
 find . -name '*.py' -print0 | xargs -0 grep 'something' > output.txt
 
+找出空目錄,  touch .gitignore (不然無法上傳空目錄)
+find . -depth -not -path "*target*" -not -path "./.git/*" -type d -empty -exec touch {}/.gitignore \;
+
 在當前目錄找某關鍵字
 grep -Ire keryword_to_find
 I: Process a binary file as if it did not contain matching data 
