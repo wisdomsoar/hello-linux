@@ -27,8 +27,14 @@ route PRINT -6
 Clear all routes
 route -f
 
+Wi-Fi
+看有什麼SSID, Channel:
+nmcli dev wifi
 
+
+
+
+掛載ftp site到Ubuntu裡，像是一個普通資料夾
 sudo curlftpfs -v -o tlsv1 -o allow_other -o "user=admin:PPPPPWWWWW" 192.168.0.109 -o utf8 /home/NNNAAAMMMEE/nas
-
 
 /volume2/@appstore/transmission/bin$ ./transmission-remote --auth=test:@@PW -u 4
