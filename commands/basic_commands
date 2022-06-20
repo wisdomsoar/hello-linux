@@ -173,6 +173,10 @@ find . -name "*log*"
 Find all the .pdf files in current (.) directory recursively and run a command on each
 find . -name "*.pdf" -exec xpdf {} ';'
 
+ref: https://stackoverflow.com/questions/4210042/how-to-exclude-a-directory-in-find-command
+Exclude a directory in find . command
+find -name "*dev_cfg_view*" -not -path "openwrt/build_dir"
+
 對每個找到的檔案執行xxx.sh
 find . -type f | xargs -n | xxx.sh
 
