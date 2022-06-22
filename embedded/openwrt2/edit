@@ -1,0 +1,10 @@
+
+
+加entry:
+mtk/luci/applications/luci-app-wifi/luasrc/controller/mtkwifi.lua
+
+抄config，另外想寫一頁簡易版設定頁 (pending)
+mtk/luci/applications/luci-app-wifi/luasrc/view/admin_mtk/mtk_wifi_status.htm
+
+device:
+/usr/lib/lua/luci/view/admin_mtk/
