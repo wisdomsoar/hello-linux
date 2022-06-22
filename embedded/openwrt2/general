@@ -68,6 +68,9 @@ root@XSQUAREIOT:~# /etc/init.d/omr-tracker restart
 
 
 
+改wifi...
+21/feeds/mtk/luci/applications/luci-app-wifi/luasrc/view/admin_mtk/mtk_wifi_vif_cfg.htm
+21/feeds/mtk/luci/applications/luci-app-wifi/root/usr/lib/lua/mtkwifi.lua
 
 
 
