@@ -182,6 +182,11 @@ find . -type f | xargs -n | xxx.sh
 
 在當前目錄遞迴找某關鍵字，並忽略find和grep警告訊息
 find . -type f 2>/dev/null | xargs  grep -H  keyword_to_find 2>/dev/null > find_result.txt
+幹嘛不用
+grep -Ire keyword
+-I: --binary-files=without-match option
+-r: --recursive
+-e PATTERNS
 
 find then grep
 find . -name '*.py' -print0 | xargs -0 grep 'something' > output.txt
@@ -272,6 +277,8 @@ j: on the fly bzip2 (un)compression
 f: file
 
 tar xvf archive.tar -C /path/to/directory
+
+tar -zcvf myfolder.tar.gz myfolder
 
 Ubuntu 解壓縮程式 7z & rar
 ref: http://snoopymemory.blogspot.com/2016/04/ubuntu-7zrar.html
@@ -381,6 +388,15 @@ Count the time taken by a commdn
 time find_charming_prince -cute -rich
 在time之前TIMEFORMAT=%R
 讓time只回傳real的 (sec)
+
+ref: https://blog.gtwang.org/linux/linux-sort-command-tutorial-and-examples/
+Sort
+sort -t, -k2 linux.txt
+-t: --field-separator=SEP
+    分隔符號 (此例用逗號)。預設值是空白。
+-k2: --key=KEYDEF
+     用第二欄資料做排序 (預設會視為文字排序)，要當數字的話，請用下面的n。
+-n: --numeric-sort
 
 ****************************************************************************************************************
 
