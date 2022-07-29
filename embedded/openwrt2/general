@@ -44,6 +44,8 @@ V: verbosity (s: stdout, stderr)
 ***********************************************
 make package/feeds/luci/luci-mod-network/{clean,compile} V=s
 make package/feeds/luci/luci-mod-system/{clean,compile} V=s
+make package/feeds/mtk/luci-app-wifi/{clean,compile} -j 5 V=s
+(src: feeds/mtk/luci/applications/luci-app-wifi)
 ********************************************************************
 
 
