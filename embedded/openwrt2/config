@@ -5,3 +5,17 @@ mmmmttttttttttkkkkkkkk
 5G channel selection?
 see dat profile maybe:
 AutoChannelSelect=0
+
+
+
+DTS files
+linux-5.4/arch/arm64/boot/dts/mediatek/OOXX.dts
+
+
+設定每隻gpio defualt的狀態
+(1) cust
+linux-5.4/arch/arm64/boot/dts/mediatek/$$$$prod_name/cust.dtsi
+
+(2) dws
+linux-5.4/drivers/misc/mediatek/dws/$$$$$$model_name/$$$$prod_name.dws
+
