@@ -61,6 +61,15 @@ root@imx6dlsabresd_qsip2:/sys/class/net/eth0# basename $(readlink -f device)
 2188000.ethernet
 
 
+這兩個少用... 建完docker以後用的
+usermod -u 1007 dev
+modify a user account
+u: The new numerical value of the user's ID
+
+同理group
+groupmod -g 1007 dev
+
+
 Rename a file, link or directory:
 mv source_file dest_file
 mv -T /path/src /path/dst

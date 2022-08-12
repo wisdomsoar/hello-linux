@@ -1,0 +1,6 @@
+
+triggerhappy可以監聽/dev/input/event*的key event，然後寫下這些key要做什麼事情(commands, script)
+build:
+feeds/packages/utils/triggerhappy
+device:
+<TBD>

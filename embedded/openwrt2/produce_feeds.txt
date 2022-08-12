@@ -1,0 +1,19 @@
+openwrt/include/toplevel.mk*******************************************************
+# update all feeds, re-create index files, install symlinks
+package/symlinks:
+	./scripts/feeds update -a
+	./scripts/feeds install -f -a -p xspkgs
+	./scripts/feeds install -a -p packages
+	./scripts/feeds install -a -p luci
+	./scripts/feeds install -a -p mtk
+**********************************************************************************
+openwrt$ cat feeds.conf*******************************************************
+#src-git packages https://git.openwrt.org/feed/packages.git^ded142471e36831d2af63c7fe5062c4367f8ccd2
+#src-git luci https://git.openwrt.org/project/luci.git^d24760e60a83b63f316c7b186e30636b5baa5481
+#src-git routing https://git.openwrt.org/feed/routing.git^9e7698f20d1edf8f912fbce2f21400f3cc772b31
+#src-git telephony https://git.openwrt.org/feed/telephony.git^ed2719867150a9bfc85bf41dff52ef8443820f2a
+src-git xspkgs git@xsquareiot.serveexchange.com:xsquareiot-middleware/xs-packages-feeds.git;openwrt21
+src-link packages ../../feeds/packages
+src-link luci ../../feeds/luci
+src-link mtk ../../feeds/mtk
+************************************************************************************

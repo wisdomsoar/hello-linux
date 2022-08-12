@@ -1,0 +1,66 @@
+
+/sys/devices/platform/10005000.gpio # cat /sys/kernel/debug/gpio
+gpiochip0: GPIOs 12-255, parent: platform/10005000.pinctrl, pinctrl_paris:
+ gpio-13  (                    |proslic_reset       ) out hi
+ gpio-18  (                    |Modem RF            ) in  lo IRQ
+ gpio-19  (                    |GPS                 ) in  lo IRQ
+ gpio-26  (                    |cd                  ) in  hi IRQ
+ gpio-78  (                    |mt753x-reset        ) out hi
+ gpio-221 (                    |led9501:red:sim     ) out lo
+ gpio-222 (                    |led9502:red:cellular) out lo
+ gpio-223 (                    |led9504:red:cellular) out lo
+ gpio-224 (                    |led9505:red:cellular) out lo
+ gpio-225 (                    |led9506:red:cellular) out lo
+/sys/devices/platform/10005000.gpio # dmesg | grep gpio-keys
+[    6.360405] .(2)[1:swapper/0]input: gpio-keys as /devices/platform/gpio-keys/input/input2
+[    6.361486] .(2)[1:swapper/0][keypad][gpio-keys] (pressed) code=169
+[    6.362333] .(2)[1:swapper/0][keypad][gpio-keys] (pressed) code=246
+[    6.363232] .(2)[1:swapper/0]probe of gpio-keys returned 1 after 3156 usecs
+
+
+第三個是gpio-keys
+/etc/rc.button # cat /proc/bus/input/devices
+I: Bus=0019 Vendor=0000 Product=0000 Version=0000
+N: Name="mtk-kpd"
+P: Phys=
+S: Sysfs=/devices/platform/10010000.kp/input/input0
+U: Uniq=
+H: Handlers=kbd event0
+B: PROP=0
+B: EV=3
+B: KEY=d000000000000 0
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0001
+N: Name="mtk-pmic-keys"
+P: Phys=
+S: Sysfs=/devices/platform/10026000.spmi/spmi-0/0-04/mtk-pmic-keys/input/input1
+U: Uniq=
+H: Handlers=kbd event1
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input2
+U: Uniq=
+H: Handlers=kbd event2
+B: PROP=0
+B: EV=3
+B: KEY=40000000000000 20000000000 0 0
+
+開機有gpio-keys probe
+/ # dmesg | grep gpio-keys
+[    6.328313] .(0)[1:swapper/0]input: gpio-keys as /devices/platform/gpio-keys/input/input2
+[    6.329392] .(0)[1:swapper/0][keypad][gpio-keys] (pressed) code=169
+[    6.330240] .(0)[1:swapper/0][keypad][gpio-keys] (pressed) code=246
+[    6.331140] .(0)[1:swapper/0]probe of gpio-keys returned 1 after 3086 usecs
+/ #
+
+
+(default status)
+/sys/devices/platform/10005000.pinctrl # cat mt_gpio | grep 006
+006:0000001110
+/sys/devices/platform/10005000.pinctrl # cat mt_gpio | grep 006
+006:0001001110

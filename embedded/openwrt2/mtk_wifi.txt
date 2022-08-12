@@ -2,6 +2,9 @@
 
 加entry:
 mtk/luci/applications/luci-app-wifi/luasrc/controller/mtkwifi.lua
+build code:
+feeds/mtk/luci/applications/luci-app-wifi/luasrc/controller/mtkwifi.lua
+
 
 抄config，另外想寫一頁簡易版設定頁 (pending)
 mtk/luci/applications/luci-app-wifi/luasrc/view/admin_mtk/mtk_wifi_status.htm
@@ -15,3 +18,8 @@ device:
 (要下兩次才行  why ?)
 iwpriv apclix0 set SiteSurvey=
 time iwpriv apclix0 get_site_survey
+
+
+*****
+Wifi profile? config file放哪
+prebuilt/wlan/jedi/wifi_profile/files/mt7915
