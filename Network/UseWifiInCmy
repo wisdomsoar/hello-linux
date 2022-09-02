@@ -1,5 +1,8 @@
 IPv4 configuration in GUI:
 
+ex IP 172.16.31.186
+Netmask 255.255.0.0
+
 route:
 address, mask, gateway:
 172.16.0.0,    255.255.0.0,    172.16.31.254
