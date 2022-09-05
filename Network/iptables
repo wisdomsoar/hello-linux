@@ -1,0 +1,19 @@
+
+
+
+iptables -L -nv
+-L, --list
+  List all rules in the selected chain. If no chain is selected, all chains are listed.
+  什麼是一個"chain"?..
+  
+-n, --numeric
+Numeric output (IP addresses)
+
+-v, --verbose
+   show the interface name, the rule options (if any), and the TOS masks. 
+   The packet and byte counters are also listed, with the suffix 'K', 'M' or 'G' for 1000, 1,000,000 and 1,000,000,000 
+   multipliers respectively (but see the -x flag to change this). 
+   For appending, insertion, deletion and replacement, this causes detailed information on the rule or rules to be printed.
+   
+   
+   
