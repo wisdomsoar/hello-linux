@@ -77,3 +77,10 @@ root@XSQUAREIOT:~# /etc/init.d/omr-tracker restart
 
 
 
+
+hexdump  -v -s 2048 -n 4 -e '1/1 "%02x"' /dev/block/misc
+00414230root@hostname:/#
+如果這個magic number 為00414230代表有用ab partition
+
+
+
