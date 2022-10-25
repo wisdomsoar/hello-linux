@@ -1,0 +1,290 @@
+有人會看這vim文件????
+ref: http://vimdoc.sourceforge.net/htmldoc/
+ref: vi basic commands (Free Electrons Embedded Linux Experts)
+
+Enter Command mode
+[ESC]
+
+Enter Insert mode
+Inserts text after the cursor
+a
+
+Enter Insert mode
+Append text at the end
+A
+
+Find keyword
+/keyword_to_find
+斜線改成問號變成往前找
+
+ref: https://kb.ucla.edu/articles/case-insensitive-searching-in-vi
+Search case-insensitive
+:set ignorecase
+:set ic
+
+To change back to case-sensitive mode, type
+:set noignorecase
+:set noic
+
+Check next keyword
+n
+
+Check previous keyword
+N
+
+Search for the current word
+*
+
+Highlight search
+:set hlsearch
+
+Save/Write file
+:w
+
+Save another file
+:w FULL_PATH_NAME
+:w /home/vivek/backups/foo.txt
+
+Quit without save
+:q!
+
+Quit
+:q
+
+Quit and save
+:x
+
+Close all tabs
+:qa
+
+Delete the line
+dd
+
+Delete a word
+dw
+
+Undo
+u
+
+Redo
+[Ctrl]+r
+
+
+CTRL-O			Go to [count] Older cursor position in jump list
+
+Indetns 4 spaces instead of tab by '>'
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+Move the cursor to the first non-white character in current line
+^
+
+Move the cursor to the line 0 (Biginning of the file)
+:0
+gg
+
+Move the cursor to the last line (End of the file)
+:$
+G
+
+Starts visual mode for selecting 
+v
+(開始使用^, v, <-, ->, home, end去選取文字)
+
+可以用[Ctrl]+v來作垂直選擇哦~
+
+承上的動作
+Copy
+y
+
+承上的動作
+Paste
+p
+
+Select all
+:1  =>  v  =>  G
+或者
+gg  =>  V  =>  G
+
+Copy the whole line
+yy
+
+Move the cursor a word forward
+w
+非常像，移到字的結尾Move the cursor to the end a word
+e
+
+Delete the remainder of the line after the cursor
+D
+
+Copy from the cursor to the end of a word
+yw
+
+Deletes the word and enter Insert mode
+ce
+
+Join the current line with the next one
+J
+
+Search and replace
+:%s/search_from/replace_to/gc
+g: global
+c: Prompt to user before each replacement
+
+Replace two line breaks to one
+:%s/\n\n/\r
+
+Replace line break to blank
+:%s/\n\/ /g
+
+ref: http://linux.vbird.org/linux_basic/0310vi.php#vim_ws
+:1,$s/word1/word2/g 	
+從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！(常用)
+
+:1,$s/word1/word2/gc 	
+從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！
+且在取代前顯示提示字元給使用者確認 (confirm) 是否需要取代！(常用)
+
+diff by vim in shell
+vi -d left_file.txt right_file.txt
+
+Jump from one window to another
+[ctrl]+w, w
+先按組合鍵[ctrl]+w，再按一次w
+
+Next difference
+]c
+
+Previous difference
+[c
+
+diff obtain
+do
+
+diff put
+dp
+
+Update diff
+:diffupdate
+
+'z' looks like a folded piece of paper, seen from the side
+z像是折疊的書（從側邊看）
+Open fold
+zo 
+
+Close fold
+zc
+
+Partial diff put/get
+用v選擇想要diff put/get的區段 (小寫v然後用方向鍵可以選)
+然後:diffput 或者:diffget
+ref: https://superuser.com/questions/404333/how-do-i-only-dp-or-do-just-the-lines-not-the-entire-block-in-vim-diff
+
+Resize the width of the current window
+[Ctrl]+w > 
+先按組合鍵[ctrl]+w，再按一次>
+[Ctrl]+w < 
+[Ctrl]+w 10 > 
+先按組合鍵[ctrl]+w，再按1, 0, >
+[Ctrl]+w 10 > 
+
+vimdiff cheat sheet
+https://gist.github.com/mattratleph/4026987
+
+請搭配git diff使用
+https://github.com/wisdomsoar/hello-git/blob/master/git%20diff%20my%20vimdiff
+
+View the full path of the file
+press 1 followed by [Ctrl]+g
+
+View filename
+[Ctrl]+G
+
+You can use the :resize (or :res) to change the height of the window.
+
+To change the height to 60 rows, use:
+:resize 60
+You can also change the height in increments. 
+To change the height by increments of 5, use:
+
+:res +5
+:res -5
+
+You can use :vertical resize to change the width of the current window. 
+To change the width to 80 columns, use:
+
+:vertical resize 80
+You can also change the width in increments. 
+To change the width by increments of 5, use:
+
+:vertical resize +5
+:vertical resize -5
+
+For a split window: 
+Ctrl-w + and Ctrl-w - 
+to resize the height of the current window by a single row
+
+
+For a vsplit window: 
+use Ctrl-w > and Ctrl-w < 
+to resize the width of the current window by a single column. 
+
+Additionally, these key combinations accept a count prefix so that you can change the window size in larger steps. 
+[e.g. Ctrl-w 10 + increases the window size by 10 lines]
+
+To resize all windows to equal dimensions based on their splits, you can use Ctrl-w =.
+
+To increase a window to its maximum height, use Ctrl-w _.
+
+To increase a window to its maximum width, use Ctrl-w |.
+
+To resize in different steps, you can create maps that will adjust the window size differently. For example to increase the window size by a factor of 1.5 and decrease the window size by 0.67, you can map this:
+
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+In Gvim and vim in terminals with mouse support, it is also possible to use the mouse to resize a window. Simply grab the statusline at the window border and drag it into the desired direction.
+
+See alsoEdit
+
+http://www.how-hard-can-it.be/advanced-vim/
+
+********************************************************************
+
+Insert the same characters across multiple lines
+ref: https://stackoverflow.com/questions/9549729/vim-insert-the-same-characters-across-multiple-lines
+(游標移到你想開始打字的地方)
+Move the cursor to the n in name
+Enter visual block mode (ctrl+v)
+Press j three times (or 3j) (按'下'鍵也可以)
+Press I (capital i)
+Type in vendor_
+Press esc
+
+********************************************************************
+利用vimgrep + quickfix window來達到像notepad++一樣的搜尋效果
+在vim輸入以下指令
+1.)
+:vimgrep + <search word> + %  在當前文件搜尋
+ 
+2.)
+:copen
+
+接下來就可以用ctrl+w來切換視窗來查看你的搜尋結果
+
+3.)
+:cclose 關閉quickfix window
+
+********************************************************************
+
+* 開分頁，然後再開舊檔 *
+
+開分頁:複製一次目前開啟的檔案到新分頁
+:split
+
+切換vim的分頁，每按一次ctrl+w組合鍵，就會切一次
+ctrl+w
+
+開啟舊擋
+:e filename
+
+********************************************************************
