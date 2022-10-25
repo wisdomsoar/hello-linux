@@ -204,6 +204,9 @@ find -name "*dev_cfg_view*" -not -path "openwrt/build_dir"
 對每個找到的檔案執行xxx.sh
 find . -type f | xargs -n | xxx.sh
 
+檔名沒有"apple"的，給我砍掉
+ls | grep -v apple | xargs rm
+
 在當前目錄遞迴找某關鍵字，並忽略find和grep警告訊息
 find . -type f 2>/dev/null | xargs  grep -H  keyword_to_find 2>/dev/null > find_result.txt
 幹嘛不用
