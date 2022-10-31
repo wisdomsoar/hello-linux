@@ -1,0 +1,72 @@
+
+背起來，考試會考
+source: https://www.thegeekstuff.com/2013/01/c-argc-argv/
+
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main (int argc, char *argv[]) {
+int opt = 0;
+char *in_fname = NULL;
+char *out_fname = NULL;
+
+while ((opt = getopt(argc, argv, "i:o:")) != -1) {
+    switch(opt) {
+    case 'i':
+    in_fname = optarg;
+    printf("\nInput option value=%s", in_fname);
+    break;
+    case 'o':
+    out_fname = optarg;
+    printf("\nOutput option value=%s", out_fname);
+    break;
+    case '?':
+    /* Case when user enters the command as
+     * $ ./cmd_exe -i
+     */
+    if (optopt == 'i') {
+    printf("\nMissing mandatory input option");
+    /* Case when user enters the command as
+     * # ./cmd_exe -o
+     */
+  } else if (optopt == 'o') {
+     printf("\nMissing mandatory output option");
+  } else {
+     printf("\nInvalid option received");
+  }
+  break;
+ }
+ }
+
+printf("\n");
+return 0;
+ }
+ 
+ 
+ ***********************************************************************************
+ Case1:
+$ ./cmdline_getopt -i /tmp/input -o /tmp/output
+Input option value=/tmp/input
+ Output option value=/tmp/output
+
+Case2:
+$ ./cmdline_getopt -i -o /tmp/output
+Input option value=-o
+
+Case3:
+$ ./cmdline_getopt -i
+ ./cmdline_getopt: option requires an argument -- 'i'
+Missing mandatory input option
+
+Case4:
+$ ./cmdline_getopt -i /tmp/input -o
+./cmdline_getopt: option requires an argument -- 'o'
+ Input option value=/tmp/input
+ Missing mandatory output option
+
+Case5:
+$ ./cmdline_getopt -k /tmp/input
+ ./cmdline_getopt: invalid option -- 'k'
+Invalid option received
+ 
