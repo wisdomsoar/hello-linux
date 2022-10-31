@@ -1,0 +1,17 @@
+How to convert an int to string in C?
+source: https://stackoverflow.com/questions/8257714/how-to-convert-an-int-to-string-in-c
+
+
+short anwser:
+snprintf( str, size, "%d", x );
+
+
+#include <stdio.h> 
+#include <stdlib.h>
+
+int x = -42;
+int length = snprintf( NULL, 0, "%d", x );
+char* str = malloc( length + 1 );
+snprintf( str, length + 1, "%d", x );
+...
+free(str);
