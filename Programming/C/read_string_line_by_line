@@ -1,0 +1,30 @@
+
+source: https://stackoverflow.com/questions/17983005/c-how-to-read-a-string-line-by-line
+實用
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char ** argv)
+{
+   const char longString[] = "This is a long string.\nIt has multiple lines of text in it.\nWe want to examine each of these lines separately.\nSo we will do that.";
+   const char * curLine = longString;
+   while(curLine)
+   {
+      const char * nextLine = strchr(curLine, '\n');
+      int curLineLen = nextLine ? (nextLine-curLine) : strlen(curLine);
+      char * tempStr = (char *) malloc(curLineLen+1);
+      if (tempStr)
+      {
+         memcpy(tempStr, curLine, curLineLen);
+         tempStr[curLineLen] = '\0';  // NUL-terminate!
+         printf("tempStr=[%s]\n", tempStr);
+         free(tempStr);
+      }
+      else printf("malloc() failed!?\n");
+
+      curLine = nextLine ? (nextLine+1) : NULL;
+   }
+   return 0;
+}
