@@ -1,0 +1,12 @@
+把Wifi燈號控制埋在這script裡!
+
+/lib/netifd/wireless # vi mac80211.sh
+
+enable/disable都有呼叫
+mac80211_vap_cleanup() {
+
+只有enable呼叫
+mac80211_setup_vif() {
+
+只有disable呼叫
+drv_mac80211_teardown() {
