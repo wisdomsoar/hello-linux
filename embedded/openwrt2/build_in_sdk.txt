@@ -1,0 +1,8 @@
+
+
+$ export STAGING_DIR=./staging_dir/target-aarch64_cortex-a55+neon-vfpv4_musl/
+$ export GCC=./staging_dir/toolchain-aarch64_cortex-a55+neon-vfpv4_gcc-8.4.0_musl/bin/aarch64-openwrt-linux-gcc
+$
+$ GCC -ortuser rtuser.c
+$
+
