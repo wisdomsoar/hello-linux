@@ -198,6 +198,20 @@ head -10 file
 Display the last lines of a file:
 tail -10 file
 
+***** Pipeline redirect *****
+stdout 轉入檔案				cmd > file
+							cmd 1> file
+stderr 轉入檔案				cmd 2> file
+將stdout, stderr都轉入檔案	cmd > file 2>&1             (***1)
+							cmd > file1 2> file2
+從檔案取得stdin				cmd < file
+將stdout附加至檔案尾巴			cmd >> file
+							cmd 1>> file
+將stderr附加至檔案尾巴			cmd 2>> file
+將stdout, stderr都附加至檔案   請用上面***1舉一反三
+將cmd1的stdout管接到cmd2的stdin			cmd1 | cmd2
+將cmd1的stdout導入cmd2，並同時寫入file1		cmd1 | tee file1 | cmd2
+2018/4/14
 ****************************************************************************************************************
 
 Looking for files
