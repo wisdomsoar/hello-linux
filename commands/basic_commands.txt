@@ -242,6 +242,18 @@ grep -Ire keyword
 find then grep
 find . -name '*.py' -print0 | xargs -0 grep 'something' > output.txt
 
+把目前目錄下wav檔轉成flac檔
+find . -name "*.wav" | xargs -I[] sox [] [].flac
+-I replace-str
+Replace occurrences of replace-str in the initial-arguments with names read from standard input.
+Also, unquoted blanks do not terminate input items; instead the separator is the newline
+character.  Implies -x and -L 1.
+-I後面接著你想用什麼字串代表前面standard output的結果（這裡就是find找到的眾檔案）
+
+以前舊的方式用-i (小寫i），不過看手冊，他已經將要被淘汰了。以下意思一樣 （-i後面不接東西，用預設值{}來代表前面的standard output)
+find . -name "*.wav" | xargs -i sox {} {}.flac
+
+
 找出空目錄,  touch .gitignore (不然無法上傳空目錄)
 find . -depth -not -path "*target*" -not -path "./.git/*" -type d -empty -exec touch {}/.gitignore \;
 
