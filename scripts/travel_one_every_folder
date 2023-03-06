@@ -1,0 +1,11 @@
+
+############問ChatGPT來的，走訪目前一層的所有資料夾
+for dir in */; do
+    if [ -d "$dir/.git" ]; then
+        cd "$dir"
+          git remote -v | head -n 1| cut -d $'\t' -f2 | cut -d " " -f1
+        cd ..
+    fi
+done
+
+
