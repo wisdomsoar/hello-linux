@@ -1,0 +1,19 @@
+docker_image="IIIIIIIPPPPPPPPPPP:5000/project-images:xxxxxxxddddddd"
+container_name="project-$USER-SomeID"
+mount_path=`pwd`
+mount_toolchain_path="/opt/QQQQQQQQQQQQ"
+user_id=`id -u`
+group_id=`id -g`
+
+   docker run --rm -idt \
+      -v "${HOME}/.ssh:/home/dev/.ssh" \
+      -v $mount_path:/home/dev/qti \
+      -v $mount_toolchain_path:/opt/Qualcomm \
+      --name $container_name $docker_image
+
+   container_id=$(docker ps --filter name=$container_name -q)
+   if [ "$container_id" != "" ] ; then
+        docker exec $container_name /bin/bash -c "usermod -u $user_id dev && groupmod -g $group_id dev"
+   else
+      echo "create container $container_name failed"
+   fi
