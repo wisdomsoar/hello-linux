@@ -151,6 +151,29 @@ or
 
 grep 'potato:' file.txt | awk '{print $2}'
 
+find all the lines that are present in "b.txt" but not in "a.txt"?
+grep -Fxvf a.txt b.txt
+-F treat the patterns as fixed strings (i.e., not regular expressions).
+-x match the whole line (i.e., not partial matches).
+-v invert match
+-f to read the patterns from a file instead of the command line.
+
+grep -f a1.txt a2.txt 
+searches for the lines in file a2.txt that match any of the patterns in file a1.txt.
+example: 
+a1.txt
+apple
+banana
+cherry
+
+a2.txt
+I like apples.
+I like bananas.
+I like strawberries.
+This grep will return as follows:
+I like apples.
+I like bananas.
+
 ref: https://stackoverflow.com/questions/15148796/get-string-after-character
 $ str="GenFiltEff=7.092200e-01"
 $ value=${str#*=}
