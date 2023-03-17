@@ -136,6 +136,10 @@ Replace two line breaks to one
 Replace line break to blank
 :%s/\n\/ /g
 
+ delete lines that start with "#" in a text file?
+ :%g/^# /d
+%: apply this command (d) to every line
+
 ref: http://linux.vbird.org/linux_basic/0310vi.php#vim_ws
 :1,$s/word1/word2/g 	
 從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！(常用)
