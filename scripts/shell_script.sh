@@ -1,18 +1,17 @@
 
 
-Print <Tab>
-ref: https://www.unix.com/shell-programming-and-scripting/132905-printing-fixed-width-columns.html
-use -e to enable the use of special characters
-For example....
+# Print <Tab>
+# ref: https://www.unix.com/shell-programming-and-scripting/132905-printing-fixed-width-columns.html
+# use -e to enable the use of special characters
 echo -e "test \t\t test"
 
-Printing Fixed Width Columns
-ref: https://www.unix.com/shell-programming-and-scripting/132905-printing-fixed-width-columns.html
+# Printing Fixed Width Columns
+# ref: https://www.unix.com/shell-programming-and-scripting/132905-printing-fixed-width-columns.html
 printf "%-50s%-20s"   "maybe_variable_length_string_here " "Value: "$Val
 printf "\n"
 
-pause in script:
-ref: http://linux-wiki.cn/wiki/zh-tw/%E7%94%A8shell%E5%AE%9E%E7%8E%B0bat%E7%9A%84pause
+# pause in script:
+# ref: http://linux-wiki.cn/wiki/zh-tw/%E7%94%A8shell%E5%AE%9E%E7%8E%B0bat%E7%9A%84pause
 read -n 1 -p "Press any key to continue..."
 
 Comparison: check if a regular file does not exist in Bash?
@@ -28,13 +27,19 @@ fi
           FILE exists and is a regular file
 
 
-Comparison: Not equal
-Using the not equal operator for string comparison
-ref: https://unix.stackexchange.com/questions/67898/using-the-not-equal-operator-for-string-comparison
+# Comparison: Not equal
+# Using the not equal operator for string comparison
+# ref: https://unix.stackexchange.com/questions/67898/using-the-not-equal-operator-for-string-comparison
 if [ "$PHONE_TYPE" != "NORTEL" ] && [ "$PHONE_TYPE" != "NEC" ] &&
    [ "$PHONE_TYPE" != "CISCO" ]; then
    echo "OOXX"
 fi
+
+#Check if file *.img exist?
+if [ -n "$(echo *.img)" ]; then
+  echo "true"
+fi
+
 
 Array Basics in Shell Scripting
 ref: https://www.geeksforgeeks.org/array-basics-shell-scripting-set-1/
@@ -43,7 +48,7 @@ ARRAYNAME=(value1 value2  .... valueN)
 
 echo ${ARRAYNAME[*]}
 
-what's wrong with Android shell??? mksh
+whats wrong with Android shell??? mksh
 syntax error: unexpected '(('
 for-loop改用：
 GPIO_pins=( 100 123 )
