@@ -330,6 +330,7 @@ e: Execute a program
 
 locate "*pub*"
 
+sed取代，sed使用雙引號的話，就可以代shell variables喔!
 copy: https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string
 Remove the line and print the output to standard out:
 sed '/pattern to match/d' ./infile
@@ -344,6 +345,9 @@ sed -i '/^$/d' file.txt
 
 Relace string in file (Use Suffix .bak to create another file to backup)
 sed -i.bak "s/Name=[a-zA-Z]*/Name=Nena/" input_file.txt 
+
+取代，指定字串是一行的開頭 (用^來指令)
+sed -i "s/^Channel=\([0-999]\+\)/Channel=32/g" $config_file
 
 ****************************************************************************************************************
 
