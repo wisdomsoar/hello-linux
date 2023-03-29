@@ -18,5 +18,8 @@ build-imx-llll/tmp/work/llllcommon-poky-linux/linux-imx/5.4+llllcommon-r0/build/
 CONFIG_CFG80211=m
 
 
-看一下DTS怎麼改
+看一下DTS怎麼改, Driver Document
 apps_proc/src/vendor/qcom/proprietary/devicetree/bindings/mmc/sdhci-msm.txt
+
+Driver source
+apps_proc/src/kernel/msm-5.4/drivers/mmc/host/sdhci-msm.c
