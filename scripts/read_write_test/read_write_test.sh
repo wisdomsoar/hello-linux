@@ -1,5 +1,5 @@
 
-if [ -n "$(echo *.img )" ]; then
+if [ -n "$(ls *.img )" ]; then
    echo "Delete all *img files?..."
    read
 fi
