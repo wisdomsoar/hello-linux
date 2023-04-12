@@ -9,6 +9,7 @@ group_id=`id -g`
       -v "${HOME}/.ssh:/home/dev/.ssh" \
       -v $mount_path:/home/dev/qti \
       -v $mount_toolchain_path:/opt/Qualcomm \
+#      --user 0:0 \
       --name $container_name $docker_image
 
    container_id=$(docker ps --filter name=$container_name -q)
