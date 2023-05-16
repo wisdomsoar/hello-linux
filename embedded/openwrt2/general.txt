@@ -30,6 +30,12 @@ docker run -it \
 --entrypoint "/bin/bash" \
 10.10.3.21:5000/CHIPSETXXX-images:xsdev
 
+****************新docker要用的*****************
+遇到 uid , gid 不match 就用下面指令 override
+==> 讓dev偽裝成外面的使用者
+usermod -u 1007 dev;groupmod -g 1007 dev
+
+
 make package/symlinks
 cp target/linux/CHIPSET_NAME/MODEL_NAME/target.config .config
 make defconfig
