@@ -74,19 +74,20 @@ root@XSQUAREIOT:~# uci commit omr-tracker
 root@XSQUAREIOT:~# /etc/init.d/omr-tracker restart
 
 
-
-
 改wifi...
 21/feeds/mtk/luci/applications/luci-app-wifi/luasrc/view/admin_mtk/mtk_wifi_vif_cfg.htm
 21/feeds/mtk/luci/applications/luci-app-wifi/root/usr/lib/lua/mtkwifi.lua
 
 
 
-
-
 hexdump  -v -s 2048 -n 4 -e '1/1 "%02x"' /dev/block/misc
 00414230root@hostname:/#
 如果這個magic number 為00414230代表有用ab partition
+
+###改了dts之後，可以用以下指令make
+make package/feeds/qtibspprop/linux-msm-5.4_dt/{clean,compile} V=s && make target/linux/{clean,compile} V=s && make -j12 V=s
+
+
 
 
 
