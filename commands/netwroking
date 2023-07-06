@@ -32,9 +32,48 @@ Wi-Fi
 nmcli dev wifi
 
 
-
-
 掛載ftp site到Ubuntu裡，像是一個普通資料夾
 sudo curlftpfs -v -o tlsv1 -o allow_other -o "user=admin:PPPPPWWWWW" 192.168.0.109 -o utf8 /home/NNNAAAMMMEE/nas
 
 /volume2/@appstore/transmission/bin$ ./transmission-remote --auth=test:@@PW -u 4
+
+
+
+特殊的情境:
+
+
+安立之  <===conductive LTE/NR===> DUT <===ethernet===> NB
+在安立之儀器後面有個end point: 192.168.2.20
+安立之會發派IP給DUT: 192.168.2.22
+DUT (lan端)會發派IP 給NB: 10.10.10.196
+DUT本身有br-lan IP: 10.10.10.1
+
+
+iptables -F
+iptables -t nat -F
+iptables -P FORWARD ACCEPT
+iptables -t nat -I POSTROUTING -s 192.168.2.0/24 -o rmnet_data0 -j MASQUERADE
+iptables -t nat -I PREROUTING -p tcp --dport 5001 -j DNAT --to 10.10.10.196
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
