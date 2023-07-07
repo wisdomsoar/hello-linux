@@ -48,12 +48,80 @@ sudo curlftpfs -v -o tlsv1 -o allow_other -o "user=admin:PPPPPWWWWW" 192.168.0.1
 DUT (lan端)會發派IP 給NB: 10.10.10.196
 DUT本身有br-lan IP: 10.10.10.1
 
+問題: 這樣在WAN端的安立之怎麼發封包到LAN端的NB?
 
 iptables -F
 iptables -t nat -F
 iptables -P FORWARD ACCEPT
 iptables -t nat -I POSTROUTING -s 192.168.2.0/24 -o rmnet_data0 -j MASQUERADE
 iptables -t nat -I PREROUTING -p tcp --dport 5001 -j DNAT --to 10.10.10.196
+
+
+iptables -F
+iptables command: configure and manage the netfilter firewall ruleset 
+-F: flush
+delete all existing rules in the specified table (by default, it is the filter table)
+
+iptables -t nat -F
+-t: table (perhaps)
+specifies the table to operate on, in this case, the NAT table
+
+iptables -P FORWARD ACCEPT
+-P: policy
+set the default policy for a chain
+FORWARD: It is the name of the chain for which we want to set the default policy. 
+The FORWARD chain is responsible for forwarding packets between network interfaces.
+ACCEPT: It is the action we want to set as the default policy for the FORWARD chain. 
+ACCEPT means that if no specific rule matches a packet in the FORWARD chain, 
+the packet will be allowed to pass through and be forwarded.
+預設將FORWARD的封包，設定成可通過 (ACCEPT)
+
+iptables -t nat -I POSTROUTING -s 192.168.2.0/24 -o rmnet_data0 -j MASQUERADE
+-I POSTROUTING: insert: 
+It inserts a rule at the beginning of the specified chain. 
+The POSTROUTING chain is used for modifying packets right after routing decisions 
+have been made and before they are sent out.
+-s 192.168.2.0/24: 
+It specifies the source IP address range for matching packets. 
+In this case, it matches packets with a source IP address in the range 192.168.2.0 to 192.168.2.255.
+-o rmnet_data0: 
+It specifies the output network interface for matching packets. 
+In this case, it matches packets going out through the network interface named "rmnet_data0".
+-j MASQUERADE: 
+It specifies the target action to perform on matching packets. 
+In this case, it uses the MASQUERADE target, which dynamically replaces the 
+source IP address and port of the packet with the IP address and port of the 
+outgoing interface, allowing the return traffic to be correctly routed back.
+!!!
+sets up NAT for packets originating from the 192.168.2.0/24 subnet and going 
+out through the "rmnet_data0" interface. 
+The MASQUERADE action ensures that 
+the source IP address is replaced with the IP address of the outgoing interface, 
+allowing for proper routing of response packets. 
+This is commonly used when sharing an internet connection or implementing a 
+gateway or router functionality.
+
+iptables -t nat -I PREROUTING -p tcp --dport 5001 -j DNAT --to 10.10.10.196
+-I PREROUTING: insert:
+It inserts a rule at the beginning of the specified chain. 
+The PREROUTING chain is used for modifying packets as soon as they arrive, 
+before any routing decisions are made.
+-p tcp: protocol:
+It specifies the protocol for matching packets. 
+In this case, it matches TCP packets.
+--dport 5001: 
+It specifies the destination port for matching packets. 
+In this case, it matches packets with a destination port of 5001.
+-j DNAT: 
+It specifies the target action to perform on matching packets. 
+In this case, it uses the DNAT (Destination NAT) target, which modifies 
+the destination IP address and port of the packet.
+--to 10.10.10.196: 
+It specifies the new destination IP address to which the packet should 
+be forwarded. In this case, it forwards the packet to the IP address 10.10.10.196.
+
+
+
 
 
 
