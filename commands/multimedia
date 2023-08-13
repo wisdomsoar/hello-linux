@@ -4,6 +4,10 @@ convert "input.jpg" -resize 500x500 -quality 100 "output.png"
 !: force
 convert "input.jpg" -resize 500x500! -quality 100 "output.png"
 
+resize but keep the original ratio (this could make black bars)
+ffmpeg -i kong2017.mp4    -vf "scale=w=trunc(ih*dar/2)*2:h=trunc(ih/2)*2, setsar=1/1, scale=w=3840:h=2160:force_original_aspect_ratio=1, pad=max(iw\,ih*(16/9)):ow/(16/9):(ow-iw)/2:(oh-ih)/2" -c:v libx264 -preset slow -tune film  -crf 20 -c:a aac -pix_fmt yuv420p -movflags +faststart output.mp4
+##將2.4比例的Ultra 4K: 3840x1600轉成標準的4K: 3840x2160 (這裡會造成左右有黑邊）
+
 
 extract frames in video file:
 ffmpeg –i output_filename.avi –ss 00:00 –to 00:04 frame_%3d.png
