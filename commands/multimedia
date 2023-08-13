@@ -13,6 +13,12 @@ ffmpeg -i kong2017.mp4  \
        -c:a aac -pix_fmt yuv420p -movflags +faststart output.mp4
 ##將2.4比例的Ultra 4K: 3840x1600轉成標準的4K: 3840x2160 (這裡會造成左右有黑邊）
 
+iw: 輸入影像的寬度
+ih: 輸入影像的高度
+dar: 輸入影像的顯示寬高比例。
+
+
+
 ##音效改成aac (奇怪，上面的指令已經改了阿!?)
 ffmpeg  -i kong2017_std_4k_2_shifted.mp4 -c:v copy -c:a aac -q:a 2 output.mp4
 
