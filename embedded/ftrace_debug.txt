@@ -1,0 +1,23 @@
+echo 1 > /sys/kernel/debug/tracing/events/workqueue/enable
+echo 1 > /sys/kernel/debug/tracing/events/workqueue/enable
+
+echo 1 > /sys/kernel/debug/tracing/events/workqueue/enable
+echo sched:sched_waking sched:sched_switch sched:sched_wakeup sched:sched_wakeup_new sched:sched_process_exit sched:sched_blocked_reason sched:sched_pi_setprio sched:sched_enq_deq_task >> /sys/kernel/debug/tracing/set_event
+echo 1 > /sys/kernel/debug/tracing/events/irq/enable
+
+
+
+echo 1 > /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+echo 1 > /sys/kernel/debug/tracing/events/power/cpu_frequency_limits/enable
+
+
+echo 1 > /sys/kernel/debug/tracing/tracing_on
+
+reproduce issue.
+
+Once issue occurred, stop capturing systrace and pull the data from device using below ocmmands.
+
+echo 0 > /sys/kernel/debug/tracing/tracing_on
+cat /sys/kernel/debug/tracing/trace > /data/ftrace.txt
+
+adb pull /data/ftrace.txt .
