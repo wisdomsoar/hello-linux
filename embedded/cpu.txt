@@ -1,0 +1,15 @@
+文件 offline 、 online 、possible 、present 代表CPU掩码。每个CPU文件 夹包含一个 online 文件，控制逻辑上的开（1）和关（0）状态。要在逻辑上关闭CPU4:
+
+$ echo 0 > /sys/devices/system/cpu/cpu4/online
+ smpboot: CPU 4 is now offline
+一旦CPU被关闭，它将从 /proc/interrupts 、/proc/cpuinfo 中被删除，也不应该 被 top 命令显示出来。要让CPU4重新上线:
+
+$ echo 1 > /sys/devices/system/cpu/cpu4/online
+smpboot: Booting Node 0 Processor 4 APIC 0x1
+CPU又可以使用了。这应该对所有的CPU都有效。CPU0通常比较特殊，被排除在CPU热拔插之外。 在X86上，内核选项 CONFIG_BOOTPARAM_HOTPLUG_CPU0 必须被启用，以便能够关闭CPU0。 或者，可以使用内核命令选项 cpu0_hotplug 。CPU0的一些已知的依赖性:
+
+从休眠/暂停中恢复。如果CPU0处于离线状态，休眠/暂停将失败。
+
+PIC中断。如果检测到PIC中断，CPU0就不能被移除。
+
+如果你发现CPU0上有任何依赖性，请告知Fenghua Yu <fenghua.yu@intel.com>。
