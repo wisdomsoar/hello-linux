@@ -1,0 +1,7 @@
+
+Install redmine
+https://www.redmine.org/projects/redmine/wiki/HowTo_Install_Redmine_50x_on_Ubuntu_2004_with_Apache2
+
+以下參考就好，不要完全照做...https://www.redmine.org/projects/redmine/wiki/redmineinstall
+
+
