@@ -1,4 +1,4 @@
-看log...
+看GPS? log...
 
 /data/bin #
 /data/bin # watch -n 3 logread | grep mnldtest
@@ -11,7 +11,7 @@ https://www.ccs.neu.edu/home/noubir/Courses/CS6710/S12/material/OpenWrt_Dev_Tuto
 OpenWrt 建置 – 使用方法
 https://openwrt.org/zh-tw/doc/howto/build
 
-openwrt make defconfig 详解
+openwrt make defconfig 詳解
 https://www.litreily.top/2020/12/29/make-defconfig/
 
 Build system usage
@@ -36,9 +36,39 @@ docker run -it \
 usermod -u 1007 dev;groupmod -g 1007 dev
 
 
+****************************************************************************************
+用了以下，就會幫你偽裝成外面使用者了喔!
+
+container_name=your_awesome_container_name
+
+user_id=$(id -u)
+group_id=$(id -g)
+
+docker run --rm -idt \
+--volume="/home/yourname/Projects/model/distro/:/home/dev/model":rw \
+--volume="${HOME}/.ssh:/home/${USER}/.ssh" \
+--volume="${HOME}/.gitconfig:/home/${USER}/.gitconfig" \
+--volume="/etc/localtime:/etc/localtime:ro" \
+--env=HOST_UID=$(id -u) \
+--env=HOST_GID=$(id -g) \
+--env=USER=${USER} \
+--user 0:0 \
+--restart=always \
+--name $container_name \
+--entrypoint "/bin/bash" \
+10.10.3.21:5000/model???-images:xsdev
+
+container_id=$(docker ps --filter name=$container_name -q)
+docker exec $container_name /bin/bash -c "usermod -u $user_id dev && groupmod -g $group_id dev"
+
+*****************************************************************************************
+
+
 make package/symlinks
 cp target/linux/CHIPSET_NAME/MODEL_NAME/target.config .config
 make defconfig
+#Do we really need this?
+make package/feeds/mtk/lk/{clean,compile} -j12 V=s
 make –j 5 V=s
 j: # of jobs
 V: verbosity (s: stdout, stderr)

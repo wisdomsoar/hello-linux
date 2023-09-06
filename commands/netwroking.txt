@@ -48,7 +48,7 @@ sudo curlftpfs -v -o tlsv1 -o allow_other -o "user=admin:PPPPPWWWWW" 192.168.0.1
 DUT (lan端)會發派IP 給NB: 10.10.10.196
 DUT本身有br-lan IP: 10.10.10.1
 
-問題: 這樣在WAN端的安立之怎麼發封包到LAN端的NB?
+問題: 這樣在WAN端的安立之怎麼發封包到LAN端的NB? (for iperf2 application example)
 
 iptables -F
 iptables -t nat -F
@@ -120,12 +120,28 @@ the destination IP address and port of the packet.
 It specifies the new destination IP address to which the packet should 
 be forwarded. In this case, it forwards the packet to the IP address 10.10.10.196.
 
+#####Debug1: 封包怎麼還是沒從WAN打到LAN上的NB?  在Device上查看各個rules有沒有進封包
+iptables -t nat -L -nv
+
+#####Debug2: 有使用iptables觀察到有封包進我們設置的rule，但怎麼還是沒到LAN上的NB?
+=> 請關掉Windows的所有防火牆!
 
 
+#####在別的資料夾有重複 (看怎麼整理...
+iptables -L -nv
+-L, --list
+  List all rules in the selected chain. If no chain is selected, all chains are listed.
+  什麼是一個"chain"?..
+  
+-n, --numeric
+Numeric output (IP addresses)
 
-
-
-
+-v, --verbose
+   show the interface name, the rule options (if any), and the TOS masks. 
+   The packet and byte counters are also listed, with the suffix 'K', 'M' or 'G' for 1000, 1,000,000 and 1,000,000,000 
+   multipliers respectively (but see the -x flag to change this). 
+   For appending, insertion, deletion and replacement, this causes detailed information on the rule or rules to be printed.
+   
 
 
 
