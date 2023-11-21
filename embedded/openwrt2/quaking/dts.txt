@@ -1,0 +1,2 @@
+cd linux5.4
+vi arch/arm64/boot/dts/mediatek/xs5g01_proscend.dts
