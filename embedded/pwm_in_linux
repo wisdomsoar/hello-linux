@@ -1,9 +1,0 @@
-
-
-[07/10] pwm: gpio: Add a generic gpio based PWM driver 
-
-
-dts: (?) Merge "ODROID-COMMON: arm64/dts: Add GPIO pinctrl for PWM pins back" …
-
-pwm: gpio: reivse something according from the upstream
-https://github.com/54shady/qop_kernel/commit/ee9369d2350c91ed77c54248cf454df38fb1f8b0
