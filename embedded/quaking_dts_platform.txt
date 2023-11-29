@@ -1,0 +1,8 @@
+boot/QcomPkg/Library/NullLibs/PlatformInfoTargetLibNull/PlatformInfoTargetLibNull.c
+0x03, 0x08, 0x01, 0x01, //Version number, Platform type, Hardware major version number, Hardware minor version number 0x02, 0x00,  // Subtype, Number of key value
+
+qcom,board-id = <0x2010108 0x302> = <board_id, reserved>; board_id is a 32-bit integer whose bit values are defined as follows.
+ - bits 31-24 = Platform subtype ID
+ - bits 23-16 = Platform version (major)
+ - bits 15-8 = Platform version (minor)
+ - bits 7-0 = Platform type ID"

@@ -1,0 +1,1 @@
+echo "peripheral" > /sys/devices/platform/a600000.ssusb/mode

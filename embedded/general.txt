@@ -1,0 +1,164 @@
+zybo board 開發記錄: 執行 Linux 作業系統
+ref:
+https://coldnew.github.io/d9dfdd56/
+
+Boot ROM
+  |
+  V
+Load and execute
+First Stage Boot Loader
+(FSBL)
+  |
+  V
+Load bitstream
+  |
+  V
+Load and Execute U-Boot
+  |
+  V
+Load Device Tree
+  |
+  V
+Load Root File System
+(Busybox)
+  |
+  V
+ Run
+
+***********************************************************************************************************************************
+
+zybo board 開發記錄: 使用 Yocto 建立系統
+ref: 
+http://coldnew.github.io/c3e8558e/
+Yocto Project 是近年來各大 SoC 商以及開發板商皆參與的 Linux 系統構件工具，透過 Yocto Project 的協助，
+使用者可以針對自己的需求構件想要的映像檔(image)或是 Root File System，和 Yocto 類似功能的工具則是 buildroot 。
+
+Yotoc Project快速指南
+ref: 
+https://b8807053.pixnet.net/blog/post/347485448-yotoc-project%E5%BF%AB%E9%80%9F%E6%8C%87%E5%8D%97
+
+Yocto項目使用一個基於OpenEmbedded項目的編譯系統，這個編譯系統使用BitBake工具來搆造完整的linux系統鏡像。
+BitBake和OE的套件被組合形成了Poky，一個參照的編譯系統。
+
+Poky 是 Yocto 的構建系統
+Yocto 對於不同的 SoC 廠商，會有提供不同的 layer 來對特定的開源程式加上合適的 patch，
+或是添加不同 SoC 廠各自需要的韌體(firmware)，以及各開發板特定的設定
+
+在開始用 Yocto Project 之前，我們需要下載 Poky, Poky 是 Yocto 的構建系統，基本上我們會用到的東西都會在 poky 資料夾內
+git clone git://git.yoctoproject.org/poky -b krogoth
+
+BitBake 实用指南
+http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide
+BitBake 是一種類似 make 的構建工具，主要用於 OpenEmbedded 和 Yocto 工程構建 Linux 發行版本
+
+"一種軟體組建自動化工具程式，以Python語言實作。功能類似於make，特別針對於嵌入式Linux交叉編譯器環境所設計研發"
+BitBake自動化建置處方(recipes)描述了如何抓取原始碼，組態，編譯與安裝指定的應用程式或套件。
+包括了該套件相依性，原始碼路徑，組態，編譯，建置，安裝與移除指令
+
+如果使用 Yocto，则不需要安装 BitBake，Yocto 源代码本身捆绑了 BitBake。
+放在這：
+imx6-4.1.15_2.0.0/sources/poky/bitbake/
+Yocto 要求你 source 一个脚本，这个脚本和我们这里做的一样，安装 BitBake 到我们的环境中。
+
+如果要另外下載
+ref: http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide
+https://github.com/openembedded/bitbake。选择一个版本的分支，并下载 zip。解压 zip 包，可找到一个 bitbake-$version 目录。
+
+
+git clone git://git.yoctoproject.org/poky 
+cd poky
+起始化你的環境并制定一個存放搆建內容的目錄。
+source oe-init-build-env mybuilds
+
+practice/poky/meta-poky$ tree -L 2
+.
+├── classes
+│   └── poky-sanity.bbclass
+├── conf
+│   ├── bblayers.conf.sample
+│   ├── conf-notes.txt
+│   ├── distro
+│   ├── layer.conf                                        ################## 每个 layer 需要一个 conf/layer.conf 文件
+│   ├── local.conf.sample
+│   ├── local.conf.sample.extended
+│   ├── site.conf.sample
+│   └── toasterconf.json
+└── recipes-core
+    ├── busybox
+    ├── psplash
+    └── tiny-init
+
+
+
+BitBake 实用指南
+http://sunyongfeng.com/201610/programmer/yocto/Bitbake_practical_guide.html
+
+ref: Yocto实用技巧
+http://www.kancloud.cn/digest/yocto
+
+编译完成后内核以及rootfs，内核，uboot以及dtb会放在相对于build目录的tmp/deploy/images/MACHINE/下面
+
+Yocto Linux内核编译目录在哪
+(沒有喔...?）
+(2) bitbake -e linux-imx  | grep ^S=
+e:  
+Show the global or per-recipe environment complete
+with information about where variables were
+set/changed.
+
+Yocto 如何重新编译Linux内核与dtb，并放到deploy目录？
+bitbake linux-imx -C compile
+
+
+
+(4): Yocto 如何确定(找到)一个包的名字 （有更好的方法嗎？？？)
+bitbake -s | grep XXX
+s:
+Show current and preferred versions of all recipes.
+
+(5) Yocto如何更改source code的下载与git clone地址
+Yocto中在fetch一些软件包的时候经常出现一天也下载不下来，这种情况极大浪费了我们的时间。
+
+例如，下面有三个Package下载了一天也没有完成：
+
+略略略
+
+解决方法
+确定下载的地址，手动下载
+先确定软件包的下载地址，例如对于opencv与opencv-samples软件包：
+
+bitbake -e opencv | grep ^SRC_URI=
+bitbake -e opencv-samples | grep ^SCR_URI=
+
+可以來git clone了(但要clone到哪??? => 應該都可，你自己maintain好即可)
+
+然後find -name opencv*.bb
+更改bb
+加上剛剛clone下來的路徑，後面要加;protocol=file;branch=2.4
+
+再一次獲取
+bitbake opencv -c fetch
+
+可會因為抓到本地的git repository位於不同的branch
+
+到剛剛下載的git repository
+git branch -a | grep 2.4
+remotes/origin/2.4
+.....
+
+git checkout origin/2.4 -b 2.4
+
+再再fetch一次
+bitbake opencv -c fetch
+
+(6): Yocto中如何共享已经下载的文件
+要共享下载文件只需要指定此变量到下载好了的目录即可，可以在local.conf中指定即可：
+
+查看一个包都有哪些可执行的task
+bitbake Package -c listtasks
+
+
+bitbake -e linux-imx | grep ^SRC_URI=
+
+
+

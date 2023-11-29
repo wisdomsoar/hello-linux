@@ -1,0 +1,20 @@
++++ b/recipes-connectivity/hostapd/hostapd_2.9.bb
+@@ -5,7 +5,8 @@ LIC_FILES_CHKSUM = "file://${B}/README;md5=1ec986bec88070e2a59c68c95d763f89"
+ DEPENDS = "libnl openssl"
+ SUMMARY = "User space daemon for extended IEEE 802.11 management"
+
+-inherit update-rc.d systemd
++#inherit update-rc.d systemd^M
++inherit systemd^M
+
+
+
+拿掉不想看到的binaries...
+recipes-connectivity/murata-binaries/murata-binaries_1.0.bb
+
+
+
+
+
+
+

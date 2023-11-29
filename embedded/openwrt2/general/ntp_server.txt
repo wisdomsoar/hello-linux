@@ -1,0 +1,32 @@
+O Openwrt Device: (XS5G01)
+
+opkg install ./libevent2-core7_2.1.12-1_aarch64_cortex-a55_neon-vfpv4.ipk
+opkg install ./libevent2-pthreads7_2.1.12-1_aarch64_cortex-a55_neon-vfpv4.ipk
+opkg install ./ntp-utils_4.2.8p15-3_aarch64_cortex-a55_neon-vfpv4.ipk
+opkg install ./ntpd_4.2.8p15-3_aarch64_cortex-a55_neon-vfpv4.ipk
+
+####ref: https://openwrt.org/docs/guide-user/advanced/ntp_configuration
+####ref: https://openwrt.org/docs/guide-user/services/ntp/client-server
+
+uci set system.ntp.enable_server="1"
+uci commit system
+/etc/init.d/sysntpd restart
+
+/etc/init.d/sysntpd disable
+/etc/init.d/ntpd enable
+/etc/init.d/ntpd start
+
+O NTP client (Ubuntu laptop)
+####ref: https://linux.die.net/man/8/ntpdate
+ntpdate -q ALPHA
+ntpdate -q 192.168.1.1
+#q: query only
+ntpdate -d ALPHA
+#d: debug log
+
+Note:
+sudo vi /etc/hosts
+192.168.1.1 ALPHA
+
+其他參考，鳥哥，但這次只能拿來查client帳號:
+https://linux.vbird.org/linux_server/centos6/0440ntp.php

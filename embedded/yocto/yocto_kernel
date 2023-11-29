@@ -1,0 +1,25 @@
+
+https://www.yoctoproject.org/docs/3.0/kernel-dev/kernel-dev.html
+2.1.2. Getting Ready for Traditional Kernel Development
+
+
+2.5. Using Traditional Kernel Development to Patch the Kernel
+https://www.yoctoproject.org/docs/3.0/kernel-dev/kernel-dev.html#using-traditional-kernel-development-to-patch-the-kernel
+
+
+2.4. Working With Your Own Sources
+https://ziladoc.com/queue/ltgt-5af11cdfd13c6_pdf?queue_id=-1
+
+ poky/meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb
+ 
+ 
+ 暫時在這改kernel 
+build-imx-llll/tmp/work/llllcommon-poky-linux/linux-imx/5.4+llllcommon-r0/build/.config
+CONFIG_CFG80211=m
+
+
+看一下DTS怎麼改, Driver Document
+apps_proc/src/vendor/qcom/proprietary/devicetree/bindings/mmc/sdhci-msm.txt
+
+Driver source
+apps_proc/src/kernel/msm-5.4/drivers/mmc/host/sdhci-msm.c

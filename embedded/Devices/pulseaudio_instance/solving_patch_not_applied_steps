@@ -1,0 +1,175 @@
+
+ref: https://stackoverflow.com/questions/37322435/failure-during-task-do-patch-in-bitbake
+
+Try this:
+
+Remove your patch from SRC_URI.
+Execute: bitbake -c cleanall -f <recipe_name>
+Execute: bitbake -c build -f <recipe_name>
+Find the directory with sources you need to patch: bitbake -e <your_recipe_name> | grep ^S= and go there.
+Copy the file/files you need to patch. 
+Add to them your changes where you need. 
+Create new patch via diff tool. 
+As a reference use original file/files and as a changed the one(s) with your modifications, 
+e.g.: diff --ruN original_src modified_src > 0026-patch-name.patch.
+Move patch to appropriate directory and add it to SRC_URI.
+Rebuild the target recipe: bitbake -c cleanall -f <recipe_name> && bitbake -c build -f <recipe_name>
+Please notice: <recipe_name> should be passed without the .bb extension.
+
+
+ref: yocto recipe : (2) 撰寫 bbappend
+http://yi-jyun.blogspot.com/2018/04/yocto-3-bbappend.html
+
+前言
+xxx.bb 檔案是用來描述一個 recipe. 然而 xxx.bb 會因為 patch codes、新增 tasks、等等的因素修改. 
+這邊介紹如何使用 xxx.bbappend[1] 檔案. 以不修改 xxx.bb 的情況下擴充需求. 文章將以 patch codes 為例子, 
+並個別以 devtool 工具和手動的方式示範.
+
+bbapend 簡介
+.bbappend 是擴充 .bb 的方式. 藉由 .bbappend 來新增 tasks、patch code、新增/修改變數等等諸此之類的事. 
+其名稱必須跟所要修改的相同, 而版本號則依據需求寫.
+
+舉例:
+bb file 名稱: giflib_5.1.4.bb
+bbappend 名稱: giflib_5.1.4.bbappend 或 giflib_%.bbappend.
+
+%: 表示萬用字元
+
+使用 .bbappend 的情況, 我個人認為有以下情況再使用
+(1) 當 recipe 已存在 yocto 最基本的 layer, 不應隨便修改. 舉例: u-boot_2017.09.bb 存在於 yocto 的 meta layer
+(2) 某些 layers 會共用此 recipe 的情況下. 
+舉例: meta-raspberrypi 與 meta-ti 分別各自使用自己的 xserver-xf86-config_0.1.bbappend 
+來對 yocto meta layer 的 xserver-xf86-config_0.1.bb 做擴充修改.
+
+bbappend 範例
+事前準備
+用 giflib [4] 作為測試程式. 先下載 giflib-5.1.4.tar.bz2. 接著使用 bitbake-layer 建立 meta-custom layer, 
+再透過 recipetool 把產生的 giflib_5.1.4.bb 存放於此 layer.
+
+# 執行 oe-init-build-env 進行 yocto 編譯環境設定
+[yijyun@localhost poky]$ . oe-init-build-env
+
+# 建立 3rd-pkgs, 並把 giflib 放至此
+[yijyun@localhost build]$ mkdir 3rd-pkgs; cd 3rd-pkgs/
+[yijyun@localhost 3rd-pkgs]$ ls
+giflib-5.1.4.tar.bz2
+
+# 建立 meta-custom, 並加入yocto 環境
+[yijyun@localhost build]$ bitbake-layers create-layer meta-custom
+[yijyun@localhost build]$ bitbake-layers add-layer meta-custom
+
+# 在底下建立 giflib  目錄
+[yijyun@localhost build]$ cd meta-custom/recipes-example
+yijyun@localhost recipes-example]$ rm -rf example/
+[yijyun@localhost recipes-example]$ mkdir giflib
+
+# 透過 recipetool 產生 bb
+[yijyun@localhost recipes-example]$ cd ../../
+[yijyun@localhost build]$ recipetool create -o meta-custom/recipes-example/giflib/giflib_5.1.4.bb  3rd-pkgs/giflib-5.1.4.tar.bz2
+
+以 devtool 產生 .bbappend
+新增 meta-custom-devtool-patch layer 來存放 devtool 之後產生的 bbappend.
+
+# 建立 meta-custom-devtool-patch layer
+[yijyun@localhost build]$ bitbake-layers create-layer meta-custom-devtool-patch
+[yijyun@localhost build]$ bitbake-layers add-layer meta-custom-devtool-patch
+
+# 建立  giflib 目錄
+[yijyun@localhost build]$ mkdir meta-custom-devtool-patch/recipes-example/giflib
+
+使用 devtool 修改 source code 會產生 workspace layer, 並複製一份 giflib code 至 workspace/source
+這邊針對 util/giffix.c 修改. 於 main 函數裡添加 printf("devtool hello !!\n");
+
+# 藉由 devtool 來修改 code
+[yijyun@localhost build]$ devtool modify giflib
+NOTE: Source tree extracted to /media/disk1-1/Github/poky/build/workspace/sources/giflib
+NOTE: Recipe giflib now set up to build from /media/disk1-1/Github/poky/build/workspace/sources/giflib
+
+###### 修改 workspace/source/giflib/util/giffix.c  #########
+int main(int argc, char **argv)
+{
+    printf("hello !!! (devtool)\n");      ///< 新增此行
+    int i, j, NumFiles, ExtCode, Row, Col, Width, Height, ErrorCode,
+    DarkestColor = 0, ColorIntens = 10000;
+完畢之後, 至 source code 目錄下進行 git add 與 git commit. 最後在 devtool finish 即可產生 bbappend.
+
+# git add 與 commit
+[yijyun@localhost giflib]$ git add util/giffix.c
+[yijyun@localhost giflib]$ git commit -m "use devtool to create bbappend"
+
+# 最後 devtool finish 表示完成修改, 把更新至於 meta-custom-devtool-patch
+[yijyun@localhost sources]$ cd -
+[yijyun@localhost sources]$ devtool finish giflib meta-custom-devtool-patch
+
+# ls 查看相關檔案
+yijyun@localhost build]$ ls meta-custom-devtool-patch/recipes-example/giflib/*
+meta-custom-devtool-patch/recipes-example/giflib/giflib_%.bbappend
+
+meta-custom-devtool-patch/recipes-example/giflib/giflib:
+0001-use-devtool-to-create-bbappend.patch
+手動撰寫 .bbapend
+新增 meta-custom-manual-patch layer 來存放自己建立的 bbappend 和 patch.
+因此在 recipes-example 底下建立 giflib 與 giflib/giflib. 其中 giflib/giflib 是 yocto 預設會搜尋的目錄
+可以修改 FILEPATHS(常用於 .bb) or FILESEXTRAPATHS(常用於 .bbappend) 來符合自己的需求.
+
+# 新增 meta-custom-manual-patch layer 於環境
+[yijyun@localhost build]$ bitbake-layers create-layer meta-custom-manual-patch
+[yijyun@localhost build]$ bitbake-layers add-layer meta-custom-manual-patch
+
+# 建立 giflib 相關目錄
+[yijyun@localhost build]$ mkdir meta-custom-manual-patch/recipes-example/giflib/ meta-custom-manual-patch/recipes-example/giflib/giflib
+這邊在 3rd-pkgs 手動複製一份 giflib, 並於 util/giffix.c 中添加 printf("hellow !! (manual)\n");.
+接著在兩個 giflib 的目錄下, 使用 diff 產生出 patch. 把 patch 放置 meta-custom-manual-patch layer
+
+# 複製一份 giflib
+[yijyun@localhost build] cd 3rd-pkgs
+[yijyun@localhost 3rd-pkgs]$ cp -fa giflib-5.1.4 giflib-5.1.4_modify
+# 修改過 code, 使用 diff 產生 patch
+[yijyun@localhost 3rd-pkgs]$ diff -Naur giflib-5.1.4/util/giffix.c giflib-5.1.4_modify/util/giffix.c  > 00_giflib_util_giffix.patch
+# 把 patch 放置 meta-custom-manual-patch
+[yijyun@localhost 3rd-pkgs]$ cd ..
+[yijyun@localhost build]$ mv 3rd-pkgs/00_giflib_util_giffix.patch meta-custom-manual-patch/recipes-example/giflib/giflib/
+
+###### 修改 giflib-5.1.4_modify/util/giffix.c  ##########
+int main(int argc, char **argv)
+{
+    printf("hellow !! (manual)\n");       ///< 新增此程式
+    int i, j, NumFiles, ExtCode, Row, Col, Width, Height, ErrorCode,
+    DarkestColor = 0, ColorIntens = 10000;
+注意: 使用 diff 記得在 source code 的上一層, 不然 yocto 用 pacth 標示的檔案路徑時候會找不到對應檔案.
+以下為 00_giflib_util_giffix.patch 裡的檔案路徑
+
+(ok)
+--- giflib-5.1.4/util/giffix.c  2016-01-07 06:08:12.000000000 -0500
++++ giflib-5.1.4_modify/util/giffix.c   2018-04-28 08:13:52.209101817 -0400
+<error>
+--- giffix.c  2016-01-07 06:08:12.000000000 -0500
++++ giffix.c   2018-04-28 08:13:52.209101817 -0400
+於 meta-custom-manual-patch 新增 giflib_5.1.4.bbappend. 填寫以下參數, 便完成以手動建立 bbappend.
+
+# 建立 giflib_5.1.4.bbappend
+[yijyun@localhost build]$ vim meta-custom-manual-patch/recipes-example/giflib/giflib_5.1.4.bbappend
+
+############# 以下為 giflib_5.1.4.bbappend 內容################
+# 告知 bitbake 把 recipe 目錄給加入
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+# 告知 patch 名稱
+SRC_URI_append = "\
+    file://00_giflib_util_giffix.patch \
+"
+驗證
+可於 tmp/work/i586-poky-linux/giflib/5.1.4-r0 查看是否有相關的 patch. 以及 
+於tmp/work/i586-poky-linux/giflib/5.1.4-r0/giflib-5.1.4/util/giffix.c 看 source code 是否有被修改
+
+# 檢查是否有 patch 檔案
+[yijyun@localhost build]$ ls tmp/work/i586-poky-linux/giflib/5.1.4-r0/
+00_giflib_util_giffix.patch  configure.sstate   deploy-rpms   giflib.spec
+...
+package          pkgdata         recipe-sysroot  sysroot-destdir
+
+# 查看 source code 是否已被修改
+[yijyun@localhost build]$ head -n 38 tmp/work/i586-poky-linux/giflib/5.1.4-r0/giflib-5.1.4/util/giffix.c  | tail -n 4
+int main(int argc, char **argv)
+{
+ printf("hellow !! (manual)\n");
+    int i, j, NumFiles, ExtCode, Row, Col, Width, Height, ErrorCode,

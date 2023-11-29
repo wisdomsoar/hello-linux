@@ -1,0 +1,26 @@
+[RFC,v2,5/6] media: ds90ub954: new driver for TI DS90UB954-Q1 video deserializer
+https://patchwork.kernel.org/patch/11055313/
+
+[v2,4/4] media: i2c: Add RDACM20 driver
+https://patchwork.kernel.org/patch/10560379/
+The RDACM20 is a GMSL camera supporting 1280x800 resolution images
+developed by IMI based on an Omnivision 10635 sensor and a Maxim MAX9271
+GMSL serializer.
+
+[PATCH v9 0/4] MAX9286 GMSL Support (+RDACM20)
+
+The GMSL link carries power, control (I2C) and video data over a
+single coax cable.
+
+
+Question about modified camera v4l2 driver for deserialize MAX9286
+https://forums.developer.nvidia.com/t/question-about-modified-camera-v4l2-driver-for-deserialize-max9286/46484
+
+MAX96705 MAX9286 GMSL SERDES Linux Drivers
+https://developer.ridgerun.com/wiki/index.php?title=MAX96705_MAX9286_GMSL_SERDES_Linux_Drivers
+
+
+max9286.c
+https://kernel.googlesource.com/pub/scm/linux/kernel/git/kbingham/rcar/+/gmsl/renesas-drivers-2018-01-30-v4.15/squashed/drivers/media/i2c/max9286.c
+
+https://elixir.bootlin.com/linux/v5.9-rc6/source/drivers/media/i2c/max9286.c

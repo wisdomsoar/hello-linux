@@ -1,0 +1,25 @@
+
+Add initial support for slimport anx7625
+https://lore.kernel.org/driverdev-devel/20191010095617.GL13286@kadam/T/#m811c736a434f782de8390964d40bcf584924e4a0
+
+Timing parameters for 4K (UHD 3840 x 2160 ) resolution
+https://forums.xilinx.com/t5/Video/Timing-parameters-for-4K-UHD-3840-x-2160-resolution/td-p/850215
+
+freertos
+video_common_v4_3/src
+https://github.com/cjlano/freertos/tree/master/FreeRTOS/Demo/
+CORTEX_R5_UltraScale_MPSoC/RTOSDemo_R5_bsp/psu_cortexr5_0/libsrc/video_common_v4_3/src
+
+video_common_v4_3/src/xvidc.h
+video_common_v4_3/src/xvidc_timings_table.c
+
+
+
+
+
+
+為什麼也沒有4k60!?
+kernel_realme_RMX1927/drivers/gpu/drm/bridge/analogix-anx7625.c
+
+Video Timings: VGA, SVGA, 720P, 1080P
+https://timetoexplore.net/blog/video-timings-vga-720p-1080p
