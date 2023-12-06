@@ -1,0 +1,4 @@
+
+## set USB Host mode
+ echo 2 > /sys/devices/platform/11201000.usb/mode
+## Then you can attach an USB stick or USB-serial 
