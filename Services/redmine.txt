@@ -1,0 +1,12 @@
+
+Restart redmine?
+
+有天(2023/12/7)發現redmine不能用，/opt/redmine/log/production.log顯示無法連到MySQL:
+Can't connect to local MySQL server through socket 
+
+所以嘗試重啟apache: 
+/etc/init.d/apache2 restart
+但是沒用，所以改用:
+sudo service apache2 restart
+也是沒用，所以嘗試重啟MySQL:
+sudo systemctl restart mysql
