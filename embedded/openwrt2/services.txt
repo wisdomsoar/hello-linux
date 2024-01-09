@@ -1,6 +1,36 @@
 
+
+O triggerhappy
+
 triggerhappy可以監聽/dev/input/event*的key event，然後寫下這些key要做什麼事情(commands, script)
 build:
 feeds/packages/utils/triggerhappy
 device:
 <TBD>
+
+
+
+
+O ntpd 
+
+opkg install ./libevent2-core7_2.1.12-1_aarch64_cortex-a55_neon-vfpv4.ipk
+opkg install ./libevent2-pthreads7_2.1.12-1_aarch64_cortex-a55_neon-vfpv4.ipk
+opkg install ./ntp-utils_4.2.8p15-3_aarch64_cortex-a55_neon-vfpv4.ipk
+opkg install ./ntpd_4.2.8p15-3_aarch64_cortex-a55_neon-vfpv4.ipk
+/etc/init.d/sysntpd disable
+/etc/init.d/ntpd enable
+/etc/init.d/ntpd start
+
+
+  ###TEST: 
+  date +%T -s "14:53:13"
+  
+  
+  
+  
+  
+  
+  然後Ubuntu當client 執行:
+  ntpdate -q ALPHA
+  
+  如此，Ubuntu就會去sync 時間
