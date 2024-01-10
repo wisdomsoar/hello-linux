@@ -1,0 +1,7 @@
+
+
+openwrt/target/linux/gem6xxx/MODEL_NAME/target.mk
+
+
+
+裡面指定了SUBTARGET

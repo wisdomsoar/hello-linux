@@ -1,5 +1,16 @@
 
 
+# busy wait when uptime < x seconds
+# awk 
+# get first vaule in field and convert to an integer
+my_seconds = $(awk '{print int($1)}' /proc/uptime)
+while [ $my_seconds -lt 76 ]
+do       
+  sleep 1      
+  my_seconds = $(awk '{print int($1)}' /proc/uptime)  
+done  
+
+
 # Print <Tab>
 # ref: https://www.unix.com/shell-programming-and-scripting/132905-printing-fixed-width-columns.html
 # use -e to enable the use of special characters
