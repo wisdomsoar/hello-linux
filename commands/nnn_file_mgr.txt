@@ -1,0 +1,17 @@
+ref: https://github.com/jarun/nnn/wiki/Usage
+
+sudo apt-get install nnn
+#### enter this "nnn" file mgr
+nnn
+
+### arrow keys to move the cursor
+<-, ->, ^, 
+
+### <Enter> to enter the hightlight directory
+<Enter>
+
+### "e" to edit text file (vim?)
+e
+
+### "!" to change working directory and back to shell
+shift+1
