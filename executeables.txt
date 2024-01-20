@@ -1,0 +1,24 @@
+
+指定別的so檔給你的執行檔使用...
+
+ref: https://medium.com/fcamels-notes/linux-%E7%B7%A8%E8%AD%AF-shared-library-%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85-cb35844ef331
+Linux 編譯 shared library 的方法和注意事項
+
+ldd - print shared object dependencies
+
+列出某執行檔所需的library
+
+Example:
+$ ldd /bin/ls
+               linux-vdso.so.1 (0x00007ffcc3563000)
+               libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f87e5459000)
+               libcap.so.2 => /lib64/libcap.so.2 (0x00007f87e5254000)
+               ...
+
+若想暫時使用指定目錄中的*.so檔，可試試：
+export LD_LIBRARY_PATH=/home/root/
+##這裡執行
+some_executeables_command
+
+
+
