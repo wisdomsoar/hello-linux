@@ -1,0 +1,34 @@
+#! /bin/sh
+#
+#Copyright (c) 2023, 2023-2024 XSQuare, Inc.
+#All Rights Reserved.
+#Confidential and Proprietary - XSQuare, Inc.
+#
+# xs_trigger   init.d script to start the gpio key event handler
+
+#set -e
+
+case "$1" in
+  start)
+        echo -n "Starting xs_trigger:"
+        start-stop-daemon -S -b -a /usr/bin/xs_trigger /dev/input/event1
+        echo "done"
+        ;;
+  stop)
+        echo -n "Stopping xs_trigger:"
+		killall xs_trigger
+		killall -9 xs_trigger
+        echo "done"
+        ;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  *)
+        echo "Usage xs_trigger { start | stop | restart}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0
+

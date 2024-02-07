@@ -1,0 +1,56 @@
+
+
+
+# UBIFS
+# See the mtd partition
+cat /proc/mtd
+
+
+/ # dmesg | grep UBIFS | grep name
+[    5.129608] UBIFS (ubi0:0): UBIFS: mounted UBI device 0, volume 0, name "rootfs"
+[    6.579820] UBIFS (ubi0:3): UBIFS: mounted UBI device 0, volume 3, name "systemrw"
+[    8.148141] UBIFS (ubi0:4): UBIFS: mounted UBI device 0, volume 4, name "persist"
+[    8.337370] UBIFS (ubi1:0): UBIFS: mounted UBI device 1, volume 0, name "modem"
+[    8.779559] UBIFS (ubi0:1): UBIFS: mounted UBI device 0, volume 1, name "usrfs"
+[   27.789306] UBIFS (ubi0:2): UBIFS: mounted UBI device 0, volume 2, name "cachefs"
+/ #
+
+
+# Write binary file to partition (upgrade firmware)
+
+
+/dev # mtd write  /tmp/boot.img   boot_b
+ 
+ 
+/dev # ubiformat   /dev/mtd27  -y -f /tmp/sys
+sysfs.ubi
+systemd-private-9fc1546d946244ff858b36445f95b279-ninfod.service-Hizv8i/
+systemd-private-9fc1546d946244ff858b36445f95b279-rdisc.service-FcKPFh/
+/dev # ubiformat   /dev/mtd27  -y -f /tmp/sysfs.ubi
+ubiformat: mtd27 (nand), size 220200960 bytes (210.0 MiB), 840 eraseblocks of 262144 bytes (256.0 KiB), min. I/O size 4096 bytes
+libscan: scanning eraseblock 839 -- 100 % complete
+ubiformat: 439 eraseblocks have valid erase counter, mean value is 0
+ubiformat: 401 eraseblocks are supposedly empty
+ubiformat: warning!: only 439 of 840 eraseblocks have valid erase counter
+ubiformat: mean erase counter 0 will be used for the rest of eraseblock
+ubiformat: use erase counter 0 for all eraseblocks
+ubiformat: flashing eraseblock 438 -- 100 % complete
+ubiformat: formatting eraseblock 839 -- 100 % complete
+/dev #
+
+
+
+
+/dev # ubiattach   -m 27   -d 10
+UBI device number 10, total 840 LEBs (213319680 bytes, 203.4 MiB), available 0 LEBs (0 bytes), LEB size 253952 bytes (248.0 KiB)
+/dev #
+/dev # ubin
+ubinfo   ubinize
+/dev # ubinfo  | grep -q  ubi10
+/dev # ubinfo
+UBI version:                    1
+Count of UBI devices:           3
+UBI control device major/minor: 10:122
+Present UBI devices:            ubi0, ubi1, ubi10
+/dev #
+

@@ -104,8 +104,9 @@ https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/Useful-bitbake-comma
 顯示 bitbake 輔助文件。
 bitbake --help
 
-顯示 recipes 和 tasks 列表。
+顯示 recipes 和 tasks 列表
 bitbake -s
+-s, --show-versions   Show current and preferred versions of all recipes.
 
 https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/Useful-bitbake-commands/ta-p/1128559
 Check if certain package is present on current Yocto Setup

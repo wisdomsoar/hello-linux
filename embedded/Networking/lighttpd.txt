@@ -1,0 +1,51 @@
+
+# Test the lighttpd webserver with a simple configuration file:
+
+lighttpd -D -f /home/root/light_hello_world.conf
+##### The lighttpd will execute and hold with the config file: light_hello_world.conf or the process will exit if parsing the config with an error
+
+
+# Brose the web pages the see if it work
+# TBD
+
+
+# Terminate the lighttpd: 
+<Ctrl> + C
+
+cat /home/root/light_hello_world.conf
+
+server.modules              = (
+                                "mod_access",
+                               "mod_fastcgi",
+                                "mod_accesslog" )
+
+server.document-root = "/www/pages/"
+
+#server.port= 8080
+# 80 is the default listening port number, if not otherwise specified
+
+#server.username = "www"
+#server.groupname = "www"
+
+# If running lighttpd earlier than lighttpd 1.4.71, uncomment (remove '#') to add the following:
+#mimetype.assign = (
+#  ".html" => "text/html",
+#  ".txt" => "text/plain",
+#  ".jpg" => "image/jpeg",
+#  ".png" => "image/png"
+#)
+
+static-file.exclude-extensions = ( ".fcgi", ".php", ".rb", "~", ".inc" )
+index-file.names = ( "index.html" )
+
+fastcgi.server = (
+        "/test" => ((
+                "socket" => "/WEBSERVER/www/cgi-bin/test.socket",
+                "bin-path" => "/WEBSERVER/www/cgi-bin/test_cgi",
+                "check-local" => "disable"
+        ))
+)
+
+
+
+

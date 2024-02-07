@@ -6,3 +6,22 @@ qcom,board-id = <0x2010108 0x302> = <board_id, reserved>; board_id is a 32-bit i
  - bits 23-16 = Platform version (major)
  - bits 15-8 = Platform version (minor)
  - bits 7-0 = Platform type ID"
+
+
+
+root@localhost:/sys/firmware/devicetree/base/serial@11003000# ls
+clock-names  clocks       compatible   dma-names    dmas         interrupts   name         reg
+root@localhost:/sys/firmware/devicetree/base/serial@11003000#
+
+# See the driver compatible name:
+cat compatible 
+
+root@localhost:/sys/firmware/devicetree/base/serial@11003000# cat name
+serialroot@localhost:/sys/firmware/devicetree/base/serial@11003000#
+root@localhost:/sys/firmware/devicetree/base/serial@11003000#
+
+
+
+
+
+
