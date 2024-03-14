@@ -424,6 +424,9 @@ wc file (Word Count)
 ls | wc -l
 l: count lines.
 
+tells the kernel to free up memory by dropping caches.
+echo 3 | sudo tee /proc/sys/vm/drop_caches
+
 Show the size, total space and free space of the current partition:
 df -h .
 
