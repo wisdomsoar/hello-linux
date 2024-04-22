@@ -474,6 +474,14 @@ n: numeric
 
 sudo mount -t ext4 /dev/sdb1 /mnt/p
 
+mount -o remount,rw /
+o: --options
+
+ref: mount help:
+Attempt to remount an already-mounted filesystem. This is commonly used to change the mount flags for a filesystem, especially to make a readonly filesystem writeable. It does not change device or mount point.
+The remount functionality follows the standard way how the mount command works with options from fstab. It means the mount command doesn't read fstab (or mtab) only when a device and dir are fully specified.
+
+
 picocom -b BAUD_RATE /dev/SERIAL_DEVICE
 
 To quit picocom, you need to press Ctrl-a, then Ctrl-q.
