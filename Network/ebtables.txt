@@ -1,0 +1,11 @@
+/usr/bin # ebtables -A INPUT -i eth0 -j DROP
+/usr/bin # ebtables -A OUTPUT -o eth0 -j DROP
+
+
+/usr/bin #
+/usr/bin # ebtables -D INPUT -i eth0 -j DROP
+/usr/bin # ebtables -D  OUTPUT -o eth0 -j DROP
+
+
+ebtables -A INPUT -i rmnet0 -j DROP
+ebtables -A OUTPUT -o rmnet0 -j DROP

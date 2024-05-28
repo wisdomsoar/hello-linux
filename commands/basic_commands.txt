@@ -352,6 +352,16 @@ sed -i.bak "s/Name=[a-zA-Z]*/Name=Nena/" input_file.txt
 取代，指定字串是一行的開頭 (用^來指令)
 sed -i "s/^Channel=\([0-999]\+\)/Channel=32/g" $config_file
 
+#clear schedule reboot
+sed -i  '/\/sbin\/reboot/c '    /data/cron/root
+
+# add an entry for schedule reboot
+echo "0 5 * * * /sbin/reboot" >> /data/cron/root
+
+# change time
+sed -i '/\/sbin\/reboot/c 0 3 * * * \/sbin\/reboot' /data/cron/root
+
+
 ****************************************************************************************************************
 
 Archiving
@@ -518,6 +528,11 @@ Make zip file
 zip -0r bootanimation.zip desc.txt part0 part1
 0: not use any compression
 r: recursively
+
+zip -qry "$OTA_MAKE_DIR/$OTA_V1_SYSTEM" *
+q: quiet
+r: recurisve
+y: store symbolic link
 
 current processes report
 ps

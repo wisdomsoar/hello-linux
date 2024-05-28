@@ -1,6 +1,4 @@
 
-
-
 iptables -L -nv
 -L, --list
   List all rules in the selected chain. If no chain is selected, all chains are listed.
