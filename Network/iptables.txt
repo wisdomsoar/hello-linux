@@ -1,3 +1,30 @@
+                                .---------------------------.
+								|                           |                  .----------.
+ .--. .--. .--. .--. .--.     .----.                        |     .--..--..--. |          |
+ |  | |  | |  | |  | |  |<----|    |---------------OUTPUT---|-----|  ||  ||  | |          |
+ '--' '--' '--' '--' '--'     |    |                        |     '--''--''--' |          |
+ .--. .--. .--. .--. .--.     |eth0|                        |                  |          |
+ |  | |//| |  | |//| |  |---->|    |-PREROUTING--.          |                  |          |
+ '--' '--' '--' '--' '--'     '----'             |          |                  | ./a.out  |
+                                |                v          |                  |          |
+								|               /\          |                  |          |
+								|		       /  \	        |                  |          |
+								|		      /    \        |                  |          |
+								|		     /      \No     |     .--..--..--. |          |
+								|		     \route?/---INPUT---->|  ||  ||  | |          |
+								|		      \    /        |     '--''--''--' '----------'
+								|		       \  /         |
+								|               \/          |
+						 		|		      Yes|          |
+								|		         |          |
+							  .----.          FORWARD       |
+                              |    |             |          |
+ .--. .--. .--. .--. .--.     |    |             |          |
+ |//| |//| |//| |//| |//|<----|eth1|-POSTROUTING-'          |
+ '--' '--' '--' '--' '--'     |    |                        |
+							  '----'                        |
+								|                           |
+								'---------------------------'
 
 iptables -L -nv
 -L, --list
@@ -13,5 +40,16 @@ Numeric output (IP addresses)
    multipliers respectively (but see the -x flag to change this). 
    For appending, insertion, deletion and replacement, this causes detailed information on the rule or rules to be printed.
    
-   
-   
+Examples:
+iptables -L -nv
+
+iptables -L FORWARD -nv | grep DROP | grep rmnet_data0
+
+iptables -L FORWARD -nv | grep DROP | grep rmnet_data0 | grep "tcp dpt:1935"
+
+
+iptables -A FORWARD -o rmnet_data0 -j DROP
+iptables -D FORWARD -o rmnet_data0 -j DROP
+
+
+iptables -A FORWARD -o rmnet_data0 -p tcp --dport 1935 -j DROP   
