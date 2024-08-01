@@ -160,5 +160,9 @@ bitbake Package -c listtasks
 
 bitbake -e linux-imx | grep ^SRC_URI=
 
-
-
+Read phy registers 
+phytool write eth0/0/31 0xd04
+# (original: 0x6251) here to set LED1 link inidication for 10M
+phytool write eth0/0/16 0x6261
+# Change to initial page
+phytool write eth0/0/31 0xa42
