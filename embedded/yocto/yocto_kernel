@@ -23,3 +23,7 @@ apps_proc/src/vendor/qcom/proprietary/devicetree/bindings/mmc/sdhci-msm.txt
 
 Driver source
 apps_proc/src/kernel/msm-5.4/drivers/mmc/host/sdhci-msm.c
+
+clean build the kernel
+bitbake -c cleansstate virtual/kernel && bitbake -c compile -f virtual/kernel
+
