@@ -1,2 +1,12 @@
 cd linux5.4
 vi arch/arm64/boot/dts/mediatek/xs5g01_proscend.dts
+
+Openwrt
+Make target/linux/{clean,compile} && make –j 5 V=s
+
+source
+owrt/src/vendor/qcom/proprietary/devicetree/qcom
+
+
+dst
+owrt/src/kernel/msm-5.4/arch/arm/boot/dts/vendor/qcom
