@@ -27,3 +27,5 @@ apps_proc/src/kernel/msm-5.4/drivers/mmc/host/sdhci-msm.c
 clean build the kernel
 bitbake -c cleansstate virtual/kernel && bitbake -c compile -f virtual/kernel
 
+yocto
+bitbake  -c clean linux-msm && bitbake qti-mbb-image
