@@ -361,8 +361,17 @@ deploy:
 build/tmp/work/llllcccc-pocky.../linux-imx/meta-ddddddd/recipe-kernel/linux-imx/...
 
 
+**********************************************************************************
+**********************************************************************************
+
+bitbake -c cleanall xs-trigger && bitbake xs-trigger && bitbake -c cleanall json-api-cli && bitbake  json-api-cli
+
+build-9607-2G-som-AB-image
 
 
+bitbake -c cleanall xs-trigger && bitbake xs-trigger && bitbake -c cleanall json-api-cli && bitbake  json-api-cli && build-9607-2G-som-AB-image
+
+build-4G03-pd-image
 
 
 
