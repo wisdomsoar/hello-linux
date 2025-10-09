@@ -1,0 +1,43 @@
+ref: https://spimet.com/blog/archives/6720
+
+ (Linux)- Puppy Linux (BookwormPup 10.0.7) 中文 老舊電腦的救星，低記憶體容量、單核心老電腦也適用，上網也不怕染病毒
+
+一、介紹：
+
+Linux的生態系統是非常多樣化的，尤其是 Puppy Linux。它是一個非常小的 Linux 發行版本。整套系統都能在記憶體中執行。有很多自啟動執行光碟的 Linux 發行，它們需要不停地從光碟讀取資料才能執行，Puppy 與它們不一樣，Puppy 整個裝載在記憶體中。這意味著，所有的應用程式一眨眼的功夫就能啟動，並且立即對使用者的輸入作出響應。Puppy Linux 能從 flash 卡或者是任何的 USB 儲存裝置啟動（這是 flash-Puppy），或者光碟（這是live-Puppy），或者 Zip disk 及 LS / 120 / 240 Superdisk（這是 zippy-Puppy），或者軟盤（這是floppy-Puppy），或者硬碟（這是 hard-Puppy）。它甚至可以使用一張多區段燒錄的 CD-R / DVD-R 以將所有內容儲存回 CD / DVD 中。
+
+Puppy Linux 發行版本：BookwormPup 10.0.7(10.0.4 沒測試過，但應該也可以修改)
+
+——————————————————————————————————
+
+檔案大小：800 MB 左右，相對現今來說非常小了(PS：其實己經不小了)
+
+官方下載：下載
+
+2024/08/11 花了一天的時間，終於可以漢化使用了，步驟如下：
+
+1. 如果只是想要顯示中文
+
+sudo apt-get install fonts-wqy-microhei fonts-wqy-zenhei
+
+2. 如果想要顯示和輸入中文
+
+2.1 安裝
+
+gcin 中文输入法平台: gcin64_2.8.2-en-zh-bookworm-21.8.0.pet (6 mb)
+
+2.2 打開 ~/.xinitrc ，在 ./etc/rc.d/PUPSTATE 後面加入
+
+#gcinexport XMODIFIERS=”@im=gcin”export XIM_PROGRAM=”gcin”export GTK_IM_MODULE=”gcin”export QT_IM_MODULE=”gcin”gcin
+
+PS：下述原先的數劇請刪除
+
+# Inserted by gcin01 beginningexport XIM=”gcin”export XIM_ARGS=”-d”export XIM_PROGRAM=”gcin”export GTK_XIM_MODULES=”gcin”export QT_XIM_MODULES=”gcin”export LC_CTYPE=”zh_CN.utf8″if (grep “[1-2]” /usr/share/.fixmenus_indicator) thenfixmenusfiexport XMODIFIERS=@im=gcinkillall gcin; gcin
+
+# Inserted by gcin01 ending
+
+3. LxTerminal 無法使用，請重新安裝
+
+sudo apt-get install lxterminal
+
+PS：不想重新安裝，測試修改了很多地方，還是無法解決，最後還是重新安裝了。
