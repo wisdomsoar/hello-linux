@@ -482,6 +482,10 @@ p: programs
 e: extend
 n: numeric
 
+another example (filter port number)
+netstat -tunlp | grep :514
+
+
 sudo mount -t ext4 /dev/sdb1 /mnt/p
 
 mount -o remount,rw /
