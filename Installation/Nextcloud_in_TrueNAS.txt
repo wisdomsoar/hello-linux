@@ -1,0 +1,25 @@
+
+Information:
+OS: TrueNAS Scale 25.10.0 Stable (今天是2025/11/11 Tue.)
+
+Step:
+1. Create Pool (name: Pool1): RAIDXXX
+2. Create 'Applications' Dataset (type: app) under Pool1
+3. Create 'Nextcloud' Dataset (type: app) under 'Applications'
+4. Create 'Appdata' Dataset (type: app) under 'Nextcloud'
+5. Create 'Userdata' Dataset (type: app) under 'Nextcloud'
+5. Create 'Postgre' Dataset (type: generic) under 'Nextcloud'
+
+Now, we have path:
+/mnt/Pool1/Applications/Nextcloud
+/mnt/Pool1/Applications/Nextcloud/Appdata
+/mnt/Pool1/Applications/Nextcloud/Userdata
+/mnt/Pool1/Applications/Nextcloud/Postgre
+
+Under linux shell:
+chown -R www-data:www-data /mnt/Pool1/Applications/Nextcloud
+chown -R 999:999 /mnt/Pool1/Applications/Nextcloud/Postgre
+
+App:
+Install Nextcloud in 'App' item in truenas admin URL
+
