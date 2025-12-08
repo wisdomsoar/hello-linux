@@ -1,0 +1,33 @@
+
+**重新build某package
+pinnacles_apps/apps_proc/owrt/dl/my_tmp$ make package/prpl-webui/clean
+pinnacles_apps/apps_proc/owrt/dl/my_tmp$ make package/feeds/feed_prpl/prpl-webui/clean V=s
+pinnacles_apps/apps_proc/owrt/dl/my_tmp$ make package/feeds/feed_prpl/prpl-webui/download V=s
+
+
++**自訂log:
+
+先看一下，有哪些其他micro service的Log產出方法
+root@prplOS:/etc# vi /etc/amx/cellular-manager/cellular-manager.odl
+*************************************************************************
+    sahtrace = {
+        type = "syslog",
+       //level = "${default_log_level}"
+        //type = "file",
+        //file = "/tmp/tr181_cellular_log",
+        level = 500
+    };
+*************************************************************************
+
+改到你想修改的mircro service (這裡是tr181-dynamicdns)上
+root@prplOS:/etc# vi /etc/amx/tr181-dynamicdns/tr181-dynamicdns.odl
+**************************************************************************
+    sahtrace = {
+        //type = "syslog",
+        //level = "${default_log_level}"
+        type = "file",
+        file = "/tmp/tr181_ddns_log"
+    };
+***************************************************************************	
+重新啟動service
+root@prplOS:/etc# /etc/init.d/tr181-dynamicdns restart
