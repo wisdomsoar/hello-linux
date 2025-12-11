@@ -139,6 +139,9 @@ USE THIS!!!!!vvvvvvvvvvvvv
 grep -E -- 'foo|bar' *.txt
 grep -e foo -e bar -- *.txt
 
+-E是指定後面是regular expression，他的相反是-F
+-F, --fixed-strings
+
 How to grep for contents after pattern?
 https://stackoverflow.com/questions/10358547/how-to-grep-for-contents-after-pattern
 取冒號之後的文字：
@@ -174,6 +177,15 @@ This grep will return as follows:
 I like apples.
 I like bananas.
 
+grep only the first match and stop
+grep -o -a -m 1 -h -r "Pulsanti Operietur" /path/to/directory
+(我用hcitool scan看BT list時，只需找第一個BT MAC)
+o: Only-matching
+a: (text) Process a binary file as if it were text
+m: Max-count
+h: no-filename (搜尋多個檔案時，不顯示檔名的prefix)
+r: recursive
+
 ref: https://stackoverflow.com/questions/15148796/get-string-after-character
 $ str="GenFiltEff=7.092200e-01"
 $ value=${str#*=}
@@ -201,15 +213,6 @@ test_string=$(echo $test_string | tr "\t\t\t" " " )
 test_string=$(echo $test_string | tr "\t\t" " ")
 test_string=$(echo $test_string | tr "\t" " ")
 result=$(echo $test_string | cut -d " " -f 2)
-
-Grep only the first match and stop
-grep -o -a -m 1 -h -r "Pulsanti Operietur" /path/to/directory
-(我用hcitool scan看BT list時，只需找第一個BT MAC)
-o: Only-matching
-a: (text) Process a binary file as if it were text
-m: Max-count
-h: no-filename (搜尋多個檔案時，不顯示檔名的prefix)
-r: recursive
 
 example: Long list with most recent files last:
 ls -ltr
