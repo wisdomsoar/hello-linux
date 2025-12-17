@@ -142,6 +142,8 @@ grep -e foo -e bar -- *.txt
 -E是指定後面是regular expression，他的相反是-F
 -F, --fixed-strings
 
+-n, --line-number
+
 How to grep for contents after pattern?
 https://stackoverflow.com/questions/10358547/how-to-grep-for-contents-after-pattern
 取冒號之後的文字：
@@ -307,6 +309,26 @@ grep -rnws --include="*.bp" "word_to_find"
 
 Skip directory 
 --exclude-dir=node_modules
+
+
+我想抓"Up 13 minutes"中的13(只抓數字)
+**********************************
+docker ps -a 
+CONTAINER ID        IMAGE             COMMAND                CREATED             STATUS                   PORTS                      NAMES
+ea09c3c82f6e        registry:latest   /srv/run.sh            2 weeks ago         Exited (0) 2 weeks ago   127.0.0.1:5000->5000/tcp   desperate_leakey
+106ea823fe4e        fedora:latest     /bin/sh -c 'bash -l'   2 weeks ago         Exited (0) 2 weeks ago                              determined_albattani
+48ee228c9464        fedora:20         bash                   2 weeks ago         Exited (0) 2 weeks ago                              tender_torvalds
+**********************************
+docker ps -a | grep metube | grep -oP 'Up\s+\K\d+(?=\s+minutes)'
+-o: 只輸出匹配到的部分。
+-P: 使用 Perl 正則表達式。
+Up\s+: 匹配 "Up" 加上後面的空白。
+\K: 關鍵技巧！它會「忘記」前面匹配到的 Up 和空白，只保留後面的結果。
+\d+: 匹配一個或多個數字（即你要的結果）。
+(?=\s+minutes): 前瞻斷言，確保數字後面緊跟著空白和 "minutes"，但不會把 minutes 抓出來。
+
+
+docker ps -a --filter 'exited=0'
 
 尋找linked files (並看完整路徑)
 find . -type l -ls | grep mnt
