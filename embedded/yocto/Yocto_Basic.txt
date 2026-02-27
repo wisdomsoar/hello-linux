@@ -162,10 +162,13 @@ metadata – task definitions in recipes, classes + config
 Show current and preferred versions of all recipes.
 $bitbake -s
 
-bitbake -c cleanall -f <recipe_name>
+bitbake -v -c cleanall -f <recipe_name>
+-v: verbose
 -c: Specify the task to execute; CMD的c
     => -c cleanall: to tell BitBake to just execute the do_clean task
-    
+	                刪除編譯目錄（保留下載檔案）
+    => -c cleanall：連下載的原始碼都刪掉（通常只有遠端 Git server 有更新、你卻抓不到時才用）
+	
 -f: Force the specified targets/task to run
     => bitbake -c build -f <recipe_name>
 (幹嘛force，不force會少做什麼嗎?)...
@@ -177,7 +180,10 @@ bitbake -c cleanall -f <recipe_name>
     bitbake -e <your_recipe_name> | grep ^S=
     
     bitbake -e <recipe_name> | grep ^PACKAGES=
-    
+	想知道 BitBake 到底有沒有抓到某個變數
+    bitbake -e [package] | grep ^VARIABLE_NAME=
+	這會顯示 BitBake 在執行時「眼中的世界」長什麼樣子。
+	
     xxxx listed in PACKAGES multiple times, this leads to packaging errors
     ref: https://www.yoctoproject.org/pipermail/yocto/2016-October/032268.html
     PACKAGES = "${PN}" should work (or use bitbake -e recipename | less, search 
@@ -190,6 +196,23 @@ for ^PACKAGES= (with /)
 bitbake -c listtasks -f <recipe_name>
 
 do_patch() is one of the common tasks and it fails because of wrong patch.
+
+情境題
+O 如果修改了 .bb 或 .bbappend (例如改了 -D flag)
+bitbake checksum會變，所以直接用:
+bitbake [package]
+OR
+bitbake -C configure [package]
+
+O 修改了 C Code (在地資料夾)
+bitbake -C compile [package]
+(無須fetch, configure)
+
+O 修改了環境變數 (例如系統層級的變數)
+重新 source 環境設定檔（如 oe-init-build-env）。
+bitbake -c clean [package] (小寫 clean 即可，它會清掉編譯產物，但保留下載好的原始碼)。
+bitbake [package]
+
 
 configuration (.conf) – global definition of variables
 build/conf/local.conf (local user-defined variables)
