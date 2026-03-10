@@ -143,9 +143,13 @@ Numeric output (IP addresses)
    For appending, insertion, deletion and replacement, this causes detailed information on the rule or rules to be printed.
    
 
+iptables -t raw -D PREROUTING -p tcp --dport 1723 -j CT --helper pptp
+iptables -t nat -A PREROUTING -p tcp --dport 1723 -j CT --helper pptp
 
 
+tcpdump -i any -n -vv "ip6 proto 17 and (port 546 or port 547)" -w /tmp/w.bin
 
+tcpdump -i any -n -s0 -vvv -e 'udp port 546 or udp port 547'
 
 
 

@@ -406,7 +406,8 @@ f: file
 
 tar xvf archive.tar -C /path/to/directory
 
-tar -zcvf myfolder.tar.gz myfolder
+tar czvf myfolder.tar.gz myfolder
+z: gzip
 
 Ubuntu 解壓縮程式 7z & rar
 ref: http://snoopymemory.blogspot.com/2016/04/ubuntu-7zrar.html
