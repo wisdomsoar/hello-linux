@@ -141,7 +141,20 @@ Numeric output (IP addresses)
    The packet and byte counters are also listed, with the suffix 'K', 'M' or 'G' for 1000, 1,000,000 and 1,000,000,000 
    multipliers respectively (but see the -x flag to change this). 
    For appending, insertion, deletion and replacement, this causes detailed information on the rule or rules to be printed.
-   
+   -v可以看到in, out
+
+iptables -t nat -nvL PR_REMOMGMT
+Chain PR_REMOMGMT (1 references)
+ pkts bytes target     prot opt in     out     source               destination
+   68  6617 TRUST_DOMAIN  all  --  *      *       0.0.0.0/0            0.0.0.0/0
+   68  6617 NAT_LOOPBACK  all  --  *      *       0.0.0.0/0            0.0.0.0/0
+    0     0 ACCEPT     tcp  --  br+    *       0.0.0.0/0            0.0.0.0/0            tcp dpt:21
+    0     0 ACCEPT     tcp  --  br+    *       0.0.0.0/0            0.0.0.0/0            tcp dpt:23
+    0     0 ACCEPT     tcp  --  br+    *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+    0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0
+    0     0 ACCEPT     tcp  --  br+    *       0.0.0.0/0            0.0.0.0/0            tcp dpt:30080
+    0     0 ACCEPT     tcp  --  br+    *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443
+
 
 iptables -t raw -D PREROUTING -p tcp --dport 1723 -j CT --helper pptp
 iptables -t nat -A PREROUTING -p tcp --dport 1723 -j CT --helper pptp
