@@ -160,12 +160,26 @@ iptables -t raw -D PREROUTING -p tcp --dport 1723 -j CT --helper pptp
 iptables -t nat -A PREROUTING -p tcp --dport 1723 -j CT --helper pptp
 
 
+Examples:
 tcpdump -i any -n -vv "ip6 proto 17 and (port 546 or port 547)" -w /tmp/w.bin
+proto 17: UDP
+Port 546：DHCPv6 Client（通常是你的 Router 本身）
+Port 547：DHCPv6 Server / Relay Agent（通常是電信商端機房的伺服器）
+=>抓 IPv6 底下、走 UDP 傳輸、而且是跟 DHCPv6（546/547）相關 的封包（例如 Solicit, Advertise, Request, Reply）
 
 tcpdump -i any -n -s0 -vvv -e 'udp port 546 or udp port 547'
+-e 是 Link-level header 
+Ethernet header 或 Data Link Layer header
+在大部分Ethernet環境下，它指的就是 MAC 位址（MAC Address）、乙太網類型（Ethernet Type，例如 IPv4 或 IPv6），以及 VLAN ID 標籤
+也就是多抓Layer 2資訊
 
-
-
+tcpdump -i rmnet0 -n -s 0 -A port 5060
+-s 
+Snapshot length = 0：代表抓取完整的封包（不限制大小）
+-a
+ASCII
+port 5060
+只過濾出 UDP 或 TCP Port 5060 的流量（SIP 的標準埠）
 
 
 
