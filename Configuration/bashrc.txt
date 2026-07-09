@@ -19,3 +19,23 @@ export PS1="\u@\h \[\033[38;5;172m\]\w\[\033[38;5;203m\]\$(parse_git_branch)\[\0
 
 export PS1='\[\033[38;5;193m\][${timer_show}s]\[\033[00m\]'$PS1
 
+# Use nnn and change current directory (cd) to the last dir when nnn exits
+nnnn() {
+    # Block nesting of nnn in subshells
+    if [ -n "${NNNLVL}" ] && [ "${NNNLVL}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # 設定暫存檔路徑
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # 執行 nnn，並傳入 -e 參數（讓它在退出時紀錄最後路徑）
+    nnn "$@"
+
+    # 如果暫存檔存在，就讀取它並 cd 進去，最後刪除暫存檔
+    if [ -f "$NNN_TMPFILE" ]; then
+        . "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE"
+    fi
+}
