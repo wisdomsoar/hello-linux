@@ -156,6 +156,13 @@ or
 
 grep 'potato:' file.txt | awk '{print $2}'
 
+
+find . -type f -mmin -10
+m: modification
+min: minutes
+找出當前目錄，10分鐘內有修改的檔案 (用來看compile之後，有哪些檔案真的有被更新了，被compiled了)
+
+
 find all the lines that are present in "b.txt" but not in "a.txt"?
 grep -Fxvf a.txt b.txt
 -F treat the patterns as fixed strings (i.e., not regular expressions).
@@ -762,3 +769,8 @@ echo performance > /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor
 # cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
 
 3210156
+
+********************************************************************
+
+tftp -g -r <remote filename> <remote IP>
+tftp -g -r <remote filename>  -l <local full filename> <remote IP>
