@@ -1,0 +1,78 @@
+SOP：BitBake 遇到 Fetch 卡死或龜速的手動 Workaround 流程
+當 BitBake 卡在 do_fetch 階段（特別是外部伺服器限速、防火牆阻擋 git:// 協定、或 Mirror 站點掛掉）時，可透過手動快取繞過下載階段。
+
+1. 核心機制：BitBake 下載快取判定規則
+BitBake 判斷某個套件原始碼是否「已完整下載」的依據位於 DL_DIR（預設為 <build>/downloads/）：
+
+Git 倉庫：存在於 downloads/git2/<remote_url_folder>，且同層目錄必須有對應的 <remote_url_folder>.done 標記檔。
+
+一般壓縮檔 (tar.gz / zip)：存在於 downloads/<archive_name>，且同層目錄必須有 <archive_name>.done 標記檔。
+
+只要本地存在完整資料與 .done 檔案，BitBake 就會跳過連網，直接進入 do_unpack 與 do_compile。
+
+2. 狀況 A：Git 倉庫卡死（如 git:// 被擋或限速）
+Step 1：終止與清理進程
+按一次 Ctrl + C，若等待超過 10 秒仍未退出，開另一終端機執行：
+
+Bash
+kill -9 <PID_OF_FETCH>
+回到 build 目錄清除該 task 的快取狀態：
+
+Bash
+bitbake -c cleansstate <recipe-name>
+Step 2：從 log 找出目標 URL 與 Commit ID
+查看該 task 的 fetch 日誌：
+
+Bash
+# 路徑通常在 tmp/work/<arch>/<recipe>/<version>/temp/log.do_fetch
+tail -n 30 tmp/work/*/<recipe-name>/*/temp/log.do_fetch
+目標資料夾：尋找 downloads/git2/ 後面的路徑（例如 git.code.sf.net.p.dos2unix.dos2unix）。
+
+目標 Commit：尋找 branch --contains <commit_id> 或 SRCREV。
+
+Step 3：手動 Clone 至 downloads/git2/
+切換至下載目錄並用 --mirror 抓取（優先使用 https:// 替代原生 git://）：
+
+Bash
+cd downloads/git2/
+
+# 清理下載不完整的目錄與暫存
+rm -rf <target_folder>*
+
+# 使用 HTTPS 完整鏡像 clone
+git clone --mirror https://<domain>/<path>/<repo>.git <target_folder>
+Step 4：校驗 Commit 並建立 .done 旗標（關鍵步驟）
+Bash
+# 1. 驗證該 commit 是否存在於該 repo (成功應印出 "commit")
+git --git-dir=<target_folder> cat-file -t <commit_id>
+
+# 2. 建立 BitBake 的下載完成標記檔
+touch <target_folder>.done
+3. 狀況 B：Tarball / Zip 壓縮檔卡死或站點失效
+若 recipe 使用的是靜態壓縮檔（如 http://.../package-1.0.tar.gz）：
+
+Step 1：查出預期檔名與存放位置
+Bash
+# 查詢該專案的 DL_DIR 實體路徑
+bitbake -e <recipe-name> | grep "^DL_DIR="
+Step 2：手動下載或自備檔案
+由其他鏡像站、本機或瀏覽器手動抓取相同名稱的壓縮檔，放入 downloads/：
+
+Bash
+cd downloads/
+wget https://fast-mirror-site.com/path/<package-version>.tar.gz
+Step 3：建立 .done 旗標檔
+Bash
+# 建立完成標記
+touch <package-version>.tar.gz.done
+注意：如果 recipe 定義了嚴格的 SRC_URI[md5sum] 或 SRC_URI[sha256sum]，手動抓取的 tarball 內容雜湊值必須與 recipe 內定義的完全一致，否則在 do_fetch 結尾會跳 Checksum mismatch 錯誤。
+
+4. 驗證與繼續編譯
+完成手動注入後，切回 build 目錄執行單獨 fetch 測試：
+
+Bash
+# 1. 先測試該 recipe 能否秒過 fetch
+bitbake -c fetch <recipe-name>
+
+# 2. 通過後，直接編譯該 recipe 或繼續整包 build
+bitbake <recipe-name>
